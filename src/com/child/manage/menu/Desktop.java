@@ -426,30 +426,29 @@ public class Desktop {
 						case ViewUtil.HOME:
 							mOnChangeViewListener.onChangeView(ViewUtil.HOME);
 							break;
-
-						case ViewUtil.MESSAGE:
+						case ViewUtil.DIANPING:
 							mOnChangeViewListener
-									.onChangeView(ViewUtil.MESSAGE);
+									.onChangeView(ViewUtil.DIANPING);
 							break;
-						case ViewUtil.FRIENDS:
+						case ViewUtil.LIUYAN:
 							mOnChangeViewListener
-									.onChangeView(ViewUtil.FRIENDS);
+									.onChangeView(ViewUtil.LIUYAN);
 							break;
-						case ViewUtil.PHOTO:
-							mOnChangeViewListener.onChangeView(ViewUtil.PHOTO);
+						case ViewUtil.SHIPIN:
+							mOnChangeViewListener.onChangeView(ViewUtil.SHIPIN);
 							break;
-						case ViewUtil.VIEWED:
-							mOnChangeViewListener.onChangeView(ViewUtil.VIEWED);
+						case ViewUtil.YUER:
+							mOnChangeViewListener.onChangeView(ViewUtil.YUER);
 							break;
-						case ViewUtil.GIFTS:
-							mOnChangeViewListener.onChangeView(ViewUtil.GIFTS);
+						case ViewUtil.KECHENG:
+							mOnChangeViewListener.onChangeView(ViewUtil.KECHENG);
 							break;
-						case ViewUtil.RECOMMEND:
+						case ViewUtil.SHIPU:
 							mOnChangeViewListener
-									.onChangeView(ViewUtil.RECOMMEND);
+									.onChangeView(ViewUtil.SHIPU);
 							break;
-						case ViewUtil.LBS:
-							mOnChangeViewListener.onChangeView(ViewUtil.LBS);
+						case ViewUtil.SET:
+							mOnChangeViewListener.onChangeView(ViewUtil.SET);
 							break;
 						default:
 							mOnChangeViewListener.onChangeView(ViewUtil.HOME);

@@ -6,15 +6,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
-import com.child.manage.menu.Desktop;
-import com.child.manage.menu.Home;
-import com.child.manage.ui.SlideMenu;
+import com.child.manage.menu.*;
 import com.child.manage.util.ActivityForResultUtil;
 import com.child.manage.util.PhotoUtil;
 import com.child.manage.util.ViewUtil;
@@ -30,10 +26,39 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      * 菜单界面
      */
     private Desktop mDesktop;
+
     /**
-     * 内容首页界面
+     * 互动天地
      */
     private Home mHome;
+    /**
+     * 给宝宝成长点评
+     */
+    private Dianping dianping;
+    /**
+     * 给老师留言
+     */
+    private Liuyan liuyan;
+    /**
+     * 远程视频
+     */
+    private Video video;
+    /**
+     * 育儿知识
+     */
+    private Yuer yuer;
+    /**
+     * 每周课程
+     */
+    private Kecheng kecheng;
+    /**
+     * 宝宝食谱
+     */
+    private Shipu shipu;
+    /**
+     * 设置
+     */
+    private Set set;
 
     /**
      * 当前显示的View的编号
@@ -86,37 +111,61 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                 mViewPosition = arg0;
                 switch (arg0) {
                     case ViewUtil.USER:
-//                        if (mUserInfo == null) {
-//                            mUserInfo = new User(MainActivity.this,
-//                                    MainActivity.this, mKXApplication);
-//                            mUserInfo.setOnOpenListener(MainActivity.this);
-//                        }
-//                        mRoot.close(mUserInfo.getView());
+
                         break;
                     case ViewUtil.HOME:
                         mRoot.close(mHome.getView());
                         break;
-                    case ViewUtil.MESSAGE:
-
+                    case ViewUtil.DIANPING:
+                        if (dianping == null) {
+                            dianping = new Dianping(MainActivity.this,
+                                    MainActivity.this, childApplication);
+                            dianping.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(dianping.getView());
                         break;
-                    case ViewUtil.FRIENDS:
-
+                    case ViewUtil.LIUYAN:
+                        if(liuyan == null){
+                            liuyan = new Liuyan(MainActivity.this, MainActivity.this,childApplication);
+                            liuyan.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(liuyan.getView());
                         break;
-                    case ViewUtil.PHOTO:
-
+                    case ViewUtil.SHIPIN:
+                        if(video == null){
+                            video = new Video(MainActivity.this, MainActivity.this,childApplication);
+                            video.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(video.getView());
                         break;
-                    case ViewUtil.VIEWED:
-
+                    case ViewUtil.YUER:
+                        if(yuer == null){
+                            yuer = new Yuer(MainActivity.this, MainActivity.this,childApplication);
+                            yuer.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(yuer.getView());
                         break;
-                    case ViewUtil.GIFTS:
-
+                    case ViewUtil.KECHENG:
+                        if(kecheng == null){
+                            kecheng = new Kecheng(MainActivity.this, MainActivity.this,childApplication);
+                            kecheng.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(kecheng.getView());
                         break;
-                    case ViewUtil.RECOMMEND:
-
+                    case ViewUtil.SHIPU:
+                        if(shipu == null){
+                            shipu = new Shipu(MainActivity.this,MainActivity.this,childApplication);
+                            shipu.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(shipu.getView());
                         break;
-                    case ViewUtil.LBS:
-
-
+                    case ViewUtil.SET://设置
+                        if (set == null) {
+                            set = new Set(MainActivity.this,
+                                    MainActivity.this, childApplication);
+                            set.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(set.getView());
                         break;
                     default:
                         break;
@@ -163,25 +212,6 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            /**
-             * 切换墙纸时回调此方法,通知菜单界面和用户界面修改墙纸
-             */
-//            case ActivityForResultUtil.REQUESTCODE_CHANGEWALLPAGER:
-//                if (resultCode == RESULT_OK) {
-//                    mDesktop.setWallpager();
-//                    mUserInfo.setWallpager();
-//                }
-//                break;
-            /**
-             * 修改签名时回调此方法,通知菜单界面和用户界面修改签名
-             */
-//            case ActivityForResultUtil.REQUESTCODE_EDITSIGNATURE:
-//                if (resultCode == RESULT_OK) {
-//                    String arg0 = data.getStringExtra("signature");
-//                    mDesktop.setSignature(arg0);
-//                    mUserInfo.setSignature(arg0);
-//                }
-//                break;
             /**
              * 通过照相修改头像
              */

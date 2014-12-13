@@ -41,7 +41,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dip"
-                            android:text="互动天地"
+                            android:text="宝宝食谱"
                             android:textColor="#ffffff"
                             android:textSize="18sp" />
                     <ImageView

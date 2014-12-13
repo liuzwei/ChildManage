@@ -9,20 +9,20 @@ package com.child.manage.util;
 public class ViewUtil {
 	// 用户界面
 	public static final int USER = -1;
-	// 首页界面
+	// 互动天地
 	public static final int HOME = 0;
-	// 消息界面
-	public static final int MESSAGE = 1;
-	// 好友界面
-	public static final int FRIENDS = 2;
-	// 照片界面
-	public static final int PHOTO = 3;
-	// 转帖界面
-	public static final int VIEWED = 4;
-	// 礼物界面
-	public static final int GIFTS = 5;
-	// 游戏界面
-	public static final int RECOMMEND = 6;
-	// 附近界面
-	public static final int LBS = 7;
+	// 给宝宝成长点评
+	public static final int DIANPING = 1;
+	// 给老师留言
+	public static final int LIUYAN = 2;
+	// 远程视频
+	public static final int SHIPIN = 3;
+	// 育儿知识
+	public static final int YUER = 4;
+	// 每周课程
+	public static final int KECHENG = 5;
+	// 宝宝食谱
+	public static final int SHIPU = 6;
+	// 设置
+	public static final int SET = 7;
 }

@@ -81,12 +81,6 @@ public class VoiceActivity extends BaseActivity {
 	private int mMAXVolume;// 最大音量高度
 	private int mMINVolume;// 最小音量高度
 
-	private int mLocationPosition;// 当前选择的地理位置在列表的位置
-	private boolean mLocationIsShowing = true;// 当前是否显示地理位置
-	private String[] mCompetenceItems = new String[] { "任何人可见", "好友的好友",
-			"仅好友可见", "仅自己可见" };// 权限名称
-	private int mCompetencePosition;// 当前选择的权限在列表中的位置
-
 	private Bitmap mPhotoBitmap;// 上传的图片
 	private String mPhotoPath;// 上传的图片路径
 

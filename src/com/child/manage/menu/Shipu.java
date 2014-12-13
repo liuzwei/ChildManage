@@ -1,11 +1,8 @@
 package com.child.manage.menu;
 
 import android.app.Activity;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -13,26 +10,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
 import com.child.manage.ui.CheckInActivity;
-import com.child.manage.ui.PhoneAlbumActivity;
 import com.child.manage.ui.VoiceActivity;
 import com.child.manage.ui.WriteRecordActivity;
 import com.child.manage.util.ActivityForResultUtil;
-import org.json.JSONArray;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.UUID;
 
 /**
@@ -41,7 +35,7 @@ import java.util.UUID;
  * @author rendongwei
  * 
  */
-public class Home {
+public class Shipu {
     private Button mMenu;
     private View mUgcView;
 	private Context mContext;
@@ -65,11 +59,11 @@ public class Home {
 	 */
 	private boolean mUgcIsShowing = false;
 
-	public Home(Context context, Activity activity, ChildApplication application) {
+	public Shipu(Context context, Activity activity, ChildApplication application) {
 		mContext = context;
 		mActivity = activity;
 		mKXApplication = application;
-		mHome = LayoutInflater.from(context).inflate(R.layout.home, null);
+		mHome = LayoutInflater.from(context).inflate(R.layout.shipu, null);
 		mPopView = LayoutInflater.from(context).inflate(
 				R.layout.home_popupwindow, null);
 		findViewById();
