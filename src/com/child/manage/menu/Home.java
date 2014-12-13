@@ -196,8 +196,29 @@ public class Home {
 					}
 
 					public void onAnimationEnd(Animation animation) {
-						PhotoDialog();
-						closeUgc();
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        File dir = new File("/sdcard/KaiXin/Camera/");
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }
+                        mKXApplication.mUploadPhotoPath = "/sdcard/KaiXin/Camera/"
+                                + UUID.randomUUID().toString();
+                        File file = new File(
+                                mKXApplication.mUploadPhotoPath);
+                        if (!file.exists()) {
+                            try {
+                                file.createNewFile();
+                            } catch (IOException e) {
+
+                            }
+                        }
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                Uri.fromFile(file));
+                        mActivity
+                                .startActivityForResult(
+                                        intent,
+                                        ActivityForResultUtil.REQUESTCODE_UPLOADPHOTO_CAMERA);
+                        closeUgc();
 					}
 				});
 				mUgcPhoto.startAnimation(anim);
