@@ -1,24 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <EditText
-            android:id="@+id/login_username"
-            android:hint="用户名"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <EditText
-            android:id="@+id/login_password"
-            android:hint="密码"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/kaixin_background"
+              android:orientation="vertical" >
 
-    <Button
-            android:id="@+id/login_btn"
-            android:text="登录"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fadingEdge="none"
+            android:scrollbars="vertical" >
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical" >
+
+            <ImageView
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/tx" />
+
+            <TextView
+                    android:layout_width="220dip"
+                    android:layout_height="30dip"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dip"
+                    android:scaleType="centerInside"
+                    android:text="掌中幼园"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textColor="@color/maincolor"
+                    android:src="@drawable/login_slogan" />
+
+            <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_margin="8dip"
+                    android:background="@drawable/login_input"
+                    android:drawableLeft="@drawable/login_icon_account"
+                    android:drawablePadding="25dip"
+                    android:hint="请输入账号"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="25dip"
+                    android:textColor="#ff98bede"
+                    android:textColorHint="#ffdddddd" />
+
+            <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="8dip"
+                    android:background="@drawable/login_input"
+                    android:drawableLeft="@drawable/login_icon_password"
+                    android:drawablePadding="25dip"
+                    android:hint="请输入密码"
+                    android:paddingLeft="25dip"
+                    android:password="true"
+                    android:textColor="#ff98bede"
+                    android:textColorHint="#ffdddddd" />
+
+            <Button
+                    android:id="@+id/login_activity_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginRight="8dip"
+                    android:background="@drawable/beijing"
+                    android:shadowColor="#7f000000"
+                    android:shadowDx="0.0"
+                    android:shadowDy="1.0"
+                    android:shadowRadius="1.0"
+                    android:text="登录"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:enabled="true"/>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dip"
+                    android:layout_margin="8dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dip"
+                    android:gravity="center"
+
+                    android:orientation="vertical" >
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="忘记账号密码？"
+                        android:layout_gravity="center"
+                        android:textColor="@color/maincolor"
+                        android:textSize="20sp" />
+                <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="10dp"
+                        />
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="8dip"
+                        android:layout_gravity="center"
+                        android:text="申请一个账号？"
+                        android:textColor="@color/maincolor"
+                        android:textSize="20sp" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
