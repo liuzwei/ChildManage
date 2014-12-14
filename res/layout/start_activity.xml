@@ -15,19 +15,19 @@
         android:paddingBottom="20dip"
         android:layout_alignParentBottom="true" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All rights reserved.Ver.2.8"
-            android:textColor="#ff888888"
-            android:textSize="12sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="All rights reserved.Ver.2.8"-->
+            <!--android:textColor="#ff888888"-->
+            <!--android:textSize="12sp" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Copyright © 2007-2013 kaixin001.com"
-            android:textColor="#ff888888"
-            android:textSize="12sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Copyright © 2007-2013 kaixin001.com"-->
+            <!--android:textColor="#ff888888"-->
+            <!--android:textSize="12sp" />-->
     </LinearLayout>
 
 </RelativeLayout>

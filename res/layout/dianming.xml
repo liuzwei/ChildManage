@@ -22,7 +22,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/leftbutton" />
+                        android:background="@drawable/left_button_hdtd" />
                 <LinearLayout
                         android:id="@+id/home_top_layout"
                         android:layout_width="fill_parent"
@@ -39,7 +39,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dip"
-                            android:text="成长点名"
+                            android:text="成长点评"
                             android:textColor="#ffffff"
                             android:textSize="18sp" />
                     <ImageView

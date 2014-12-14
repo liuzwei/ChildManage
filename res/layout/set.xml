@@ -18,11 +18,11 @@
                 >
 
             <Button
-                    android:id="@+id/home_menu"
+                    android:id="@+id/set_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/leftbutton" />
+                    android:background="@drawable/left_button_hdtd" />
             <LinearLayout
                     android:id="@+id/home_top_layout"
                     android:layout_width="fill_parent"
@@ -49,26 +49,174 @@
                         />
             </LinearLayout>
 
-            <TextView
-                    android:id="@+id/home_refresh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="15dip"
-                    />
         </LinearLayout>
 
-        <FrameLayout
+        <ScrollView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:scrollbars="none" >
 
-
-
-            <include
-                    android:id="@+id/home_ugc"
+            <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    layout="@layout/ugc_menu_layout" />
-        </FrameLayout>
+                    android:orientation="vertical" >
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="vertical"
+                        android:background="@drawable/set_back"
+                        android:layout_weight="50"
+                       >
+
+
+                    <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/tx"
+                            android:id="@+id/tx"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:text="大宝的爸爸"
+                              android:textSize="20dp"
+                              android:layout_marginTop="15dp"
+                              android:textColor="@color/zhuce_titlecolor"
+                              android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:paddingLeft="15dp"
+                                  android:paddingRight="10dp"
+                                  android:paddingTop="5dp"
+                                  android:paddingBottom="5dp"
+                                  android:background="@drawable/set_item_back"
+                                  android:id="@+id/setzh">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@drawable/set_zhanghao"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:text="账号"
+                                  android:layout_marginLeft="15dp"
+                                  android:textSize="20sp"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:paddingLeft="15dp"
+                                  android:paddingRight="10dp"
+                                  android:paddingTop="5dp"
+                                  android:paddingBottom="5dp"
+                                  android:background="@drawable/set_item_back"
+                                  android:id="@+id/setpass">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@drawable/set_pass"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:text="密码"
+                                  android:layout_marginLeft="15dp"
+                                  android:textSize="20sp"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:paddingLeft="15dp"
+                                  android:paddingRight="10dp"
+                                  android:paddingTop="5dp"
+                                  android:paddingBottom="5dp"
+                                  android:background="@drawable/set_item_back"
+                                  android:id="@+id/setbaby">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@drawable/set_baby"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:text="宝宝的设置"
+                                  android:layout_marginLeft="15dp"
+                                  android:textSize="20sp"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:paddingLeft="15dp"
+                                  android:paddingRight="10dp"
+                                  android:paddingTop="5dp"
+                                  android:paddingBottom="5dp"
+                                  android:background="@drawable/set_item_back"
+                                  android:id="@+id/setemail">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@drawable/set_email"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:text="绑定邮箱"
+                                  android:layout_marginLeft="15dp"
+                                  android:textSize="20sp"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:gravity="center_vertical"
+                                  android:paddingLeft="15dp"
+                                  android:paddingRight="10dp"
+                                  android:paddingTop="5dp"
+                                  android:paddingBottom="5dp"
+                                  android:background="@drawable/set_item_back"
+                                  android:id="@+id/aboutus">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@drawable/set_aboutus"/>
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:text="关于我们"
+                                  android:layout_marginLeft="15dp"
+                                  android:textSize="20sp"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent"
+                          android:layout_height="0.5dp"
+                          android:background="@drawable/set_line"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
     </LinearLayout>
 
 </LinearLayout>

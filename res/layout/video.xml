@@ -22,7 +22,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/leftbutton" />
+                        android:background="@drawable/left_button_hdtd" />
                 <LinearLayout
                         android:id="@+id/home_top_layout"
                         android:layout_width="fill_parent"
@@ -56,26 +56,46 @@
                         android:layout_marginRight="15dip"
                          />
             </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+                <ImageView android:layout_width="match_parent"
+                           android:id="@+id/imag"
+                           android:layout_weight="1"
+                           android:src="@drawable/videocontent"
+                           android:layout_height="wrap_content"/>
 
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+                <TextView android:layout_width="match_parent"
+                          android:text="大班二班即时影像"
+                          android:textColor="#ffffff"
+                          android:textSize="20dp"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                          android:background="@drawable/beijing"
+                          android:layout_height="50dp"/>
 
-            <ListView
-                android:id="@+id/home_display"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:cacheColorHint="#00000000"
-                android:divider="@null"
-                android:listSelector="#00000000" >
-            </ListView>
+            </LinearLayout>
 
-            <include
-                android:id="@+id/home_ugc"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                layout="@layout/ugc_menu_layout" />
-        </FrameLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="fill_vertical"
+                    >
+                <ImageView android:layout_width="match_parent"
+                           android:src="@drawable/shipu_line"
+                           android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="fill_parent"
+                           android:src="@drawable/ad"
+                           android:scaleType="fitXY"
+                           android:layout_height="match_parent"/>
+
+            </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
