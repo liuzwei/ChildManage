@@ -14,7 +14,7 @@
             <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="48dip"
-                    android:background="@drawable/backcolor"
+                    android:background="@drawable/beijing"
                   >
 
                 <Button
@@ -22,14 +22,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="8dip"
                         android:background="@drawable/leftbutton" />
                 <LinearLayout
                         android:id="@+id/home_top_layout"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_marginLeft="20dip"
-                        android:layout_marginRight="20dip"
+                        android:layout_marginRight="35dip"
                         android:layout_weight="1"
                         android:background="@drawable/title_bar_center_button_bg"
                         android:clickable="true"

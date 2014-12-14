@@ -95,7 +95,6 @@ public class VoiceActivity extends BaseActivity {
 
 	private void findViewById() {
 		mParent = (LinearLayout) findViewById(R.id.voice_parent);
-		mCancel = (Button) findViewById(R.id.voice_cancel);
 		mContent = (EditText) findViewById(R.id.voice_content);
 		mPhoto = (ImageView) findViewById(R.id.voice_photo);
 		mDisplayVoiceLayout = (LinearLayout) findViewById(R.id.voice_display_voice_layout);

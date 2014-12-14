@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/sidebar_bg_black"
+            android:background="@drawable/beijing"
             android:orientation="vertical" >
 
             <RelativeLayout

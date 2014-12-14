@@ -14,7 +14,7 @@
             <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="48dip"
-                    android:background="@drawable/backcolor"
+                    android:background="@drawable/beijing"
                   >
 
                 <Button

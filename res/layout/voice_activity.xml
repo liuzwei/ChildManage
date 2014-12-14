@@ -9,15 +9,10 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="48dip"
-        android:background="@drawable/backcolor"
+        android:background="@drawable/beijing"
         android:gravity="center_vertical" >
 
-        <Button
-            android:id="@+id/voice_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:background="@drawable/voice_record_btn_cancel" />
+
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -31,7 +26,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/tx" />
         </LinearLayout>
 
 
