@@ -3,7 +3,7 @@
     android:id="@+id/desktop_wallpager"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/beijing"
+    android:background="@drawable/backcolor"
     android:orientation="vertical"
     android:paddingRight="54dip" >
 
