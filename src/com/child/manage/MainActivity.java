@@ -338,11 +338,11 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
          * 如果界面的path菜单没有关闭时,先将path菜单关闭,否则则判断两次返回时间间隔,小于两秒则退出程序
          */
         if (mRoot.getScreenState() == FlipperLayout.SCREEN_STATE_OPEN) {
-            if (mDesktop.getUgcIsShowing()) {
-                mDesktop.closeUgc();
-            } else {
+//            if (mDesktop.getUgcIsShowing()) {
+//                mDesktop.closeUgc();
+//            } else {
                 exit();
-            }
+//            }
         } else {
             switch (mViewPosition) {
                 case ViewUtil.USER:

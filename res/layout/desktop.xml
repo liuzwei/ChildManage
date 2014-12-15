@@ -97,11 +97,11 @@
             </LinearLayout>
         </LinearLayout>
 
-        <include
-            android:id="@+id/desktop_ugc"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            layout="@layout/ugc_menu_layout" />
+        <!--<include-->
+            <!--android:id="@+id/desktop_ugc"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--layout="@layout/ugc_menu_layout" />-->
     </FrameLayout>
 
 </LinearLayout>
