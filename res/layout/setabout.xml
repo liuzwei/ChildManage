@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/voice_parent"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/kaixin_background"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#f7f7f7"
+        >
 
     <LinearLayout
             android:layout_width="fill_parent"
@@ -13,7 +13,7 @@
             >
 
         <Button
-                android:id="@+id/luyin_menu"
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dip"
-                    android:text="录音"
+                    android:text="关于我们"
                     android:textColor="#ffffff"
                     android:textSize="18sp" />
             <ImageView
@@ -46,26 +46,23 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:id="@+id/linearname">
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="#333333"
+                  android:textSize="20sp"
+                  android:gravity="center"
+                  android:hint="信八达校讯通是最优质的APP软件"
+                  android:id="@+id/email"/>
 
 
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="0dip"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+    </LinearLayout>
 
 
-        <Button
-            android:id="@+id/voice_record_btn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/voice_record_btn" />
-
-
-    </RelativeLayout>
+    <!-- 主体结束 -->
 
 </LinearLayout>

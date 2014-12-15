@@ -31,6 +31,10 @@
         <activity android:name=".ui.DeletePhotoActivity"/>
         <activity android:name=".ui.VoiceActivity"/>
         <activity android:name=".ui.WriteRecordActivity"/>
-
+        <activity android:name=".ui.SettingPassActivity"/>
+        <activity android:name=".ui.SettingZhActivity"></activity>
+        <activity android:name=".ui.SettingEmailActivity"/>
+        <activity android:name=".ui.SettingAboutActivity"/>
+        <activity android:name=".ui.SettingBabyActivity"/>
     </application>
 </manifest>

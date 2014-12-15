@@ -12,17 +12,12 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.*;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
-import com.child.manage.ui.CheckInActivity;
-import com.child.manage.ui.VoiceActivity;
-import com.child.manage.ui.WriteRecordActivity;
+import com.child.manage.ui.*;
 import com.child.manage.util.ActivityForResultUtil;
 
 import java.io.File;
@@ -35,7 +30,7 @@ import java.util.UUID;
  * @author rendongwei
  *
  */
-public class Set {
+public class Set implements OnClickListener{
     private Button mMenu;
     private Context mContext;
     private Activity mActivity;
@@ -45,12 +40,11 @@ public class Set {
 
     private FlipperLayout.OnOpenListener mOnOpenListener;
 
-    private ListView mPopDisplay;
-
-    /**
-     * 判断当前的path菜单是否已经显示
-     */
-    private boolean mUgcIsShowing = false;
+    private LinearLayout setzh;
+    private LinearLayout setpass;
+    private LinearLayout setbaby;
+    private LinearLayout setemail;
+    private LinearLayout aboutus;
 
     public Set(Context context, Activity activity, ChildApplication application) {
         mContext = context;
@@ -65,9 +59,16 @@ public class Set {
 
     private void findViewById() {
         mMenu = (Button) mSet.findViewById(R.id.set_menu);
-
-
-
+        setzh = (LinearLayout) mSet.findViewById(R.id.setzh);
+        setzh.setOnClickListener(this);
+        setpass = (LinearLayout) mSet.findViewById(R.id.setpass);
+        setpass.setOnClickListener(this);
+        setbaby = (LinearLayout) mSet.findViewById(R.id.setbaby);
+        setbaby.setOnClickListener(this);
+        setemail = (LinearLayout) mSet.findViewById(R.id.setemail);
+        setemail.setOnClickListener(this);
+        aboutus = (LinearLayout) mSet.findViewById(R.id.aboutus);
+        aboutus.setOnClickListener(this);
     }
 
     private void setListener() {
@@ -89,5 +90,32 @@ public class Set {
 
     public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
         mOnOpenListener = onOpenListener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.setzh:
+                Intent zhanghao = new Intent(mContext, SettingZhActivity.class);
+                mContext.startActivity(zhanghao);
+                break;
+            case R.id.setpass:
+                Intent pass = new Intent(mContext, SettingPassActivity.class);
+                mContext.startActivity(pass);
+                break;
+            case R.id.setbaby:
+                Intent baby = new Intent(mContext, SettingBabyActivity.class);
+                mContext.startActivity(baby);
+                break;
+            case R.id.setemail:
+                Intent email = new Intent(mContext,SettingEmailActivity.class);
+                mContext.startActivity(email);
+                break;
+            case R.id.aboutus:
+                Intent about = new Intent(mContext,SettingAboutActivity.class);
+                mContext.startActivity(about);
+                break;
+        }
     }
 }
