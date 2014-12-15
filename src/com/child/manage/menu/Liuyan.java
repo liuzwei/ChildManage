@@ -26,6 +26,8 @@ public class Liuyan {
 	private FlipperLayout.OnOpenListener mOnOpenListener;
 
 
+
+
 	public Liuyan(Context context, Activity activity, ChildApplication application) {
 		mContext = context;
 		mActivity = activity;
