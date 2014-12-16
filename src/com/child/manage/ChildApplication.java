@@ -1,9 +1,16 @@
 package com.child.manage;
 
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import com.child.manage.result.HomeResult;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.IOException;
 import java.lang.ref.SoftReference;
@@ -19,6 +26,7 @@ import java.util.Map;
  * 类的功能、说明写在此处.
  */
 public class ChildApplication extends Application {
+    public static DisplayImageOptions options;
     /**
      * 默认壁纸
      */
@@ -195,6 +203,7 @@ public class ChildApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
+        initImageLoader(getApplicationContext());
         /**
          * 初始化表情名称
          */
@@ -224,5 +233,30 @@ public class ChildApplication extends Application {
         } catch (Exception e) {
             return null;
         }
+    }
+    public ChildApplication(){
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.tx)
+                .showImageForEmptyUri(R.drawable.tx)	// 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.tx)		// 设置图片加载或解码过程中发生错误显示的图片
+                .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型
+//                .displayer(new RoundedBitmapDisplayer(5))
+                .build();
+    }
+    /**
+     * 初始化图片加载组件ImageLoader
+     * @param context
+     */
+    public static void initImageLoader(Context context) {
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .build();
+        ImageLoader.getInstance().init(config);
     }
 }

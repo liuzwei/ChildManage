@@ -18,8 +18,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.adapter.ShipuAdapter;
+import com.child.manage.adapter.YuerAdapter;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.entity.shipu;
+import com.child.manage.entity.yuer;
 import com.child.manage.ui.CheckInActivity;
 import com.child.manage.ui.VoiceActivity;
 import com.child.manage.ui.WriteRecordActivity;
@@ -27,6 +31,8 @@ import com.child.manage.util.ActivityForResultUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -44,19 +50,18 @@ public class Yuer {
 
 	private FlipperLayout.OnOpenListener mOnOpenListener;
 
-	private ListView mPopDisplay;
-
-	/**
-	 * 判断当前的path菜单是否已经显示
-	 */
-	private boolean mUgcIsShowing = false;
+    private ListView yuerlstv;
+    private YuerAdapter adapter;
+    private List<yuer> lists = new ArrayList<yuer>();
 
 	public Yuer(Context context, Activity activity, ChildApplication application) {
 		mContext = context;
 		mActivity = activity;
 		mKXApplication = application;
         mYule = LayoutInflater.from(context).inflate(R.layout.yuer, null);
-
+        //构造虚拟知识
+        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1210080843164_svt.jpg","幼儿园的玉儿知识","2014-01-01 08:00"));
+        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1210080843164_svt.jpg","幼儿园的玉儿知识","2014-01-01 08:00"));
 		findViewById();
 		setListener();
 
@@ -64,7 +69,9 @@ public class Yuer {
 
 	private void findViewById() {
 		mMenu = (Button) mYule.findViewById(R.id.yuer_menu);
-
+        yuerlstv = (ListView) mYule.findViewById(R.id.yuerlstv);
+        adapter = new YuerAdapter(lists, mContext);
+        yuerlstv.setAdapter(adapter);
 	}
 
 	private void setListener() {

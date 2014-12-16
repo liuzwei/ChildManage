@@ -55,6 +55,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:background="@drawable/set_item_back"
                 android:scrollbars="none" >
 
             <LinearLayout
@@ -63,7 +64,7 @@
                     android:orientation="vertical" >
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="180dp"
                         android:gravity="center_vertical|center_horizontal"
                         android:orientation="vertical"
                         android:background="@drawable/set_back"
@@ -72,8 +73,8 @@
 
 
                     <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
                             android:src="@drawable/tx"
                             android:id="@+id/tx"/>
                     <TextView android:layout_width="wrap_content"
@@ -87,21 +88,20 @@
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="fill_parent"
                         android:orientation="vertical"
                         >
                     <View android:layout_width="match_parent"
                           android:layout_height="0.5dp"
                           android:background="@drawable/set_line"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
+                                  android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:gravity="center_vertical"
                                   android:paddingLeft="15dp"
                                   android:paddingRight="10dp"
                                   android:paddingTop="5dp"
                                   android:paddingBottom="5dp"
-                                  android:background="@drawable/set_item_back"
                                   android:id="@+id/setzh">
                         <ImageView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -117,14 +117,13 @@
                           android:layout_height="0.5dp"
                           android:background="@drawable/set_line"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
+                                  android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:gravity="center_vertical"
                                   android:paddingLeft="15dp"
                                   android:paddingRight="10dp"
                                   android:paddingTop="5dp"
                                   android:paddingBottom="5dp"
-                                  android:background="@drawable/set_item_back"
                                   android:id="@+id/setpass">
                         <ImageView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -140,14 +139,13 @@
                           android:layout_height="0.5dp"
                           android:background="@drawable/set_line"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
+                                  android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:gravity="center_vertical"
                                   android:paddingLeft="15dp"
                                   android:paddingRight="10dp"
                                   android:paddingTop="5dp"
                                   android:paddingBottom="5dp"
-                                  android:background="@drawable/set_item_back"
                                   android:id="@+id/setbaby">
                         <ImageView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -163,14 +161,13 @@
                           android:layout_height="0.5dp"
                           android:background="@drawable/set_line"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
+                                  android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:gravity="center_vertical"
                                   android:paddingLeft="15dp"
                                   android:paddingRight="10dp"
                                   android:paddingTop="5dp"
                                   android:paddingBottom="5dp"
-                                  android:background="@drawable/set_item_back"
                                   android:id="@+id/setemail">
                         <ImageView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -186,14 +183,13 @@
                           android:layout_height="0.5dp"
                           android:background="@drawable/set_line"/>
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="match_parent"
+                                  android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:gravity="center_vertical"
                                   android:paddingLeft="15dp"
                                   android:paddingRight="10dp"
                                   android:paddingTop="5dp"
                                   android:paddingBottom="5dp"
-                                  android:background="@drawable/set_item_back"
                                   android:id="@+id/aboutus">
                         <ImageView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"

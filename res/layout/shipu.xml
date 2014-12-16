@@ -62,11 +62,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     >
-                    <TextView android:layout_width="match_parent"
-                              android:text="每日菜谱"
-                              android:layout_gravity="center"
-                              android:gravity="center"
-                              android:layout_height="wrap_content"/>
+                    <ListView android:layout_width="wrap_content"
+                              android:id="@+id/shipulsv"
+                              android:scrollingCache="false"
+                              android:fadingEdge="none"
+                              android:divider="@drawable/shipu_line"
+                              android:layout_height="wrap_content">
+
+                    </ListView>
 
 
             </LinearLayout>

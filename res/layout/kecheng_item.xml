@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/kaixin_background" >
+
+
+    <TextView android:layout_width="fill_parent"
+              android:text="星期一 2014-02-02"
+              android:textSize="20dp"
+              android:layout_marginLeft="50dp"
+              android:layout_marginTop="20dp"
+              android:id="@+id/datetime"
+              android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:layout_marginLeft="50dp"
+              android:text="09:00 英文"
+              android:textSize="20dp"
+              android:id="@+id/onetime"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="fill_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="10dp"
+              android:text="11:00 数学"
+              android:textSize="20dp"
+              android:id="@+id/twotime"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="fill_parent"
+              android:layout_marginTop="10dp"
+              android:layout_marginLeft="50dp"
+              android:text="02:00 游戏"
+              android:textSize="20dp"
+              android:id="@+id/threetime"
+              android:layout_height="wrap_content"/>
+    <TextView android:layout_width="fill_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="10dp"
+              android:text="04:00 园区游玩"
+              android:textSize="20dp"
+              android:id="@+id/fourtime"
+              android:layout_height="wrap_content"/>
+	</LinearLayout>
+    
+
