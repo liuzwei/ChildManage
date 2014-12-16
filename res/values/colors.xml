@@ -59,5 +59,7 @@
     <drawable name="darkgray">#808080</drawable>
     <drawable name="white">#FFFFFF</drawable>
     <drawable name="blue">#0000FF</drawable>
+    <color name="transparent_background">#80ffffff</color>
+    <color name="normal_text">#FF758493</color>
 
 </resources>
