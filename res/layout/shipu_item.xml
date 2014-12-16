@@ -12,6 +12,7 @@
               android:layout_marginLeft="50dp"
               android:layout_marginTop="20dp"
               android:id="@+id/datetime"
+              android:textColor="#000000"
               android:layout_height="wrap_content"/>
 
     <TextView android:layout_width="fill_parent"
@@ -19,6 +20,7 @@
               android:layout_marginLeft="50dp"
               android:text="早餐 ：面条 西红柿 鸡蛋"
               android:textSize="20dp"
+              android:textColor="#000000"
               android:id="@+id/zaocan"
               android:layout_height="wrap_content"/>
     <TextView android:layout_width="fill_parent"
@@ -28,6 +30,7 @@
               android:text="午餐：肉 白饭 蔬菜 清汤"
               android:textSize="20dp"
               android:id="@+id/wucan"
+              android:textColor="#000000"
               android:layout_height="wrap_content"/>
 
 	</LinearLayout>
