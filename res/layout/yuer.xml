@@ -63,11 +63,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     >
-                <ListView android:layout_width="wrap_content"
+                <ListView
                           android:id="@+id/yuerlstv"
+                          android:divider="@drawable/shipu_line"
+                          android:layout_width="match_parent"
                           android:scrollingCache="false"
                           android:fadingEdge="none"
-                          android:divider="@drawable/shipu_line"
                           android:layout_height="wrap_content">
 
                 </ListView>
