@@ -67,7 +67,7 @@
                     android:textColorHint="#ffdddddd" />
 
             <Button
-                    android:id="@+id/login_activity_login"
+                    android:id="@+id/loginbutton"
                     android:layout_width="fill_parent"
                     android:layout_height="45dip"
                     android:layout_marginLeft="8dip"

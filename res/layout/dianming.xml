@@ -18,7 +18,7 @@
                   >
 
                 <Button
-                        android:id="@+id/home_menu"
+                        android:id="@+id/dianping_menu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -50,25 +50,28 @@
                 </LinearLayout>
 
                 <TextView
-                        android:id="@+id/home_refresh"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:layout_marginRight="15dip"
                          />
             </LinearLayout>
-
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-            <ListView
-                android:id="@+id/home_display"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:cacheColorHint="#00000000"
-                android:divider="@null"
-                android:listSelector="#00000000" >
-            </ListView>
+            <com.child.manage.widget.ContentListView
+                    android:id="@+id/dianping_display"
+                    android:layout_width="fill_parent"
+                    android:divider="#00000000"
+                    android:scrollingCache="false"
+                    android:listSelector="#00000000"
+                    android:fadingEdge="none"
+                    android:layout_height="fill_parent" />
 
             <include
                 android:id="@+id/home_ugc"
@@ -76,6 +79,22 @@
                 android:layout_height="fill_parent"
                 layout="@layout/ugc_menu_layout" />
         </FrameLayout>
+</LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="fill_vertical"
+                    >
+                <ImageView android:layout_width="match_parent"
+                           android:src="@drawable/shipu_line"
+                           android:layout_height="wrap_content"/>
+                <ImageView android:layout_width="fill_parent"
+                           android:src="@drawable/ad"
+                           android:scaleType="fitXY"
+                           android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>

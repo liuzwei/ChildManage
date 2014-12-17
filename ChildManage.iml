@@ -15,6 +15,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="library" name="core" level="project" />
+    <orderEntry type="library" name="volley" level="project" />
+    <orderEntry type="library" name="vitamio1" level="project" />
+    <orderEntry type="module" module-name="VitamioBundle" />
+    <orderEntry type="library" name="httpclient-4.3.5" level="project" />
   </component>
 </module>
 

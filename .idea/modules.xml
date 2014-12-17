@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ChildManage.iml" filepath="$PROJECT_DIR$/ChildManage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../VitamioBundle/VitamioBundle.iml" filepath="$PROJECT_DIR$/../VitamioBundle/VitamioBundle.iml" />
     </modules>
   </component>
 </project>

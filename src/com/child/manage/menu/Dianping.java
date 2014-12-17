@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,21 +13,30 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.*;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.adapter.GrowingAdapter;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.entity.Favours;
+import com.child.manage.entity.FavoursObj;
+import com.child.manage.entity.Growing;
 import com.child.manage.ui.CheckInActivity;
 import com.child.manage.ui.VoiceActivity;
 import com.child.manage.ui.WriteRecordActivity;
 import com.child.manage.util.ActivityForResultUtil;
+import com.child.manage.widget.ContentListView;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -53,6 +63,9 @@ public class Dianping {
 	private FlipperLayout.OnOpenListener mOnOpenListener;
 
 	private ListView mPopDisplay;
+    private ContentListView listView;
+    private GrowingAdapter adapter;
+    private List<Growing> growingList = new ArrayList<Growing>();
 
 	/**
 	 * 判断当前的path菜单是否已经显示
@@ -68,11 +81,58 @@ public class Dianping {
 				R.layout.home_popupwindow, null);
 		findViewById();
 		setListener();
+        initData();
 
 	}
 
-	private void findViewById() {
-		mMenu = (Button) mHome.findViewById(R.id.home_menu);
+    /**
+     *
+     * {"growing_id":"169",
+     * "child_id":"1",
+     * "id":"169","
+     * uid":"73","
+     * dept":"\u5927\u5b9d\u5f88\u4e56",
+     * "url":"http:\/\/yey.xqb668.com\/Uploads\/2014-12-03\/547de2abd9689.jpg",
+     * "type":"1",
+     * "publisher":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
+     * "publisher_cover":"http:\/\/yey.xqb668.com\/Uploads\/14169822369527.file",
+     * "publish_uid":"73","
+     * is_share":"1","
+     * school_id":"1","
+     * class_id":"1",
+     * "pt":"2",
+     * "dateline":"1417536176",
+     * "user_type":"2",
+     * "testtest":" ",
+     * "time":"2014-12-03 00:02:56",
+     * "is_favoured":"",
+     * "comments":[{"name":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
+     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
+     * "content":"\u5927\u6cd5\u5e08","time":"2014-12-03 00:03:56","
+     * uid":"73","dateline":"1417536236","tid":"53","user_type":"2"}],"
+     * favours":{"count":"1","list":[
+     *
+     * {"name":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
+     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
+     * "time":"","
+     * uid":"73","
+     * user_type":"2"}]}},
+     * */
+
+    private void initData() {
+        for(int i=0;i<10;i++){
+            Favours favours = new Favours();
+            growingList.add(new Growing("100", "100", "2014-01-02","1", "小刚宝", "小刚宝的爸爸",
+                    "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/89_0.jpg",
+                    "73", "1",
+                    "1", "2", 1417536176, "2",
+                    "2014-12-03 00:02:56", "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/89_0.jpg",
+                    "", null, null, false));
+        }
+    }
+
+    private void findViewById() {
+		mMenu = (Button) mHome.findViewById(R.id.dianping_menu);
 		mUgcView = (View) mHome.findViewById(R.id.home_ugc);
 		mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
 		mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
@@ -85,6 +145,9 @@ public class Dianping {
 		mPopDisplay = (ListView) mPopView
 				.findViewById(R.id.home_popupwindow_display);
 
+        listView = (ContentListView) mHome.findViewById(R.id.dianping_display);
+        adapter = new GrowingAdapter(growingList, mContext);
+        listView.setAdapter(adapter);
 	}
 
 	private void setListener() {
@@ -286,4 +349,100 @@ public class Dianping {
 	public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
 		mOnOpenListener = onOpenListener;
 	}
+
+    private void getBaby(){
+//        String uri = String.format(InternetURL.GET_BABY_URL +"?uid=%s", uid);
+//        StringRequest request = new StringRequest(
+//                Request.Method.GET,
+//                uri,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String s) {
+//                        Gson gson = new Gson();
+//                        try{
+//                            BabyDATA data = gson.fromJson(s, BabyDATA.class);
+//                            babies.addAll(data.getData());
+//                            List<String> names = new ArrayList<String>();
+//                            for (int i=0; i<babies.size()+1; i++){
+//                                if (i==0){
+//                                    names.add("成长管理");
+//                                }else {
+//                                    names.add(babies.get(i-1).getName());
+//                                }
+//                            }
+//                            spinnerAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_item, names);
+//                            spinnerAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+//                            growingManager.setAdapter(spinnerAdapter);
+//                            growingManager.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                                @Override
+//                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                                    if (position == 0) {
+//                                        child_id = "";
+//                                    } else{
+//                                        Baby baby = babies.get(position-1);
+//                                        child_id = baby.getId();
+//                                    }
+//                                    getData(ContentListView.REFRESH);
+//
+//                                }
+//
+//                                @Override
+//                                public void onNothingSelected(AdapterView<?> parent) {
+//
+//                                }
+//                            });
+//                        }catch (Exception e){
+////                            ErrorDATA data = gson.fromJson(s, ErrorDATA.class);
+////                            if (data.getCode() == 500){
+////                                Log.i("ErrorData", "获取baby信息数据错误");
+////                            }
+//                        }
+//
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError volleyError) {
+//
+//                    }
+//                }
+//        );
+//        mRequestQueue.add(request);
+    }
+
+    //下拉刷新
+//    @Override
+    public void onRefresh() {
+//        pageIndex = 1;
+//        getData(ContentListView.REFRESH);
+    }
+
+    //上拉加载
+//    @Override
+    public void onLoad() {
+//        pageIndex++;
+//        getData(ContentListView.LOAD);
+    }
+
+    /**
+     * 再摁退出程序
+     * @param keyCode
+     * @param event
+     * @return
+     */
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode){
+//            long currentTime = System.currentTimeMillis();
+//            if ((currentTime - touchTime) >= waitTime){
+//                Toast.makeText(mContext, "再摁退出登录", Toast.LENGTH_SHORT).show();
+//                touchTime = currentTime;
+//            }else {
+//                ActivityTack.getInstanse().exit(mContext);
+//            }
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+
 }

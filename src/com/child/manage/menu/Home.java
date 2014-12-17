@@ -21,18 +21,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.adapter.JiaohuAdapter;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
-import com.child.manage.ui.CheckInActivity;
-import com.child.manage.ui.PhoneAlbumActivity;
-import com.child.manage.ui.VoiceActivity;
-import com.child.manage.ui.WriteRecordActivity;
+import com.child.manage.entity.AccountMessage;
+import com.child.manage.ui.*;
 import com.child.manage.util.ActivityForResultUtil;
 import org.json.JSONArray;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -58,39 +59,79 @@ public class Home {
 	private ImageView mUgcLbs;
 	private FlipperLayout.OnOpenListener mOnOpenListener;
 
-	private ListView mPopDisplay;
 
 	/**
 	 * 判断当前的path菜单是否已经显示
 	 */
 	private boolean mUgcIsShowing = false;
 
+
+    private ListView listView;
+    private List<AccountMessage> list = new ArrayList<AccountMessage>();
+    private JiaohuAdapter adapter;
+//    private TextView publishAll;//群发消息
+    /**
+     *
+     * {"uid":"101",
+     * "name":"\u4e07\u8001\u5e08",
+     * "group_id":"3","
+     * user_type":" ","
+     * cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/101_0.jpg","
+     * dept":"\u73ed\u4e3b\u4efb"},{
+     *
+     * "uid":"90",
+     * "name":"\u8a79\u8001\u5e08"
+     * ,"group_id":"3","
+     * user_type":" ",
+     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/90_0.jpg"
+     * ,"dept":"\u8001\u5e2b"},{
+     *
+     * "uid":"89","
+     * name":"teacher"
+     * ,"group_id":"3",
+     * "user_type":" ",
+     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
+     * "dept":"\u8001\u5e2b"}
+     * **/
+
 	public Home(Context context, Activity activity, ChildApplication application) {
+        list.add(new AccountMessage("100", "http://yey.xqb668.com//Uploads//cover//89_0.jpg", "Tom", "老师", 0, "Hello welcome to xinbada app", "2014-10-20"));
+        list.add(new AccountMessage("89", "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/90_0.jpg", "Teacher", "老师", 0, "你好", "2014-10-20"));
+        list.add(new AccountMessage("90", "http://yey.xqb668.com//Uploads//cover//89_0.jpg", "Jim", "老师", 0, "haha haha", "2014-10-20"));
+        list.add(new AccountMessage("101", "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/101_0.jpg", "Lucy", "老师", 0, "你好", "2014-10-20"));
 		mContext = context;
 		mActivity = activity;
 		mKXApplication = application;
 		mHome = LayoutInflater.from(context).inflate(R.layout.home, null);
 		mPopView = LayoutInflater.from(context).inflate(
 				R.layout.home_popupwindow, null);
-		findViewById();
+        findViewById();
+        adapter = new JiaohuAdapter(list, mContext);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent chat = new Intent(mContext, ChatActivity.class);
+                chat.putExtra(Constants.ACCOUNT_MESSAGE, list.get(position));
+                mContext.startActivity(chat);
+            }
+        });
+
 		setListener();
 
 	}
 
 	private void findViewById() {
 		mMenu = (Button) mHome.findViewById(R.id.home_menu);
-		mUgcView = (View) mHome.findViewById(R.id.home_ugc);
+		mUgcView = (View) mHome.findViewById(R.id.home_ugc1);
 		mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
 		mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
-
 		mUgcBg = (ImageView) mUgcView.findViewById(R.id.ugc_bg);
 		mUgcVoice = (ImageView) mUgcView.findViewById(R.id.ugc_voice);
 		mUgcPhoto = (ImageView) mUgcView.findViewById(R.id.ugc_photo);
 		mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
 		mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
-		mPopDisplay = (ListView) mPopView
-				.findViewById(R.id.home_popupwindow_display);
-
+        listView = (ListView) mHome.findViewById(R.id.jiaohu_lstv);
 	}
 
 	private void setListener() {

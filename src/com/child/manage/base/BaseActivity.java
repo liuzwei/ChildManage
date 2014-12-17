@@ -13,9 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.upload.MultiPartStringRequest;
+import com.child.manage.util.ToastUtil;
+import com.google.gson.Gson;
 import net.tsz.afinal.FinalHttp;
+
+import java.io.File;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by liuzwei on 2014/11/11.
@@ -43,6 +54,11 @@ public class BaseActivity extends Activity {
     protected ImageView mFaceClose;
     protected GridView mFaceGridView;
 
+    private RequestQueue mRequestQueue;
+    private static RequestQueue mSingleQueue;
+    private ExecutorService appThread = Executors.newSingleThreadExecutor();
+
+    private Gson gson = new Gson();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +110,8 @@ public class BaseActivity extends Activity {
         mFaceView = LayoutInflater.from(this).inflate(R.layout.face, null);
         mFaceClose = (ImageView) mFaceView.findViewById(R.id.face_close);
         mFaceGridView = (GridView) mFaceView.findViewById(R.id.face_gridview);
-        FaceAdapter mAdapter = new FaceAdapter(this);
-        mFaceGridView.setAdapter(mAdapter);
+//        FaceAdapter mAdapter = new FaceAdapter(this);
+//        mFaceGridView.setAdapter(mAdapter);
         mFacePop = new PopupWindow(mFaceView, mScreenWidth - 60, mScreenWidth,
                 true);
         mFacePop.setBackgroundDrawable(new BitmapDrawable());
@@ -116,59 +132,112 @@ public class BaseActivity extends Activity {
         }
     }
 
+//    /**
+//     * 隐藏表情控件
+//     */
+//    protected void dismissFace() {
+//        if (mFacePop != null && mFacePop.isShowing()) {
+//            mFacePop.dismiss();
+//        }
+//    }
+//
+//    /**
+//     * 表情适配器
+//     *
+//     * @author rendongwei
+//     *
+//     */
+//    private class FaceAdapter extends BaseAdapter {
+//
+//        private Context mContext;
+//
+//        public FaceAdapter(Context context) {
+//            mContext = context;
+//        }
+//
+//        public int getCount() {
+//            return childApplication.mFaces.length;
+//        }
+//
+//        public Object getItem(int position) {
+//            return childApplication.getFaceBitmap(position);
+//        }
+//
+//        public long getItemId(int position) {
+//            return position;
+//        }
+//
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            ImageView face = null;
+//            if (convertView == null) {
+//                face = new ImageView(mContext);
+//                AbsListView.LayoutParams params = new AbsListView.LayoutParams(
+//                        AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
+//                int widthAndHeight = (int) TypedValue.applyDimension(
+//                        TypedValue.COMPLEX_UNIT_DIP, 30, mContext
+//                                .getResources().getDisplayMetrics());
+//                params.width = widthAndHeight;
+//                params.height = widthAndHeight;
+//                face.setLayoutParams(params);
+//                face.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+//            } else {
+//                face = (ImageView) convertView;
+//            }
+//            face.setImageBitmap(childApplication.getFaceBitmap(position));
+//            return face;
+//        }
+//    }
     /**
-     * 隐藏表情控件
+     * 获得线程池
+     * @return
      */
-    protected void dismissFace() {
-        if (mFacePop != null && mFacePop.isShowing()) {
-            mFacePop.dismiss();
-        }
+    public ExecutorService getAppThread() {
+        return appThread;
     }
 
+    public Gson getGson(){
+        return gson;
+    }
+
+    public RequestQueue getRequestQueue(){
+        return mRequestQueue;
+    }
+
+
     /**
-     * 表情适配器
-     *
-     * @author rendongwei
-     *
+     * 根据资源ID
+     * @param resId
      */
-    private class FaceAdapter extends BaseAdapter {
+    public void alert(int resId){
+        ToastUtil.show(getApplicationContext(), resId);
+    }
 
-        private Context mContext;
 
-        public FaceAdapter(Context context) {
-            mContext = context;
+
+    public static void addPutUploadFileRequest(final String url,
+                                               final Map<String, File> files, final Map<String, String> params,
+                                               final Response.Listener<String> responseListener, final Response.ErrorListener errorListener,
+                                               final Object tag) {
+        if (null == url || null == responseListener) {
+            return;
         }
 
-        public int getCount() {
-            return childApplication.mFaces.length;
-        }
+        MultiPartStringRequest multiPartRequest = new MultiPartStringRequest(
+                Request.Method.POST, url, responseListener, errorListener) {
 
-        public Object getItem(int position) {
-            return childApplication.getFaceBitmap(position);
-        }
-
-        public long getItemId(int position) {
-            return position;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView face = null;
-            if (convertView == null) {
-                face = new ImageView(mContext);
-                AbsListView.LayoutParams params = new AbsListView.LayoutParams(
-                        AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
-                int widthAndHeight = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, 30, mContext
-                                .getResources().getDisplayMetrics());
-                params.width = widthAndHeight;
-                params.height = widthAndHeight;
-                face.setLayoutParams(params);
-                face.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            } else {
-                face = (ImageView) convertView;
+            @Override
+            public Map<String, File> getFileUploads() {
+                return files;
             }
-            face.setImageBitmap(childApplication.getFaceBitmap(position));
-            return face;
-        }
+
+            @Override
+            public Map<String, String> getStringUploads() {
+                return params;
+            }
+
+        };
+
+        mSingleQueue.add(multiPartRequest);
     }
+
 }

@@ -26,7 +26,6 @@ import java.util.Map;
  * 类的功能、说明写在此处.
  */
 public class ChildApplication extends Application {
-    public static DisplayImageOptions options;
     /**
      * 默认壁纸
      */
@@ -84,55 +83,55 @@ public class ChildApplication extends Application {
      * 公共主页头像名称
      */
     public String[] mPublicPageAvatars;
-    /**
-     * 表情
-     */
-    public int[] mFaces = { R.drawable.face_0, R.drawable.face_1,
-            R.drawable.face_2, R.drawable.face_3, R.drawable.face_4,
-            R.drawable.face_5, R.drawable.face_6, R.drawable.face_7,
-            R.drawable.face_8, R.drawable.face_9, R.drawable.face_10,
-            R.drawable.face_11, R.drawable.face_12, R.drawable.face_13,
-            R.drawable.face_14, R.drawable.face_15, R.drawable.face_16,
-            R.drawable.face_17, R.drawable.face_18, R.drawable.face_19,
-            R.drawable.face_20, R.drawable.face_21, R.drawable.face_22,
-            R.drawable.face_23, R.drawable.face_24, R.drawable.face_25,
-            R.drawable.face_26, R.drawable.face_27, R.drawable.face_28,
-            R.drawable.face_29, R.drawable.face_30, R.drawable.face_31,
-            R.drawable.face_32, R.drawable.face_33, R.drawable.face_34,
-            R.drawable.face_35, R.drawable.face_36, R.drawable.face_37,
-            R.drawable.face_38, R.drawable.face_39, R.drawable.face_40,
-            R.drawable.face_41, R.drawable.face_42, R.drawable.face_43,
-            R.drawable.face_44, R.drawable.face_45, R.drawable.face_46,
-            R.drawable.face_47, R.drawable.face_48, R.drawable.face_49,
-            R.drawable.face_50, R.drawable.face_51, R.drawable.face_52,
-            R.drawable.face_53, R.drawable.face_54, R.drawable.face_55,
-            R.drawable.face_56, R.drawable.face_57, R.drawable.face_58,
-            R.drawable.face_59, R.drawable.face_60, R.drawable.face_61,
-            R.drawable.face_62, R.drawable.face_63, R.drawable.face_64,
-            R.drawable.face_65, R.drawable.face_66, R.drawable.face_67,
-            R.drawable.face_68, R.drawable.face_69, R.drawable.face_70,
-            R.drawable.face_71, R.drawable.face_72, R.drawable.face_73,
-            R.drawable.face_74, R.drawable.face_75, R.drawable.face_76,
-            R.drawable.face_77, R.drawable.face_78, R.drawable.face_79,
-            R.drawable.face_80, R.drawable.face_81, R.drawable.face_82,
-            R.drawable.face_83, R.drawable.face_84, R.drawable.face_85,
-            R.drawable.face_86, R.drawable.face_87, R.drawable.face_88,
-            R.drawable.face_89, R.drawable.face_90, R.drawable.face_91,
-            R.drawable.face_92, R.drawable.face_93, R.drawable.face_94,
-            R.drawable.face_95, R.drawable.face_96, R.drawable.face_97,
-            R.drawable.face_98, R.drawable.face_99, R.drawable.face_100,
-            R.drawable.face_101, R.drawable.face_102, R.drawable.face_103,
-            R.drawable.face_104, R.drawable.face_105, R.drawable.face_106,
-            R.drawable.face_107, R.drawable.face_108, R.drawable.face_109,
-            R.drawable.face_110 };
-    /**
-     * 表情名称
-     */
-    public List<String> mFacesText = new ArrayList<String>();
-    /**
-     * 表情缓存
-     */
-    public HashMap<String, SoftReference<Bitmap>> mFaceCache = new HashMap<String, SoftReference<Bitmap>>();
+//    /**
+//     * 表情
+//     */
+//    public int[] mFaces = { R.drawable.face_0, R.drawable.face_1,
+//            R.drawable.face_2, R.drawable.face_3, R.drawable.face_4,
+//            R.drawable.face_5, R.drawable.face_6, R.drawable.face_7,
+//            R.drawable.face_8, R.drawable.face_9, R.drawable.face_10,
+//            R.drawable.face_11, R.drawable.face_12, R.drawable.face_13,
+//            R.drawable.face_14, R.drawable.face_15, R.drawable.face_16,
+//            R.drawable.face_17, R.drawable.face_18, R.drawable.face_19,
+//            R.drawable.face_20, R.drawable.face_21, R.drawable.face_22,
+//            R.drawable.face_23, R.drawable.face_24, R.drawable.face_25,
+//            R.drawable.face_26, R.drawable.face_27, R.drawable.face_28,
+//            R.drawable.face_29, R.drawable.face_30, R.drawable.face_31,
+//            R.drawable.face_32, R.drawable.face_33, R.drawable.face_34,
+//            R.drawable.face_35, R.drawable.face_36, R.drawable.face_37,
+//            R.drawable.face_38, R.drawable.face_39, R.drawable.face_40,
+//            R.drawable.face_41, R.drawable.face_42, R.drawable.face_43,
+//            R.drawable.face_44, R.drawable.face_45, R.drawable.face_46,
+//            R.drawable.face_47, R.drawable.face_48, R.drawable.face_49,
+//            R.drawable.face_50, R.drawable.face_51, R.drawable.face_52,
+//            R.drawable.face_53, R.drawable.face_54, R.drawable.face_55,
+//            R.drawable.face_56, R.drawable.face_57, R.drawable.face_58,
+//            R.drawable.face_59, R.drawable.face_60, R.drawable.face_61,
+//            R.drawable.face_62, R.drawable.face_63, R.drawable.face_64,
+//            R.drawable.face_65, R.drawable.face_66, R.drawable.face_67,
+//            R.drawable.face_68, R.drawable.face_69, R.drawable.face_70,
+//            R.drawable.face_71, R.drawable.face_72, R.drawable.face_73,
+//            R.drawable.face_74, R.drawable.face_75, R.drawable.face_76,
+//            R.drawable.face_77, R.drawable.face_78, R.drawable.face_79,
+//            R.drawable.face_80, R.drawable.face_81, R.drawable.face_82,
+//            R.drawable.face_83, R.drawable.face_84, R.drawable.face_85,
+//            R.drawable.face_86, R.drawable.face_87, R.drawable.face_88,
+//            R.drawable.face_89, R.drawable.face_90, R.drawable.face_91,
+//            R.drawable.face_92, R.drawable.face_93, R.drawable.face_94,
+//            R.drawable.face_95, R.drawable.face_96, R.drawable.face_97,
+//            R.drawable.face_98, R.drawable.face_99, R.drawable.face_100,
+//            R.drawable.face_101, R.drawable.face_102, R.drawable.face_103,
+//            R.drawable.face_104, R.drawable.face_105, R.drawable.face_106,
+//            R.drawable.face_107, R.drawable.face_108, R.drawable.face_109,
+//            R.drawable.face_110 };
+//    /**
+//     * 表情名称
+//     */
+//    public List<String> mFacesText = new ArrayList<String>();
+//    /**
+//     * 表情缓存
+//     */
+//    public HashMap<String, SoftReference<Bitmap>> mFaceCache = new HashMap<String, SoftReference<Bitmap>>();
     /**
      * 照片缓存
      */
@@ -207,33 +206,37 @@ public class ChildApplication extends Application {
         /**
          * 初始化表情名称
          */
-        for (int i = 0; i < mFaces.length; i++) {
-            mFacesText.add("[face_" + i + "]");
-        }
+//        for (int i = 0; i < mFaces.length; i++) {
+//            mFacesText.add("[face_" + i + "]");
+//        }
     }
 
-    /**
-     * 根据编号获取表情图片
-     */
-    public Bitmap getFaceBitmap(int position) {
-        try {
-            String faceName = mFacesText.get(position);
-            Bitmap bitmap = null;
-            if (mFaceCache.containsKey(faceName)) {
-                SoftReference<Bitmap> reference = mFaceCache.get(faceName);
-                bitmap = reference.get();
-                if (bitmap != null) {
-                    return bitmap;
-                }
-            }
-            bitmap = BitmapFactory.decodeResource(getResources(),
-                    mFaces[position]);
-            mFaceCache.put(faceName, new SoftReference<Bitmap>(bitmap));
-            return bitmap;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    /**
+//     * 根据编号获取表情图片
+//     */
+//    public Bitmap getFaceBitmap(int position) {
+//        try {
+//            String faceName = mFacesText.get(position);
+//            Bitmap bitmap = null;
+//            if (mFaceCache.containsKey(faceName)) {
+//                SoftReference<Bitmap> reference = mFaceCache.get(faceName);
+//                bitmap = reference.get();
+//                if (bitmap != null) {
+//                    return bitmap;
+//                }
+//            }
+//            bitmap = BitmapFactory.decodeResource(getResources(),
+//                    mFaces[position]);
+//            mFaceCache.put(faceName, new SoftReference<Bitmap>(bitmap));
+//            return bitmap;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
+    public static DisplayImageOptions options;
+    public static DisplayImageOptions txOptions;//头像图片
+    public static DisplayImageOptions tpOptions;//详情页图片
+    public static DisplayImageOptions adOptions;
     public ChildApplication(){
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.tx)
@@ -244,6 +247,35 @@ public class ChildApplication extends Application {
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                 .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型
 //                .displayer(new RoundedBitmapDisplayer(5))
+                .build();
+        txOptions = new DisplayImageOptions.Builder()//头像
+                .showImageOnLoading(R.drawable.txhc)
+                .showImageForEmptyUri(R.drawable.txhc)	// 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.txhc)		// 设置图片加载或解码过程中发生错误显示的图片
+                .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型头像
+                .build();
+
+        adOptions = new DisplayImageOptions.Builder()//广告
+                .showImageOnLoading(R.drawable.hctp1)
+                .showImageForEmptyUri(R.drawable.hctp1)	// 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.hctp1)		// 设置图片加载或解码过程中发生错误显示的图片
+                .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型广告位
+                .build();
+
+        tpOptions = new DisplayImageOptions.Builder()//图片
+                .showImageOnLoading(R.drawable.hctp)
+                .showImageForEmptyUri(R.drawable.hctp)	// 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.hctp)		// 设置图片加载或解码过程中发生错误显示的图片
+                .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+                .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型图片
                 .build();
     }
     /**
