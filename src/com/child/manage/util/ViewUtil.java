@@ -9,12 +9,12 @@ package com.child.manage.util;
 public class ViewUtil {
 	// 用户界面
 	public static final int USER = -1;
+    // 园区介绍
+    public static final int ABOUT = 0;
 	// 互动天地
-	public static final int HOME = 0;
+	public static final int HOME = 1;
 	// 给宝宝成长点评
-	public static final int DIANPING = 1;
-	// 给老师留言
-	public static final int LIUYAN = 2;
+	public static final int DIANPING = 2;
 	// 远程视频
 	public static final int SHIPIN = 3;
 	// 育儿知识

@@ -28,6 +28,11 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     private Desktop mDesktop;
 
     /**
+    *
+    * 园区介绍
+    * */
+    private About about;
+    /**
      * 互动天地
      */
     private Home mHome;
@@ -89,9 +94,13 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
          * 创建菜单界面和内容首页界面,并添加到容器中,用于初始显示
          */
         mDesktop = new Desktop(this, this, childApplication);
-        mHome = new Home(this, this, childApplication);
+//        mHome = new Home(this, this, childApplication);
+//        mRoot.addView(mDesktop.getView(), params);
+//        mRoot.addView(mHome.getView(), params);
+
+        about = new About(this, this, childApplication);
         mRoot.addView(mDesktop.getView(), params);
-        mRoot.addView(mHome.getView(), params);
+        mRoot.addView(about.getView(), params);
         setContentView(mRoot);
         setListener();
         mInstance=this;
@@ -113,8 +122,8 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                     case ViewUtil.USER:
 
                         break;
-                    case ViewUtil.HOME:
-                        mRoot.close(mHome.getView());
+                    case ViewUtil.ABOUT:
+                        mRoot.close(about.getView());
                         break;
                     case ViewUtil.DIANPING:
                         if (dianping == null) {
@@ -124,12 +133,12 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         }
                         mRoot.close(dianping.getView());
                         break;
-                    case ViewUtil.LIUYAN:
-                        if(liuyan == null){
-                            liuyan = new Liuyan(MainActivity.this, MainActivity.this,childApplication);
-                            liuyan.setOnOpenListener(MainActivity.this);
+                    case ViewUtil.HOME:
+                        if(mHome == null){
+                            mHome = new Home(MainActivity.this, MainActivity.this,childApplication);
+                            mHome.setOnOpenListener(MainActivity.this);
                         }
-                        mRoot.close(liuyan.getView());
+                        mRoot.close(mHome.getView());
                         break;
                     case ViewUtil.SHIPIN:
                         if(video == null){

@@ -356,7 +356,7 @@ public class Desktop {
 	public class DesktopAdapter extends BaseAdapter {
 
 		private Context mContext;
-		private String[] mName = { "互动天地", "给宝宝成长点评", "给老师留言", "远程视频", "育儿知识", "每周课程", "宝宝食谱",
+		private String[] mName = { "园区介绍","互动天地", "给宝宝成长点评", "远程视频", "育儿知识", "每周课程", "宝宝食谱",
 				"设置" };
 		private int[] mIcon = { R.drawable.left_hudong,
 				R.drawable.left_baobaochegnzhangdianping, R.drawable.left_geilaoshily,
@@ -423,16 +423,16 @@ public class Desktop {
 				public void onClick(View v) {
 					if (mOnChangeViewListener != null) {
 						switch (position) {
+                        case ViewUtil.ABOUT:
+                            mOnChangeViewListener
+                                    .onChangeView(ViewUtil.ABOUT);
+                            break;
 						case ViewUtil.HOME:
 							mOnChangeViewListener.onChangeView(ViewUtil.HOME);
 							break;
 						case ViewUtil.DIANPING:
 							mOnChangeViewListener
 									.onChangeView(ViewUtil.DIANPING);
-							break;
-						case ViewUtil.LIUYAN:
-							mOnChangeViewListener
-									.onChangeView(ViewUtil.LIUYAN);
 							break;
 						case ViewUtil.SHIPIN:
 							mOnChangeViewListener.onChangeView(ViewUtil.SHIPIN);
