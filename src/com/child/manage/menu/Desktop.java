@@ -42,6 +42,7 @@ public class Desktop {
 	private Context mContext;
 	private Activity mActivity;
 	private ChildApplication mKXApplication;
+    private String mZname;
 	/**
 	 * 当前界面的View
 	 */
@@ -76,15 +77,19 @@ public class Desktop {
 	 */
 	private onChangeViewListener mOnChangeViewListener;
 
-	public Desktop(Context context, Activity activity, ChildApplication application) {
+    private TextView desktop_name;//账号
+
+	public Desktop(Context context, Activity activity, ChildApplication application ,String name) {
 		mContext = context;
 		mActivity = activity;
 		mKXApplication = application;
 		// 绑定布局到当前View
 		mDesktop = LayoutInflater.from(context).inflate(R.layout.desktop, null);
+        mZname = name;
 		findViewById();
 		setListener();
 		init();
+        desktop_name.setText(mZname);
 	}
 
 	/**
@@ -109,7 +114,10 @@ public class Desktop {
 //		mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
 //		mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
 
-	}
+        desktop_name = (TextView) mDesktop.findViewById(R.id.desktop_name);
+
+
+    }
 
 	/**
 	 * UI事件监听

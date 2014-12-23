@@ -83,6 +83,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     public static Activity mInstance;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String name = getIntent().getExtras().getString("name");
         /**
          * 创建容器,并设置全屏大小
          */
@@ -93,7 +94,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
         /**
          * 创建菜单界面和内容首页界面,并添加到容器中,用于初始显示
          */
-        mDesktop = new Desktop(this, this, childApplication);
+        mDesktop = new Desktop(this, this, childApplication,name);
 //        mHome = new Home(this, this, childApplication);
 //        mRoot.addView(mDesktop.getView(), params);
 //        mRoot.addView(mHome.getView(), params);

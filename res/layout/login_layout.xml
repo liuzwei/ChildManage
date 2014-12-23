@@ -46,6 +46,7 @@
                     android:drawableLeft="@drawable/login_icon_account"
                     android:drawablePadding="25dip"
                     android:hint="请输入账号"
+                    android:id="@+id/name"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="25dip"
                     android:textColor="#ff98bede"
