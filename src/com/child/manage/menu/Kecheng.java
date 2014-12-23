@@ -59,13 +59,12 @@ public class Kecheng {
 		mKXApplication = application;
 		mHome = LayoutInflater.from(context).inflate(R.layout.kecheng, null);
         //构造虚拟数据
-        lists.add(new kecheng("星期一 2014-02-10","09:00 语文","11:00 游戏","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期二 2014-02-11","09:00 美术","11:00 数学","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期三 2014-02-12","09:00 英文","11:00 体育","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期四 2014-02-13","09:00 语文","11:00 游戏","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期五 2014-02-14","09:00 音乐","11:00 数学","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期六 2014-02-15","09:00 语文","11:00 数学","02:00 游戏","04:00 园区游玩"));
-        lists.add(new kecheng("星期日 2014-02-16","09:00 语文","11:00 游玩","02:00 游戏","04:00 园区游玩"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
+        lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
 		findViewById();
 		setListener();
 

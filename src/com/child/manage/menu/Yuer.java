@@ -60,14 +60,14 @@ public class Yuer {
 		mKXApplication = application;
         mYule = LayoutInflater.from(context).inflate(R.layout.yuer, null);
         //构造虚拟知识
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090847377.jpg","宝宝不能承受之重—解读维生素AD缺乏症","2014-01-01 08:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","信八达软件是最好的软件app","2014-12-23 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","谁扼杀孩子创造力","2014-12-12 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","运动胎教注意事项","2014-12-22 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","做春节礼貌好宝宝","2014-12-23 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","从小培养注意力","2014-12-13 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","明星爸妈育儿宝典","2014-2-23 20:00"));
-        lists.add(new yuer("http://www.liangxunwang.com:80/show/boke/xc/0529980/1216090844226.jpg","亲子共读绘本精选","2014-11-23 20:00"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","北京宝华幼儿园","北京昭阳区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","上海华幼幼儿园","上海徐汇区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","成都康康幼儿园","成都金牛区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","重庆泰迪熊幼儿园","重庆渝北区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","北京宝华幼儿园","北京昭阳区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","上海华幼幼儿园","上海徐汇区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","成都康康幼儿园","成都金牛区"));
+        lists.add(new yuer("http://img3.chinateacher365.com/2008/09/923_200809282212081eA5g.jpg","重庆泰迪熊幼儿园","重庆渝北区"));
 		findViewById();
 		setListener();
 

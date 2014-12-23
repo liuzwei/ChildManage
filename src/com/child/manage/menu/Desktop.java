@@ -356,17 +356,15 @@ public class Desktop {
 	public class DesktopAdapter extends BaseAdapter {
 
 		private Context mContext;
-		private String[] mName = { "园区介绍","互动天地", "给宝宝成长点评", "远程视频", "育儿知识", "每周课程", "宝宝食谱",
+		private String[] mName = { "园区介绍","互动天地", "即时动态", "宝宝位置", "园外天地", "公告栏",
 				"设置" };
 		private int[] mIcon = { R.drawable.left_hudong,
 				R.drawable.left_baobaochegnzhangdianping, R.drawable.left_geilaoshily,
 				R.drawable.left_yuancheng, R.drawable.left_yuerzhishi,
-				R.drawable.left_meizhoukecheng,
 				R.drawable.baobaoshipu, R.drawable.left_set };
 		private int[] mIconPressed = {  R.drawable.left_hudong,
                 R.drawable.left_baobaochegnzhangdianping, R.drawable.left_geilaoshily,
                 R.drawable.left_yuancheng, R.drawable.left_yuerzhishi,
-                R.drawable.left_meizhoukecheng,
                 R.drawable.baobaoshipu, R.drawable.left_set  };
 		private int mChoose = 0;
 
@@ -375,7 +373,7 @@ public class Desktop {
 		}
 
 		public int getCount() {
-			return 8;
+			return 7;
 		}
 
 		public Object getItem(int position) {
@@ -443,10 +441,10 @@ public class Desktop {
 						case ViewUtil.KECHENG:
 							mOnChangeViewListener.onChangeView(ViewUtil.KECHENG);
 							break;
-						case ViewUtil.SHIPU:
-							mOnChangeViewListener
-									.onChangeView(ViewUtil.SHIPU);
-							break;
+//						case ViewUtil.SHIPU:
+//							mOnChangeViewListener
+//									.onChangeView(ViewUtil.SHIPU);
+//							break;
 						case ViewUtil.SET:
 							mOnChangeViewListener.onChangeView(ViewUtil.SET);
 							break;

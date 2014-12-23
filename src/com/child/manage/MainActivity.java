@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     /**
      * 远程视频
      */
-    private Video video;
+    private Baybayset video;
     /**
      * 育儿知识
      */
@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      * UI事件监听
      */
     private void setListener() {
-        mHome.setOnOpenListener(this);
+        about.setOnOpenListener(this);
         /**
          * 监听菜单界面切换显示内容(onChangeViewListener接口在Desktop中定义)
          */
@@ -142,7 +142,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
                     case ViewUtil.SHIPIN:
                         if(video == null){
-                            video = new Video(MainActivity.this, MainActivity.this,childApplication);
+                            video = new Baybayset(MainActivity.this, MainActivity.this,childApplication);
                             video.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(video.getView());
@@ -161,13 +161,13 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         }
                         mRoot.close(kecheng.getView());
                         break;
-                    case ViewUtil.SHIPU:
-                        if(shipu == null){
-                            shipu = new Shipu(MainActivity.this,MainActivity.this,childApplication);
-                            shipu.setOnOpenListener(MainActivity.this);
-                        }
-                        mRoot.close(shipu.getView());
-                        break;
+//                    case ViewUtil.SHIPU:
+//                        if(shipu == null){
+//                            shipu = new Shipu(MainActivity.this,MainActivity.this,childApplication);
+//                            shipu.setOnOpenListener(MainActivity.this);
+//                        }
+//                        mRoot.close(shipu.getView());
+//                        break;
                     case ViewUtil.SET://设置
                         if (set == null) {
                             set = new Set(MainActivity.this,

@@ -64,7 +64,7 @@ public class YuerAdapter extends BaseAdapter {
             holder.datetime = (TextView) convertView.findViewById(R.id.datetime);
             holder.pic = (ImageView) convertView.findViewById(R.id.pic);
             holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.rightbutton = (TextView) convertView.findViewById(R.id.rightbutton);
+            holder.rightbutton = (ImageView) convertView.findViewById(R.id.rightbutton);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -81,7 +81,7 @@ public class YuerAdapter extends BaseAdapter {
         ImageView pic;
         TextView title;
         TextView datetime;
-        TextView rightbutton;
+        ImageView rightbutton;
 
     }
 

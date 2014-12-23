@@ -39,7 +39,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dip"
-                            android:text="每周课程"
+                            android:text="公告栏"
                             android:textColor="#ffffff"
                             android:textSize="18sp" />
                     <ImageView
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     >
-                <ListView android:layout_width="wrap_content"
+                <ListView android:layout_width="match_parent"
                           android:id="@+id/kechenglstv"
                           android:scrollingCache="false"
                           android:fadingEdge="none"

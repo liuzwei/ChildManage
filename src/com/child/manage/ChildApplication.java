@@ -1,9 +1,18 @@
 package com.child.manage;
 
 import android.app.Application;
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Vibrator;
+import android.util.Log;
+import android.widget.TextView;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.GeofenceClient;
+import com.baidu.location.LocationClient;
+import com.baidu.mapapi.SDKInitializer;
 import com.child.manage.result.HomeResult;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -26,6 +35,17 @@ import java.util.Map;
  * 类的功能、说明写在此处.
  */
 public class ChildApplication extends Application {
+    //----------------百度地图------------------
+    public LocationClient mLocationClient;
+    public GeofenceClient mGeofenceClient;
+    public MyLocationListener mMyLocationListener;
+    public TextView mLocationResult,logMsg;
+    public TextView trigger,exit;
+    public Vibrator mVibrator;
+    public static Double dwlocation_latitude;
+    public static Double dwlocation_lontitude;
+    //-----------------------------------
+
     /**
      * 默认壁纸
      */
@@ -202,7 +222,16 @@ public class ChildApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
+        // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
+        SDKInitializer.initialize(getApplicationContext());
         initImageLoader(getApplicationContext());
+
+        mLocationClient = new LocationClient(this.getApplicationContext());
+        mMyLocationListener = new MyLocationListener();
+        mLocationClient.registerLocationListener(mMyLocationListener);
+        mGeofenceClient = new GeofenceClient(getApplicationContext());
+        mLocationClient.start();
+        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         /**
          * 初始化表情名称
          */
@@ -290,5 +319,21 @@ public class ChildApplication extends Application {
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
                 .build();
         ImageLoader.getInstance().init(config);
+    }
+    public class MyLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            StringBuffer sb = new StringBuffer(256);
+
+            sb.append("latitude : ");
+            sb.append(location.getLatitude());
+            sb.append("\nlontitude : ");
+            sb.append(location.getLongitude());
+
+            Log.i("BaiduLocationApiDem", sb.toString());
+            dwlocation_latitude = location.getLatitude();
+            dwlocation_lontitude = location.getLongitude();
+        }
     }
 }

@@ -8,10 +8,9 @@ package com.child.manage.entity;
  */
 public class kecheng {
     private String datetime;
-    private String onetime;
-    private String twotime;
-    private String threetime;
-    private String fourtime;
+    private String pic;
+    private String title;
+    private String cont;
 
     public String getDatetime() {
         return datetime;
@@ -21,43 +20,34 @@ public class kecheng {
         this.datetime = datetime;
     }
 
-    public String getOnetime() {
-        return onetime;
+    public String getPic() {
+        return pic;
     }
 
-    public void setOnetime(String onetime) {
-        this.onetime = onetime;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
-    public String getTwotime() {
-        return twotime;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTwotime(String twotime) {
-        this.twotime = twotime;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getThreetime() {
-        return threetime;
+    public String getCont() {
+        return cont;
     }
 
-    public void setThreetime(String threetime) {
-        this.threetime = threetime;
+    public void setCont(String cont) {
+        this.cont = cont;
     }
 
-    public String getFourtime() {
-        return fourtime;
-    }
-
-    public void setFourtime(String fourtime) {
-        this.fourtime = fourtime;
-    }
-
-    public kecheng(String datetime, String onetime, String twotime, String threetime, String fourtime) {
+    public kecheng(String datetime, String pic, String title, String cont) {
         this.datetime = datetime;
-        this.onetime = onetime;
-        this.twotime = twotime;
-        this.threetime = threetime;
-        this.fourtime = fourtime;
+        this.pic = pic;
+        this.title = title;
+        this.cont = cont;
     }
 }

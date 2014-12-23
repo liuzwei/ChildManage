@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.child.manage.R;
 import com.child.manage.entity.kecheng;
@@ -58,33 +59,27 @@ public class KechengAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.kecheng_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.gonggao_item, null);
             holder.datetime = (TextView) convertView.findViewById(R.id.datetime);
-            holder.onetime = (TextView) convertView.findViewById(R.id.onetime);
-            holder.twotime = (TextView) convertView.findViewById(R.id.twotime);
-            holder.threetime = (TextView) convertView.findViewById(R.id.threetime);
-            holder.fourtime = (TextView) convertView.findViewById(R.id.fourtime);
+            holder.pic = (ImageView) convertView.findViewById(R.id.pic);
+            holder.cont = (TextView) convertView.findViewById(R.id.cont);
+            holder.title = (TextView) convertView.findViewById(R.id.title);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         final kecheng cell = list.get(position);
         holder.datetime.setText(cell.getDatetime());
-        holder.onetime.setText(cell.getOnetime());
-        holder.twotime.setText(cell.getTwotime());
-        holder.threetime.setText(cell.getThreetime());
-        holder.fourtime.setText(cell.getFourtime());
-
+        holder.title.setText(cell.getTitle());
+        holder.cont.setText(cell.getCont());
         return convertView;
     }
 
-
     class ViewHolder {
+        ImageView pic;
+        TextView cont;
+        TextView title;
         TextView datetime;
-        TextView onetime;
-        TextView twotime;
-        TextView threetime;
-        TextView fourtime;
     }
 
 }

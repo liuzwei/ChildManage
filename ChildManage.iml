@@ -19,6 +19,7 @@
     <orderEntry type="library" name="vitamio1" level="project" />
     <orderEntry type="module" module-name="VitamioBundle" />
     <orderEntry type="library" name="httpclient-4.3.5" level="project" />
+    <orderEntry type="library" name="BaiduLBS_Android" level="project" />
   </component>
 </module>
 

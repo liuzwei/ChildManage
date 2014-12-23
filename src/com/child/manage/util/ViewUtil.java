@@ -21,8 +21,7 @@ public class ViewUtil {
 	public static final int YUER = 4;
 	// 每周课程
 	public static final int KECHENG = 5;
-	// 宝宝食谱
-	public static final int SHIPU = 6;
+
 	// 设置
-	public static final int SET = 7;
+	public static final int SET = 6;
 }
