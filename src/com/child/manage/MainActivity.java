@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     /**
      * 给宝宝成长点评
      */
-    private Dianping dianping;
+    private Video dianping;
     /**
      * 给老师留言
      */
@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
                     case ViewUtil.DIANPING:
                         if (dianping == null) {
-                            dianping = new Dianping(MainActivity.this,
+                            dianping = new Video(MainActivity.this,
                                     MainActivity.this, childApplication);
                             dianping.setOnOpenListener(MainActivity.this);
                         }

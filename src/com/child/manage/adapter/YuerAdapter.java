@@ -72,7 +72,7 @@ public class YuerAdapter extends BaseAdapter {
         final yuer cell = list.get(position);
         holder.datetime.setText(cell.getDatetime());
         holder.title.setText(cell.getTitle());
-        imageLoader.displayImage(cell.getPic(), holder.pic, ChildApplication.options, animateFirstListener);
+//        imageLoader.displayImage(cell.getPic(), holder.pic, ChildApplication.options, animateFirstListener);
         return convertView;
     }
 

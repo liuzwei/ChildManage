@@ -39,7 +39,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dip"
-                            android:text="成长点评"
+                            android:text="即时动态"
                             android:textColor="#ffffff"
                             android:textSize="18sp" />
                     <ImageView
