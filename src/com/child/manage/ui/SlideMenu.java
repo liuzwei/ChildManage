@@ -162,7 +162,7 @@ public class SlideMenu extends ViewGroup {
         }
 
 		/*
-		 * The only time we want to intercept motion events is if we are in the
+         * The only time we want to intercept motion events is if we are in the
 		 * drag mode.
 		 */
         return mTouchState != TOUCH_STATE_REST;
@@ -200,7 +200,7 @@ public class SlideMenu extends ViewGroup {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-			/*
+            /*
 			 * If being flinged and user touches, stop the fling. isFinished
 			 * will be false if being flinged.
 			 */

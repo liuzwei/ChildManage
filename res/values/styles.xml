@@ -1,10 +1,9 @@
 <resources>
-	
-    
-    
+
+
     <style name="tile_background">
         <item name="android:background">#ff0000</item>
-        
+
     </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -20,9 +19,9 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="@android:Theme">
-       
-		<item name="android:windowTitleSize">30dp</item>
-		<item name="android:windowTitleBackgroundStyle">@style/tile_background</item>
+
+        <item name="android:windowTitleSize">30dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/tile_background</item>
     </style>
 
     <style name="customProgressBar" parent="@android:style/Widget.ProgressBar.Small">
@@ -33,7 +32,7 @@
     </style>
 
 
-    <style name="zhuye_xinxi" >
+    <style name="zhuye_xinxi">
         <item name="android:textSize">7sp</item>
         <item name="android:textColor">#000000</item>
     </style>
@@ -60,27 +59,40 @@
         <!--<item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
     </style>
     <style name="dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item><!--边框-->
-        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">true</item><!--半透明-->
-        <item name="android:windowNoTitle">true</item><!--无标题-->
-        <item name="android:windowBackground">@drawable/dialog_shape</item><!--背景透明-->
-        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@drawable/dialog_shape</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
 
     </style>
     <style name="dialog1" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item><!--边框-->
-        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">true</item><!--半透明-->
-        <item name="android:windowNoTitle">true</item><!--无标题-->
-        <item name="android:windowBackground">@drawable/dialog_shape</item><!--背景透明-->
-        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@drawable/dialog_shape</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
 
 
     </style>
-    <style name="grd" >
+    <style name="grd">
 
-        <item name="android:windowBackground">@drawable/dialog_shape</item><!--背景透明-->
+        <item name="android:windowBackground">@drawable/dialog_shape</item>
+        <!--背景透明-->
     </style>
     <style name="MusicRadioBtn">
         <item name="android:textColor">#333333</item>
@@ -171,27 +183,27 @@
     </style>
 
     <!--<style name="chat_content_date_style">-->
-        <!--<item name="android:minHeight">50dp</item>-->
-        <!--<item name="android:gravity">left|center</item>-->
-        <!--<item name="android:textColor">#000000</item>-->
-        <!--<item name="android:textSize">15sp</item>-->
-        <!--<item name="android:lineSpacingExtra">2dp</item>-->
-        <!--<item name="android:clickable">true</item>-->
-        <!--<item name="android:focusable">true</item>-->
-        <!--<item name="android:background">#bfbfbf</item>-->
+    <!--<item name="android:minHeight">50dp</item>-->
+    <!--<item name="android:gravity">left|center</item>-->
+    <!--<item name="android:textColor">#000000</item>-->
+    <!--<item name="android:textSize">15sp</item>-->
+    <!--<item name="android:lineSpacingExtra">2dp</item>-->
+    <!--<item name="android:clickable">true</item>-->
+    <!--<item name="android:focusable">true</item>-->
+    <!--<item name="android:background">#bfbfbf</item>-->
     <!--</style>-->
 
     <!--<style name="chat_text_name_style">-->
-        <!--<item name="android:textColor">#818181</item>-->
-        <!--<item name="android:textSize">15sp</item>-->
-        <!--<item name="android:gravity">center</item>-->
+    <!--<item name="android:textColor">#818181</item>-->
+    <!--<item name="android:textSize">15sp</item>-->
+    <!--<item name="android:gravity">center</item>-->
     <!--</style>-->
 
     <!--<style name="chat_text_date_style">-->
-        <!--<item name="android:padding">2dp</item>-->
-        <!--<item name="android:textColor">#ffffff</item>-->
-        <!--<item name="android:textSize">12sp</item>-->
-        <!--<item name="android:background">@drawable/chat_send_time_bg</item>-->
+    <!--<item name="android:padding">2dp</item>-->
+    <!--<item name="android:textColor">#ffffff</item>-->
+    <!--<item name="android:textSize">12sp</item>-->
+    <!--<item name="android:background">@drawable/chat_send_time_bg</item>-->
     <!--</style>-->
 
     <style name="item_text_info" parent="android:Widget.TextView">

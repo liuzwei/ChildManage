@@ -28,16 +28,15 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     private Desktop mDesktop;
 
     /**
-    *
-    * 园区介绍
-    * */
+     * 园区介绍
+     */
     private About about;
     /**
      * 互动天地
      */
     private Home mHome;
     /**
-     * 给宝宝成长点评
+     * 即时动态
      */
     private Video dianping;
     /**
@@ -45,7 +44,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      */
     private Liuyan liuyan;
     /**
-     * 远程视频
+     * 校车位置
      */
     private Baybayset video;
     /**
@@ -81,6 +80,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      *
      */
     public static Activity mInstance;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String name = getIntent().getExtras().getString("name");
@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
         /**
          * 创建菜单界面和内容首页界面,并添加到容器中,用于初始显示
          */
-        mDesktop = new Desktop(this, this, childApplication,name);
+        mDesktop = new Desktop(this, this, childApplication, name);
 //        mHome = new Home(this, this, childApplication);
 //        mRoot.addView(mDesktop.getView(), params);
 //        mRoot.addView(mHome.getView(), params);
@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
         mRoot.addView(about.getView(), params);
         setContentView(mRoot);
         setListener();
-        mInstance=this;
+        mInstance = this;
     }
 
     /**
@@ -135,29 +135,29 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         mRoot.close(dianping.getView());
                         break;
                     case ViewUtil.HOME:
-                        if(mHome == null){
-                            mHome = new Home(MainActivity.this, MainActivity.this,childApplication);
+                        if (mHome == null) {
+                            mHome = new Home(MainActivity.this, MainActivity.this, childApplication);
                             mHome.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(mHome.getView());
                         break;
                     case ViewUtil.SHIPIN:
-                        if(video == null){
-                            video = new Baybayset(MainActivity.this, MainActivity.this,childApplication);
+                        if (video == null) {
+                            video = new Baybayset(MainActivity.this, MainActivity.this, childApplication);
                             video.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(video.getView());
                         break;
                     case ViewUtil.YUER:
-                        if(yuer == null){
-                            yuer = new Yuer(MainActivity.this, MainActivity.this,childApplication);
+                        if (yuer == null) {
+                            yuer = new Yuer(MainActivity.this, MainActivity.this, childApplication);
                             yuer.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(yuer.getView());
                         break;
                     case ViewUtil.KECHENG:
-                        if(kecheng == null){
-                            kecheng = new Kecheng(MainActivity.this, MainActivity.this,childApplication);
+                        if (kecheng == null) {
+                            kecheng = new Kecheng(MainActivity.this, MainActivity.this, childApplication);
                             kecheng.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(kecheng.getView());
@@ -351,7 +351,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
 //            if (mDesktop.getUgcIsShowing()) {
 //                mDesktop.closeUgc();
 //            } else {
-                exit();
+            exit();
 //            }
         } else {
             switch (mViewPosition) {
@@ -397,7 +397,6 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
             mRoot.open();
         }
     }
-
 
 
 }

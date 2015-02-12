@@ -8,12 +8,12 @@ import java.io.Serializable;
  * Time: 14:29
  * 类的功能、说明写在此处.
  */
-public class Account implements Serializable{
+public class Account implements Serializable {
     private String user_name;//账号
     private String uid;//uid 用户ID
     private String email;//邮件
     private String mobile;//手机号
-    private String class_id ;//所属班级ID
+    private String class_id;//所属班级ID
     private String school_id;//所属幼儿园ID
     private String is_student;//是否家长登陆  1 是  0 否
     private String f_cover;//father头像， is_student为1 返回

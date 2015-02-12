@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by apple on 14-9-15.
  */
-public class Message implements Serializable{
+public class Message implements Serializable {
     private String id;
     private String uid;
     private String to_uids;
@@ -21,13 +21,14 @@ public class Message implements Serializable{
     public Message() {
     }
 
-    public Message(String uid, String to_uids, long dateline, String type, String content){
+    public Message(String uid, String to_uids, long dateline, String type, String content) {
         this.uid = uid;
         this.to_uids = to_uids;
         this.dateline = dateline;
         this.type = type;
         this.content = content;
     }
+
     public Message(String uid, String to_uids, long dateline, String type, String content, int time, boolean isComMsg) {
         this.uid = uid;
         this.to_uids = to_uids;

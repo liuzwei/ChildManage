@@ -28,9 +28,8 @@ import java.util.UUID;
  * 菜单首页类
  *
  * @author rendongwei
- *
  */
-public class Set implements OnClickListener{
+public class Set implements OnClickListener {
     private Button mMenu;
     private Context mContext;
     private Activity mActivity;
@@ -94,8 +93,7 @@ public class Set implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.setzh:
                 Intent zhanghao = new Intent(mContext, SettingZhActivity.class);
                 mContext.startActivity(zhanghao);
@@ -109,11 +107,11 @@ public class Set implements OnClickListener{
                 mContext.startActivity(baby);
                 break;
             case R.id.setemail:
-                Intent email = new Intent(mContext,SettingEmailActivity.class);
+                Intent email = new Intent(mContext, SettingEmailActivity.class);
                 mContext.startActivity(email);
                 break;
             case R.id.aboutus:
-                Intent about = new Intent(mContext,SettingAboutActivity.class);
+                Intent about = new Intent(mContext, SettingAboutActivity.class);
                 mContext.startActivity(about);
                 break;
         }

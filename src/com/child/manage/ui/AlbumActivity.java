@@ -27,7 +27,6 @@ import com.child.manage.base.BaseActivity;
  * 用户手机文件夹具体图片显示类
  *
  * @author rendongwei
- *
  */
 public class AlbumActivity extends BaseActivity {
     private Button mBack;

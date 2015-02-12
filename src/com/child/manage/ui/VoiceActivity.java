@@ -37,38 +37,36 @@ import java.util.UUID;
 
 /**
  * 录音类
- * 
+ *
  * @author rendongwei
- * 
  */
-public class VoiceActivity extends BaseActivity implements OnClickListener{
-	private LinearLayout mParent;
-	private Button mRecord;
+public class VoiceActivity extends BaseActivity implements OnClickListener {
+    private LinearLayout mParent;
+    private Button mRecord;
     private Button luyin_menu;
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.voice_activity);
-		findViewById();
-		setListener();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.voice_activity);
+        findViewById();
+        setListener();
 
-	}
+    }
 
-	private void findViewById() {
-		mParent = (LinearLayout) findViewById(R.id.voice_parent);
-		mRecord = (Button) findViewById(R.id.voice_record_btn);
+    private void findViewById() {
+        mParent = (LinearLayout) findViewById(R.id.voice_parent);
+        mRecord = (Button) findViewById(R.id.voice_record_btn);
         luyin_menu = (Button) this.findViewById(R.id.luyin_menu);
         luyin_menu.setOnClickListener(this);
     }
 
-	private void setListener() {
+    private void setListener() {
 
-	}
+    }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.luyin_menu:
                 finish();
                 break;

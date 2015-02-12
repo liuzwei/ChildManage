@@ -10,7 +10,7 @@
             android:id="@+id/zxit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/zhuye_item_select" >
+            android:background="@drawable/zhuye_item_select">
         <LinearLayout
                 android:id="@+id/zxitb"
                 android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                               android:orientation="horizontal">
                     <FrameLayout
                             android:layout_width="50dp"
-                            android:layout_height="50dp" >
+                            android:layout_height="50dp">
                         <ImageView
                                 android:id="@+id/growing_item_photo"
                                 android:layout_width="50dp"
@@ -63,16 +63,16 @@
                             android:singleLine="true"
                             android:gravity="center_vertical"
                             />
-                        <TextView
-                                android:id="@+id/growing_item_time"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:text="2014.01.02"
-                                android:textSize="11sp"
-                                android:gravity="center_vertical"
-                                android:textColor="#e5b15e"
-                                />
+                    <TextView
+                            android:id="@+id/growing_item_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:text="2014.01.02"
+                            android:textSize="11sp"
+                            android:gravity="center_vertical"
+                            android:textColor="#e5b15e"
+                            />
                 </LinearLayout>
 
                 <LinearLayout
@@ -92,7 +92,7 @@
                             android:autoLink="web"
                             android:lineSpacingExtra="5dp"
                             android:text="内容"
-                            android:textColor="#333333" />
+                            android:textColor="#333333"/>
 
                     <!-- 内部图片 -->
                     <GridView
@@ -119,7 +119,7 @@
                 <LinearLayout
                         android:id="@+id/growing_item_favours_detail"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent" 
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     <ImageView
                             android:layout_marginLeft="10dp"

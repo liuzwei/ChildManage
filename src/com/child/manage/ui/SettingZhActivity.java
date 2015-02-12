@@ -39,8 +39,7 @@ public class SettingZhActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.back:
                 finish();
                 break;

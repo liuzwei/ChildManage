@@ -37,16 +37,14 @@ public class GalleryUrlActivity extends BaseActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         Collections.addAll(items, imageUrls);
         UrlPagerAdapter pagerAdapter = new UrlPagerAdapter(this, items, dm.widthPixels, dm.heightPixels);
-        pagerAdapter.setOnItemChangeListener(new BasePagerAdapter.OnItemChangeListener()
-        {
+        pagerAdapter.setOnItemChangeListener(new BasePagerAdapter.OnItemChangeListener() {
             @Override
-            public void onItemChange(int currentPosition)
-            {
+            public void onItemChange(int currentPosition) {
                 picSum.setText(currentPosition + 1 + "/" + imageUrls.length);
             }
         });
 
-        mViewPager = (GalleryViewPager)findViewById(R.id.viewer);
+        mViewPager = (GalleryViewPager) findViewById(R.id.viewer);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(pagerPosition);

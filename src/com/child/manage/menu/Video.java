@@ -24,6 +24,10 @@ import com.child.manage.ui.CheckInActivity;
 import com.child.manage.ui.VoiceActivity;
 import com.child.manage.ui.WriteRecordActivity;
 import com.child.manage.util.ActivityForResultUtil;
+import com.child.manage.video.DirectConnectUI;
+import com.child.manage.video.SDKDemoUI;
+import ipc.android.sdk.com.SDK_CONSTANT;
+import ipc.android.sdk.impl.FunclibAgent;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,53 +35,67 @@ import java.util.UUID;
 
 /**
  * 菜单首页类
- * 
+ *
  * @author rendongwei
- * 
  */
 public class Video {
     private Button mMenu;
-	private Context mContext;
-	private Activity mActivity;
-	private ChildApplication mKXApplication;
-	private View mHome;
+    private Context mContext;
+    private Activity mActivity;
+    private ChildApplication mKXApplication;
+    private View mHome;
+    private FlipperLayout.OnOpenListener mOnOpenListener;
+
+    //视频接口
+    private Button btnjump;
+    private Button btndirectconnect;
+
+    public Video(Context context, Activity activity, ChildApplication application) {
+        mContext = context;
+        mActivity = activity;
+        mKXApplication = application;
+        mHome = LayoutInflater.from(context).inflate(R.layout.video, null);
+        findViewById();
+        setListener();
+
+    }
+
+    private void findViewById() {
+        mMenu = (Button) mHome.findViewById(R.id.home_menu);
+        btnjump = (Button) mHome.findViewById(R.id.btn_jump);
+        btndirectconnect = (Button) mHome.findViewById(R.id.btn_direct_connect);
+
+    }
+
+    private void setListener() {
+        mMenu.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                if (mOnOpenListener != null) {
+                    mOnOpenListener.open();
+                }
+            }
+        });
+        btnjump.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, SDKDemoUI.class));
+            }
+        });
+        btndirectconnect.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, DirectConnectUI.class));
+            }
+        });
+    }
 
 
-	private FlipperLayout.OnOpenListener mOnOpenListener;
+    public View getView() {
+        return mHome;
+    }
 
-
-	public Video(Context context, Activity activity, ChildApplication application) {
-		mContext = context;
-		mActivity = activity;
-		mKXApplication = application;
-		mHome = LayoutInflater.from(context).inflate(R.layout.video, null);
-		findViewById();
-		setListener();
-
-	}
-
-	private void findViewById() {
-		mMenu = (Button) mHome.findViewById(R.id.home_menu);
-
-	}
-
-	private void setListener() {
-		mMenu.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				if (mOnOpenListener != null) {
-					mOnOpenListener.open();
-				}
-			}
-		});
-	}
-
-
-	public View getView() {
-		return mHome;
-	}
-
-	public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-		mOnOpenListener = onOpenListener;
-	}
+    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
+        mOnOpenListener = onOpenListener;
+    }
 }

@@ -40,7 +40,7 @@ public class VideoViewActivity extends BaseActivity implements VideoResult {
 
     @Override
     public void result(int flag) {
-        switch (flag){
+        switch (flag) {
             case 1://不能播放此视频
                 finish();
                 break;

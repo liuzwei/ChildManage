@@ -7,13 +7,13 @@ import android.view.View;
 import java.util.List;
 
 /**
- * 
- ******************************************
+ * *****************************************
+ *
  * @author 廖乃波
- * @文件名称	:  ViewPagerAdapter.java
- * @创建时间	: 2013-1-27 下午02:35:27
- * @文件描述	: ViewPager 数据填充器，切记做其他操作！！！只填充View！！！！
- ******************************************
+ * @文件名称 : ViewPagerAdapter.java
+ * @创建时间 : 2013-1-27 下午02:35:27
+ * @文件描述 : ViewPager 数据填充器，切记做其他操作！！！只填充View！！！！
+ * *****************************************
  */
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -21,7 +21,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     public ViewPagerAdapter(List<View> pageViews) {
         super();
-        this.pageViews=pageViews;
+        this.pageViews = pageViews;
     }
 
     // 显示数目
@@ -42,15 +42,15 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(View arg0, int arg1, Object arg2) {
-        ((ViewPager)arg0).removeView(pageViews.get(arg1));
+        ((ViewPager) arg0).removeView(pageViews.get(arg1));
     }
 
-    /***
+    /**
      * 获取每一个item�?类于listview中的getview
      */
     @Override
     public Object instantiateItem(View arg0, int arg1) {
-        ((ViewPager)arg0).addView(pageViews.get(arg1));
+        ((ViewPager) arg0).addView(pageViews.get(arg1));
         return pageViews.get(arg1);
     }
 }

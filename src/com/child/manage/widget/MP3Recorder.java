@@ -16,14 +16,15 @@ import java.io.IOException;
  * MP3实时录制功能,可暂停,注意因踩用Native开发,不能混淆
  * 配置,编译so查看:http://blog.csdn.net/cboy017/article/details/8455629
  * </div>
+ *
  * @author <a href="mailto:184618345@qq.com">017</a>
  * @version 1.0
- * </p>
- * 修改时间：</br>
- * 修改备注：</br>
+ *          </p>
+ *          修改时间：</br>
+ *          修改备注：</br>
  */
 public class MP3Recorder {
-//    private String filePath;
+    //    private String filePath;
     private int sampleRate;
     private boolean isRecording = false;
     private boolean isPause = false;
@@ -117,13 +118,13 @@ public class MP3Recorder {
 
                 // 5秒的缓冲
                 short[] buffer = new short[sampleRate * (16 / 8) * 1 * 5];
-                byte[] mp3buffer = new byte[(int)(7200 + buffer.length * 2 * 1.25)];
+                byte[] mp3buffer = new byte[(int) (7200 + buffer.length * 2 * 1.25)];
 
                 FileOutputStream output = null;
                 try {
 
                     File file = new File(filePath);
-                    if (!file.exists()){
+                    if (!file.exists()) {
                         try {
                             file.createNewFile();
                         } catch (IOException e) {
@@ -268,7 +269,7 @@ public class MP3Recorder {
 
     /**
      * 录音状态管理
-     * 
+     *
      * @see RecMicToMp3#MSG_REC_STARTED
      * @see RecMicToMp3#MSG_REC_STOPPED
      * @see RecMicToMp3#MSG_REC_PAUSE
@@ -302,7 +303,7 @@ public class MP3Recorder {
      * quality:0=很好很慢 9=很差很快
      */
     public native static void init(int inSamplerate, int outChannel, int outSamplerate,
-            int outBitrate, int quality);
+                                   int outBitrate, int quality);
 
     /**
      * 音频数据编码(PCM左进,PCM右进,MP3输出)

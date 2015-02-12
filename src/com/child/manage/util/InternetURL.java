@@ -5,9 +5,9 @@ package com.child.manage.util;
  */
 public class InternetURL {
     //
-    public static String INTENT="http://yey.xqb668.com";
+    public static String INTENT = "http://yey.xqb668.com";
     //登陆接口  get方式
-   public static String LOGIN_API = "http://yey.xqb668.com/json.php/user.api-login/";
+    public static String LOGIN_API = "http://yey.xqb668.com/json.php/user.api-login/";
 
     //注册接口  get方式
     public static String REGISTER_PAI = "http://yey.xqb668.com/json.php/user.api-regist/ ";
@@ -29,7 +29,7 @@ public class InternetURL {
     //相册列表
     public static String GET_PHOTOS_URL = "http://yey.xqb668.com/json.php/sclass.api-albumlist/";
     //通讯录
-    public static  String GET_TONGXUNLU_URL="http://yey.xqb668.com/index/ServiceJson/addressBook";
+    public static String GET_TONGXUNLU_URL = "http://yey.xqb668.com/index/ServiceJson/addressBook";
 
     //喜爱或是收藏成长记录
     public static String FAVOURS_URL = "http://yey.xqb668.com/index/ServiceJson/toFavour";
@@ -43,7 +43,7 @@ public class InternetURL {
     //获得点名宝宝列表
     public static String DIANMING_URL = "http://yey.xqb668.com/index/ServiceJson/dianmingChilds";
     //绑定邮箱
-    public static String BANGDING_EMAIL_URL="http://yey.xqb668.com/json.php/user.api-emailSetting";
+    public static String BANGDING_EMAIL_URL = "http://yey.xqb668.com/json.php/user.api-emailSetting";
 
     //交互信息首页活动信息列表
     public static String JIAOHU_MESSAGE_LIST = "http://yey.xqb668.com/index/ServiceJson/MessageList";
@@ -63,7 +63,7 @@ public class InternetURL {
     //查询宝宝信息
     public static String SELECT_BABY_URL = "http://yey.xqb668.com/index/ServiceJson/childSetting";
     //34.	获取最近路线的详细坐标信息
-    public static String GET_LOCATION_URL  = "http://yey.xqb668.com/index/ServiceJson/schoolBusLngLat";
+    public static String GET_LOCATION_URL = "http://yey.xqb668.com/index/ServiceJson/schoolBusLngLat";
     //32.	校车通知 开启关闭
     public static String CAR_OPEN_URL = "http://yey.xqb668.com/index/ServiceJson/schoolbusopen";
     //33.	校车经纬度更新

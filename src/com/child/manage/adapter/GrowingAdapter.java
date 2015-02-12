@@ -32,12 +32,13 @@ public class GrowingAdapter extends BaseAdapter {
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
-    public GrowingAdapter(List<Growing> list, Context context){
+    public GrowingAdapter(List<Growing> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     private OnClickContentItemListener onClickContentItemListener;
+
     public void setOnClickContentItemListener(OnClickContentItemListener onClickContentItemListener) {
         this.onClickContentItemListener = onClickContentItemListener;
     }
@@ -59,9 +60,9 @@ public class GrowingAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        if (convertView == null){
+        if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.growing_item,null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.growing_item, null);
             viewHolder.photo = (ImageView) convertView.findViewById(R.id.growing_item_photo);
             viewHolder.publisher = (TextView) convertView.findViewById(R.id.growing_item_name);
             viewHolder.time = (TextView) convertView.findViewById(R.id.growing_item_time);
@@ -79,7 +80,7 @@ public class GrowingAdapter extends BaseAdapter {
             viewHolder.commentLayout = (LinearLayout) convertView.findViewById(R.id.growing_item_comment_list);
 //            viewHolder.favoursPeople = (LinearLayout) convertView.findViewById(R.id.growing_item_favours_people);
             convertView.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
@@ -94,9 +95,9 @@ public class GrowingAdapter extends BaseAdapter {
 //        }else {
 //            viewHolder.picture.setVisibility(View.GONE);
 //        }
-        if ("1".equals(growing.getIs_favoured())){
+        if ("1".equals(growing.getIs_favoured())) {
             viewHolder.redHeart.setImageDrawable(context.getResources().getDrawable(R.drawable.red_favours));
-        }else {
+        } else {
             viewHolder.redHeart.setImageDrawable(context.getResources().getDrawable(R.drawable.favours));
         }
         viewHolder.content.setText(growing.getDept());
@@ -105,13 +106,13 @@ public class GrowingAdapter extends BaseAdapter {
         viewHolder.playVideo.setVisibility(View.GONE);
 
         //判断有没有收藏过
-        if ("1".equals(growing.getIs_favoured())){
+        if ("1".equals(growing.getIs_favoured())) {
             FavoursObj favoursObj = growing.getFavours();
             viewHolder.favoursLayout.setVisibility(View.VISIBLE);
-            viewHolder.favoursNum.setText(favoursObj.getCount()+"");
+            viewHolder.favoursNum.setText(favoursObj.getCount() + "");
             List<Favours> favoursList = favoursObj.getList();
-            for (Favours favours : favoursList){
-                if (viewHolder.favoursLayout.getChildCount()>=2) {
+            for (Favours favours : favoursList) {
+                if (viewHolder.favoursLayout.getChildCount() >= 2) {
                     viewHolder.favoursLayout.removeViewAt(2);
                     LinearLayout linearLayout = new LinearLayout(context);
                     linearLayout.setHorizontalGravity(LinearLayout.HORIZONTAL);
@@ -127,11 +128,11 @@ public class GrowingAdapter extends BaseAdapter {
                     linearLayout.addView(imageView);
                     linearLayout.addView(textView);
                     viewHolder.favoursLayout.setGravity(Gravity.CENTER_VERTICAL);
-                    viewHolder.favoursLayout.setPadding(10, 0,0,0);
+                    viewHolder.favoursLayout.setPadding(10, 0, 0, 0);
                     viewHolder.favoursLayout.addView(linearLayout);
                 }
             }
-        }else {
+        } else {
             viewHolder.favoursLayout.setVisibility(View.GONE);
         }
 
@@ -155,7 +156,7 @@ public class GrowingAdapter extends BaseAdapter {
 //        }
 
         //todo   type类型返回的为空
-        switch (Integer.parseInt(growing.getType()) ){
+        switch (Integer.parseInt(growing.getType())) {
 //        switch (0){
             case 0://文字
                 viewHolder.content.setText(growing.getDept());
@@ -193,7 +194,7 @@ public class GrowingAdapter extends BaseAdapter {
                 viewHolder.playRecord.setVisibility(View.VISIBLE);
                 if (growing.isPlay()) {
                     viewHolder.playRecord.setImageDrawable(context.getResources().getDrawable(R.drawable.pause_record));
-                }else {
+                } else {
                     viewHolder.playRecord.setImageDrawable(context.getResources().getDrawable(R.drawable.play_record));
                 }
                 viewHolder.playRecord.setOnClickListener(new View.OnClickListener() {
@@ -227,7 +228,7 @@ public class GrowingAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView photo;
         TextView publisher;
         TextView time;
@@ -235,7 +236,7 @@ public class GrowingAdapter extends BaseAdapter {
         LinearLayout favours;//收藏
         LinearLayout comment;//评论
         ImageView share;//分享
-//        ImageView picture;
+        //        ImageView picture;
         ImageView redHeart;
 
         ImageView playRecord;

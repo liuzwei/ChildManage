@@ -12,13 +12,14 @@ import net.tsz.afinal.FinalActivity;
 /**
  * Created by liuzwei on 2014/12/10.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 登录按钮
      */
     private Button mLogin;
 
     private EditText name;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
@@ -47,11 +48,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 // 跳转到功能引导页
                 Intent main = new Intent(LoginActivity.this,
                         MainActivity.class);
-                if(name.getText().toString().equals("")){
+                if (name.getText().toString().equals("")) {
                     Toast.makeText(mContext, "请登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                main.putExtra("name",name.getText().toString());
+                main.putExtra("name", name.getText().toString());
                 startActivity(main);
                 finish();
             }
@@ -66,17 +67,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.loginbutton:
                 // 跳转到功能引导页
                 Intent main = new Intent(LoginActivity.this,
                         MainActivity.class);
-                if(name.getText().toString().equals("")){
+                if (name.getText().toString().equals("")) {
                     Toast.makeText(mContext, "请输入账号", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                main.putExtra("name",name.getText().toString());
+                main.putExtra("name", name.getText().toString());
                 startActivity(main);
                 break;
         }

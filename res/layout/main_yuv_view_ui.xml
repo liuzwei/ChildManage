@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/backgrounds"
+              android:orientation="vertical"
+              tools:ignore="NestedWeights">
+
+    <LinearLayout
+            android:id="@+id/llPlayCtrl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#1b1c59"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+        <Button
+                android:id="@+id/btnDecode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00cc00"
+                android:onClick="btnTagClick"
+                android:padding="5dp"
+                android:tag="open"
+                android:text="开启解码"
+                android:textColor="#ffffff"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="#00cc00"
+                android:onClick="btnTagClick"
+                android:padding="5dp"
+                android:tag="open"
+                android:text="开启显示"
+                android:textColor="#ffffff"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnDecShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="#00cc00"
+                android:onClick="btnTagClick"
+                android:padding="5dp"
+                android:tag="open"
+                android:text="解码显示"
+                android:textColor="#ffffff"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnOneVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="#00cc00"
+                android:onClick="btnTagClick"
+                android:padding="5dp"
+                android:tag="open"
+                android:text="一路视频"
+                android:textColor="#ffffff"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnFourVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="#cc0000"
+                android:onClick="btnTagClick"
+                android:padding="5dp"
+                android:text="四路视频"
+                android:textColor="#ffffff"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:id="@+id/llVideo1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <com.android.opengles.OpenglesView
+                    android:id="@+id/glVideo1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"/>
+
+            <com.android.opengles.OpenglesView
+                    android:id="@+id/glVideo2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/llVideo2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+            <com.android.opengles.OpenglesView
+                    android:id="@+id/glVideo3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"/>
+
+            <com.android.opengles.OpenglesView
+                    android:id="@+id/glVideo4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/ctrl_view"/>
+
+</LinearLayout>

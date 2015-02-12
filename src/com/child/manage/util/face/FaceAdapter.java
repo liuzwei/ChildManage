@@ -12,13 +12,13 @@ import com.child.manage.R;
 import java.util.List;
 
 /**
- * 
- ******************************************
+ * *****************************************
+ *
  * @author 廖乃波
- * @文件名称	:  FaceAdapter.java
- * @创建时间	: 2013-1-27 下午02:34:01
- * @文件描述	: 表情填充器
- ******************************************
+ * @文件名称 : FaceAdapter.java
+ * @创建时间 : 2013-1-27 下午02:34:01
+ * @文件描述 : 表情填充器
+ * *****************************************
  */
 public class FaceAdapter extends BaseAdapter {
 
@@ -26,12 +26,12 @@ public class FaceAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
 
-    private int size=0;
+    private int size = 0;
 
     public FaceAdapter(Context context, List<ChatEmoji> list) {
-        this.inflater= LayoutInflater.from(context);
-        this.data=list;
-        this.size=list.size();
+        this.inflater = LayoutInflater.from(context);
+        this.data = list;
+        this.size = list.size();
     }
 
     @Override
@@ -51,20 +51,20 @@ public class FaceAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ChatEmoji emoji=data.get(position);
-        ViewHolder viewHolder=null;
-        if(convertView == null) {
-            viewHolder=new ViewHolder();
-            convertView=inflater.inflate(R.layout.item_face, null);
-            viewHolder.iv_face=(ImageView)convertView.findViewById(R.id.item_iv_face);
+        ChatEmoji emoji = data.get(position);
+        ViewHolder viewHolder = null;
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.item_face, null);
+            viewHolder.iv_face = (ImageView) convertView.findViewById(R.id.item_iv_face);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder=(ViewHolder)convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        if(emoji.getId() == R.drawable.face_del_icon) {
+        if (emoji.getId() == R.drawable.face_del_icon) {
             convertView.setBackgroundDrawable(null);
             viewHolder.iv_face.setImageResource(emoji.getId());
-        } else if(TextUtils.isEmpty(emoji.getCharacter())) {
+        } else if (TextUtils.isEmpty(emoji.getCharacter())) {
             convertView.setBackgroundDrawable(null);
             viewHolder.iv_face.setImageDrawable(null);
         } else {

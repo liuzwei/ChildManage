@@ -21,21 +21,19 @@ import java.util.Map;
 
 /**
  * 手机图片文件类
- * 
+ *
  * @author rendongwei
- * 
  */
 public class PhoneAlbumActivity extends BaseActivity {
-	private Button mCancel;
-	private ListView mDisplay;
-	public static Activity mInstance;
+    private Button mCancel;
+    private ListView mDisplay;
+    public static Activity mInstance;
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.phonealbum_activity);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.phonealbum_activity);
 
-	}
-
+    }
 
 
 }

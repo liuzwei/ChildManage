@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/kaixin_background"
+            android:clickable="true"
+            android:orientation="vertical">
 
         <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/kaixin_background"
-                android:clickable="true"
-                android:orientation="vertical" >
+                android:layout_height="48dip"
+                android:background="@drawable/beijing"
+                >
 
+            <Button
+                    android:id="@+id/yuer_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/left_button_hdtd"/>
             <LinearLayout
+                    android:id="@+id/home_top_layout"
                     android:layout_width="fill_parent"
-                    android:layout_height="48dip"
-                    android:background="@drawable/beijing"
-                  >
-
-                <Button
-                        android:id="@+id/yuer_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/left_button_hdtd" />
-                <LinearLayout
-                        android:id="@+id/home_top_layout"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginRight="35dip"
-                        android:layout_weight="1"
-                        android:background="@drawable/title_bar_center_button_bg"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:orientation="horizontal" >
-
-                    <TextView
-                            android:id="@+id/home_top_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dip"
-                            android:text="园外天地"
-                            android:textColor="#ffffff"
-                            android:textSize="18sp" />
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:duplicateParentState="true"
-                             />
-                </LinearLayout>
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="35dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/title_bar_center_button_bg"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                 <TextView
-                        android:id="@+id/home_refresh"
+                        android:id="@+id/home_top_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_marginRight="15dip"
-                         />
+                        android:layout_height="wrap_content"
+                        android:padding="8dip"
+                        android:text="园外天地"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"/>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        />
             </LinearLayout>
 
+            <TextView
+                    android:id="@+id/home_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="15dip"
+                    />
+        </LinearLayout>
 
-            <LinearLayout
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+            <ListView
+                    android:id="@+id/yuerlstv"
+                    android:divider="@drawable/shipu_line"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    >
-                <ListView
-                          android:id="@+id/yuerlstv"
-                          android:divider="@drawable/shipu_line"
-                          android:layout_width="match_parent"
-                          android:scrollingCache="false"
-                          android:fadingEdge="none"
-                          android:layout_height="wrap_content">
+                    android:scrollingCache="false"
+                    android:fadingEdge="none"
+                    android:layout_height="wrap_content">
 
-                </ListView>
+            </ListView>
 
 
-            </LinearLayout>
+        </LinearLayout>
 
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="fill_vertical"
-                    >
-                <ImageView android:layout_width="match_parent"
-                           android:src="@drawable/shipu_line"
-                           android:layout_height="wrap_content"/>
-                <ImageView android:layout_width="fill_parent"
-                           android:src="@drawable/ad"
-                           android:scaleType="fitXY"
-                           android:layout_height="match_parent"/>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="fill_vertical"
+                >
+            <ImageView android:layout_width="match_parent"
+                       android:src="@drawable/shipu_line"
+                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="fill_parent"
+                       android:src="@drawable/ad"
+                       android:scaleType="fitXY"
+                       android:layout_height="match_parent"/>
 
-            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

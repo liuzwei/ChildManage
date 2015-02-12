@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llCtrlInfo"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:visibility="visible">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        <EditText
+                android:id="@+id/etDeviceID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="device id"
+                android:minEms="6"
+                android:text="162275"
+                android:textSize="12sp"/>
+
+        <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="username"
+                android:minEms="6"
+                android:text="admin"
+                android:textSize="12sp"/>
+
+        <EditText
+                android:id="@+id/etUserPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="userpassword"
+                android:minEms="6"
+                android:text="123456"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜设备"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnStopSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止搜"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录设备"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnLogoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注销设备"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnShot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="抓拍"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册"
+                android:visibility="gone"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnAddDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="添加设备"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        <Button
+                android:id="@+id/btnStartVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动视频"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStopVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止视频"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStartRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动录像"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStopRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止录像"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnModifyDevUserPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改密码"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        <Button
+                android:id="@+id/btnOpenVoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打开声音"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnCloseVoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关闭声音"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnOpenTalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开启对讲"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnCloseTalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关闭对讲"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        <Button
+                android:id="@+id/btnPtzUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云台上"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云台下"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云台左"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云台右"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自动巡航"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+</LinearLayout>

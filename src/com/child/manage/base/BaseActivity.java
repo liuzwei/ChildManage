@@ -37,9 +37,9 @@ public class BaseActivity extends Activity {
     public LayoutInflater inflater;
     public static FinalHttp finalHttp = new FinalHttp();
 
-    private ActivityTack tack= ActivityTack.getInstanse();
+    private ActivityTack tack = ActivityTack.getInstanse();
 
-//    private Gson gson = new Gson();
+    //    private Gson gson = new Gson();
     protected ChildApplication childApplication;
     /**
      * 屏幕的宽度和高度
@@ -54,11 +54,13 @@ public class BaseActivity extends Activity {
     protected ImageView mFaceClose;
     protected GridView mFaceGridView;
 
+
     private RequestQueue mRequestQueue;
     private static RequestQueue mSingleQueue;
     private ExecutorService appThread = Executors.newSingleThreadExecutor();
 
     private Gson gson = new Gson();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +90,7 @@ public class BaseActivity extends Activity {
     }
 
     //存储sharepreference
-    public void save(String key, Object value){
+    public void save(String key, Object value) {
         SharedPreferences.Editor editor = sp.edit();
 //        editor.putString(key, gson.toJson(value)).commit();
     }
@@ -98,11 +100,12 @@ public class BaseActivity extends Activity {
     }
 
     public static FinalHttp getFinalHttp() {
-        if (finalHttp == null){
+        if (finalHttp == null) {
             finalHttp = new FinalHttp();
         }
         return finalHttp;
     }
+
     /**
      * 初始化表情控件
      */
@@ -116,11 +119,11 @@ public class BaseActivity extends Activity {
                 true);
         mFacePop.setBackgroundDrawable(new BitmapDrawable());
     }
+
     /**
      * 显示表情控件
      *
-     * @param parent
-     *            显示位置的根布局
+     * @param parent 显示位置的根布局
      */
     protected void showFace(View parent) {
         if (!mFacePop.isShowing()) {
@@ -187,31 +190,33 @@ public class BaseActivity extends Activity {
 //            return face;
 //        }
 //    }
+
     /**
      * 获得线程池
+     *
      * @return
      */
     public ExecutorService getAppThread() {
         return appThread;
     }
 
-    public Gson getGson(){
+    public Gson getGson() {
         return gson;
     }
 
-    public RequestQueue getRequestQueue(){
+    public RequestQueue getRequestQueue() {
         return mRequestQueue;
     }
 
 
     /**
      * 根据资源ID
+     *
      * @param resId
      */
-    public void alert(int resId){
+    public void alert(int resId) {
         ToastUtil.show(getApplicationContext(), resId);
     }
-
 
 
     public static void addPutUploadFileRequest(final String url,

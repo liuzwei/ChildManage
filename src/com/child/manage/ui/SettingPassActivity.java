@@ -22,7 +22,7 @@ public class SettingPassActivity extends BaseActivity implements View.OnClickLis
     private EditText surepass;
     private TextView set;//设置
 
-    private String pass ;
+    private String pass;
     private String newpassword;
     private String surepassword;
 
@@ -47,8 +47,7 @@ public class SettingPassActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.back:
                 finish();
                 break;
@@ -58,7 +57,7 @@ public class SettingPassActivity extends BaseActivity implements View.OnClickLis
                 newpassword = newpass.getText().toString();
                 surepassword = surepass.getText().toString();
 //                String str = getGson().fromJson(sp.getString("password", ""), String.class);
-                if(StringUtil.isNullOrEmpty(pass)){
+                if (StringUtil.isNullOrEmpty(pass)) {
                     Toast.makeText(mContext, "请输入原始密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -66,19 +65,19 @@ public class SettingPassActivity extends BaseActivity implements View.OnClickLis
 //                    Toast.makeText(mContext, "原始密码输入错误", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
-                if(StringUtil.isNullOrEmpty(newpassword)){
+                if (StringUtil.isNullOrEmpty(newpassword)) {
                     Toast.makeText(mContext, "请输入新密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(newpassword.length()<6 || newpassword.length()>18){
+                if (newpassword.length() < 6 || newpassword.length() > 18) {
                     Toast.makeText(mContext, "请输入正确的密码，6到18位之间", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(StringUtil.isNullOrEmpty(surepassword)){
+                if (StringUtil.isNullOrEmpty(surepassword)) {
                     Toast.makeText(mContext, "请输入确认密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!newpassword.equals(surepassword)){
+                if (!newpassword.equals(surepassword)) {
                     Toast.makeText(mContext, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }

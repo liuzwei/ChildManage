@@ -5,10 +5,10 @@ import java.util.List;
 
 /**
  * Created by liuzwei on 2014/11/15.
- *
+ * <p/>
  * 成长管理
  */
-public class Growing implements Serializable{
+public class Growing implements Serializable {
     private String id;
     private String uid;
     private String dept;//文字描述

@@ -22,38 +22,38 @@
                   android:layout_weight="1"
                   android:id="@+id/photositem">
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="titletitletitletitletitle"
-                        android:textSize="20dp"
-                        android:textStyle="normal"
-                        android:textColor="@color/result_view"
-                        android:singleLine="true"
-                        android:gravity="center|left"
-                        android:id="@+id/title"
-                        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="titletitletitletitletitle"
+                android:textSize="20dp"
+                android:textStyle="normal"
+                android:textColor="@color/result_view"
+                android:singleLine="true"
+                android:gravity="center|left"
+                android:id="@+id/title"
+                />
 
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="neirong"
-                          android:id="@+id/cont"
-                          android:layout_marginTop="10dp"
-                          android:gravity="center|left"
-                          android:textSize="18dp"
-                          android:textStyle="normal"
-                          android:textColor="@color/result_view"
-                        />
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="2014-12-26"
-                          android:id="@+id/datetime"
-                          android:layout_marginTop="10dp"
-                          android:gravity="center|right"
-                          android:textSize="18dp"
-                          android:textStyle="normal"
-                          android:textColor="@color/result_view"
-                        />
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="neirong"
+                  android:id="@+id/cont"
+                  android:layout_marginTop="10dp"
+                  android:gravity="center|left"
+                  android:textSize="18dp"
+                  android:textStyle="normal"
+                  android:textColor="@color/result_view"
+                />
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="2014-12-26"
+                  android:id="@+id/datetime"
+                  android:layout_marginTop="10dp"
+                  android:gravity="center|right"
+                  android:textSize="18dp"
+                  android:textStyle="normal"
+                  android:textColor="@color/result_view"
+                />
 
     </LinearLayout>
 

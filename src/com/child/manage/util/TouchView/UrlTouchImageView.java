@@ -38,20 +38,22 @@ public class UrlTouchImageView extends RelativeLayout {
 
     protected Context mContext;
 
-    public UrlTouchImageView(Context ctx)
-    {
+    public UrlTouchImageView(Context ctx) {
         super(ctx);
         mContext = ctx;
         init();
 
     }
-    public UrlTouchImageView(Context ctx, AttributeSet attrs)
-    {
+
+    public UrlTouchImageView(Context ctx, AttributeSet attrs) {
         super(ctx, attrs);
         mContext = ctx;
         init();
     }
-    public TouchImageView getImageView() { return mImageView; }
+
+    public TouchImageView getImageView() {
+        return mImageView;
+    }
 
     @SuppressWarnings("deprecation")
     protected void init() {
@@ -71,43 +73,42 @@ public class UrlTouchImageView extends RelativeLayout {
         this.addView(mProgressBar);
     }
 
-    public void setUrl(String imageUrl, int width, int height)
-    {
+    public void setUrl(String imageUrl, int width, int height) {
         ImageLoadTask imageLoadTask = new ImageLoadTask();
         imageLoadTask.setDisplayWidth(width);
         imageLoadTask.setDisplayHeight(height);
         imageLoadTask.execute(imageUrl);
 //        new ImageLoadTask().execute(imageUrl);
     }
-    
+
     public void setScaleType(ScaleType scaleType) {
         mImageView.setScaleType(scaleType);
     }
-    
+
     //No caching load
-    public class ImageLoadTask extends AsyncTask<String, Integer, Bitmap>
-    {
+    public class ImageLoadTask extends AsyncTask<String, Integer, Bitmap> {
         private int _displayWidth = 480;
         private int _displayHeight = 800;
         private int _displayPixels = _displayWidth * _displayHeight;
+
         //获取得到手机分辨率的大小
-        public void setDisplayWidth(int width){
+        public void setDisplayWidth(int width) {
             _displayWidth = width;
         }
 
-        public void setDisplayHeight(int height){
+        public void setDisplayHeight(int height) {
             _displayHeight = height;
         }
 
-        public int getDisplayHeight(){
+        public int getDisplayHeight() {
             return _displayHeight;
         }
 
-        public int getDisplayWidth(){
+        public int getDisplayWidth() {
             return _displayWidth;
         }
 
-        public int getDisplayPixels(){
+        public int getDisplayPixels() {
             return _displayPixels;
         }
 
@@ -143,29 +144,25 @@ public class UrlTouchImageView extends RelativeLayout {
             }
             return bm;
         }
-        
+
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-        	if (bitmap == null) 
-        	{
-        		mImageView.setScaleType(ScaleType.CENTER);
-        		bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.no_photo);
-        		mImageView.setImageBitmap(bitmap);
-        	}
-        	else 
-        	{
-        		mImageView.setScaleType(ScaleType.MATRIX);
-	            mImageView.setImageBitmap(bitmap);
-        	}
+            if (bitmap == null) {
+                mImageView.setScaleType(ScaleType.CENTER);
+                bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.no_photo);
+                mImageView.setImageBitmap(bitmap);
+            } else {
+                mImageView.setScaleType(ScaleType.MATRIX);
+                mImageView.setImageBitmap(bitmap);
+            }
             mImageView.setVisibility(VISIBLE);
             mProgressBar.setVisibility(GONE);
         }
 
-		@Override
-		protected void onProgressUpdate(Integer... values)
-		{
-			mProgressBar.setProgress(values[0]);
-		}
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            mProgressBar.setProgress(values[0]);
+        }
 
         public Bitmap getBitmap(String url, int _displayPixels, Boolean isBig) throws IOException {
             Bitmap bitmap = null;
@@ -175,7 +172,7 @@ public class UrlTouchImageView extends RelativeLayout {
             byte[] bytes = getBytes(stream);
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-            options.inSampleSize = computeSampleSize(options, -1,  _displayWidth * _displayHeight);
+            options.inSampleSize = computeSampleSize(options, -1, _displayWidth * _displayHeight);
 
             options.inJustDecodeBounds = false;
             bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
@@ -184,27 +181,29 @@ public class UrlTouchImageView extends RelativeLayout {
 
         /**
          * 数据流转换成byte[] 数组
+         *
          * @param is
          * @return
          */
-        private byte[] getBytes(InputStream is){
+        private byte[] getBytes(InputStream is) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             byte[] b = new byte[2048];
             int len = 0;
             try {
-                while ((len = is.read(b, 0, 2048)) != -1){
+                while ((len = is.read(b, 0, 2048)) != -1) {
                     baos.write(b, 0, len);
                     baos.flush();
                 }
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             byte[] bytes = baos.toByteArray();
             return bytes;
         }
 
-        /****
-         *    处理图片bitmap size exceeds VM budget （Out Of Memory 内存溢出）
+        /**
+         * *
+         * 处理图片bitmap size exceeds VM budget （Out Of Memory 内存溢出）
          */
         private int computeSampleSize(BitmapFactory.Options options,
                                       int minSideLength, int maxNumOfPixels) {

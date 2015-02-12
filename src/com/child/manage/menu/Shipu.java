@@ -35,27 +35,27 @@ import java.util.UUID;
 
 /**
  * 菜单首页类
- * 
+ *
  * @author rendongwei
- * 
  */
 public class Shipu {
     private Button mMenu;
     private View mUgcView;
-	private Context mContext;
-	private Activity mActivity;
-	private ChildApplication mKXApplication;
-	private View mShipu;
-	private FlipperLayout.OnOpenListener mOnOpenListener;
+    private Context mContext;
+    private Activity mActivity;
+    private ChildApplication mKXApplication;
+    private View mShipu;
+    private FlipperLayout.OnOpenListener mOnOpenListener;
 
     private ListView shipulsv;
     private ShipuAdapter adapter;
     private List<shipu> lists = new ArrayList<shipu>();
-	public Shipu(Context context, Activity activity, ChildApplication application) {
-		mContext = context;
-		mActivity = activity;
-		mKXApplication = application;
-		mShipu = LayoutInflater.from(context).inflate(R.layout.shipu, null);
+
+    public Shipu(Context context, Activity activity, ChildApplication application) {
+        mContext = context;
+        mActivity = activity;
+        mKXApplication = application;
+        mShipu = LayoutInflater.from(context).inflate(R.layout.shipu, null);
         //构造虚拟数据
         lists.add(new shipu("2014-10-20 星期一", "早餐：牛奶  面包", "午餐：白饭 青菜 汤 蛋"));
         lists.add(new shipu("2014-10-21 星期二", "早餐：牛奶  面包", "午餐：白饭 青菜 汤 蛋"));
@@ -64,38 +64,37 @@ public class Shipu {
         lists.add(new shipu("2014-10-24 星期五", "早餐：牛奶  面包", "午餐：白饭 青菜 汤 蛋"));
         lists.add(new shipu("2014-10-25 星期六", "早餐：牛奶  面包", "午餐：白饭 青菜 汤 蛋"));
         lists.add(new shipu("2014-10-26 星期日", "早餐：牛奶  面包", "午餐：白饭 青菜 汤 蛋"));
-		findViewById();
-		setListener();
+        findViewById();
+        setListener();
 
-	}
+    }
 
-	private void findViewById() {
-		mMenu = (Button) mShipu.findViewById(R.id.shipu_menu);
+    private void findViewById() {
+        mMenu = (Button) mShipu.findViewById(R.id.shipu_menu);
         shipulsv = (ListView) mShipu.findViewById(R.id.shipulsv);
         adapter = new ShipuAdapter(lists, mContext);
         shipulsv.setAdapter(adapter);
 
     }
 
-	private void setListener() {
-		mMenu.setOnClickListener(new OnClickListener() {
+    private void setListener() {
+        mMenu.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				if (mOnOpenListener != null) {
-					mOnOpenListener.open();
-				}
-			}
-		});
+            public void onClick(View v) {
+                if (mOnOpenListener != null) {
+                    mOnOpenListener.open();
+                }
+            }
+        });
 
-	}
+    }
 
 
+    public View getView() {
+        return mShipu;
+    }
 
-	public View getView() {
-		return mShipu;
-	}
-
-	public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-		mOnOpenListener = onOpenListener;
-	}
+    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
+        mOnOpenListener = onOpenListener;
+    }
 }

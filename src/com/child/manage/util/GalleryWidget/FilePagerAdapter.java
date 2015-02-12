@@ -24,7 +24,7 @@ import com.child.manage.util.TouchView.FileTouchImageView;
 import java.util.List;
 
 /**
- Class wraps file paths to adapter, then it instantiates {@link ru.truba.touchgallery.TouchView.FileTouchImageView} objects to paging up through them.
+ * Class wraps file paths to adapter, then it instantiates {@link ru.truba.touchgallery.TouchView.FileTouchImageView} objects to paging up through them.
  */
 public class FilePagerAdapter extends BasePagerAdapter {
 
@@ -32,22 +32,21 @@ public class FilePagerAdapter extends BasePagerAdapter {
     private int width;
     private int height;
 
-    public FilePagerAdapter(Context context, List<String> resources, int width, int height)
-	{
-		super(context, resources);
+    public FilePagerAdapter(Context context, List<String> resources, int width, int height) {
+        super(context, resources);
         this.mContext = context;
         this.width = width;
         this.height = height;
-	}
+    }
 
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         super.setPrimaryItem(container, position, object);
-        ((GalleryViewPager)container).mCurrentView = ((FileTouchImageView)object).getImageView();
+        ((GalleryViewPager) container).mCurrentView = ((FileTouchImageView) object).getImageView();
     }
 
     @Override
-    public Object instantiateItem(ViewGroup collection, int position){
+    public Object instantiateItem(ViewGroup collection, int position) {
         final FileTouchImageView iv = new FileTouchImageView(mContext);
         iv.setUrl(mResources.get(position), width, height);
         iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

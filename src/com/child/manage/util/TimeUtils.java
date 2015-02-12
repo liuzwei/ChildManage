@@ -10,22 +10,23 @@ import java.util.Locale;
  */
 public class TimeUtils {
 
-	public static String getCurrentTime(String format) {
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
-		String currentTime = sdf.format(date);
-		return currentTime;
-	}
+    public static String getCurrentTime(String format) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
+        String currentTime = sdf.format(date);
+        return currentTime;
+    }
 
-	public static String getCurrentTime() {
-		return getCurrentTime("yyyy-MM-dd  HH:mm:ss");
-	}
-    public static String zhuanhuanTime(long sd){
-        Date dat=new Date(sd);
+    public static String getCurrentTime() {
+        return getCurrentTime("yyyy-MM-dd  HH:mm:ss");
+    }
+
+    public static String zhuanhuanTime(long sd) {
+        Date dat = new Date(sd);
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(dat);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String sb=format.format(gc.getTime());
+        String sb = format.format(gc.getTime());
         return sb;
     }
 }

@@ -7,7 +7,7 @@ public class UserData {
     private User from;
     private User to;
 
-    public UserData(User from, User to){
+    public UserData(User from, User to) {
         this.from = from;
         this.to = to;
     }

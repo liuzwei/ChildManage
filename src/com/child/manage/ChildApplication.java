@@ -39,8 +39,8 @@ public class ChildApplication extends Application {
     public LocationClient mLocationClient;
     public GeofenceClient mGeofenceClient;
     public MyLocationListener mMyLocationListener;
-    public TextView mLocationResult,logMsg;
-    public TextView trigger,exit;
+    public TextView mLocationResult, logMsg;
+    public TextView trigger, exit;
     public Vibrator mVibrator;
     public static Double dwlocation_latitude;
     public static Double dwlocation_lontitude;
@@ -231,7 +231,7 @@ public class ChildApplication extends Application {
         mLocationClient.registerLocationListener(mMyLocationListener);
         mGeofenceClient = new GeofenceClient(getApplicationContext());
         mLocationClient.start();
-        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         /**
          * 初始化表情名称
          */
@@ -240,7 +240,7 @@ public class ChildApplication extends Application {
 //        }
     }
 
-//    /**
+    //    /**
 //     * 根据编号获取表情图片
 //     */
 //    public Bitmap getFaceBitmap(int position) {
@@ -266,11 +266,12 @@ public class ChildApplication extends Application {
     public static DisplayImageOptions txOptions;//头像图片
     public static DisplayImageOptions tpOptions;//详情页图片
     public static DisplayImageOptions adOptions;
-    public ChildApplication(){
+
+    public ChildApplication() {
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.tx)
-                .showImageForEmptyUri(R.drawable.tx)	// 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.tx)		// 设置图片加载或解码过程中发生错误显示的图片
+                .showImageForEmptyUri(R.drawable.tx)    // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.tx)        // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
@@ -279,8 +280,8 @@ public class ChildApplication extends Application {
                 .build();
         txOptions = new DisplayImageOptions.Builder()//头像
                 .showImageOnLoading(R.drawable.txhc)
-                .showImageForEmptyUri(R.drawable.txhc)	// 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.txhc)		// 设置图片加载或解码过程中发生错误显示的图片
+                .showImageForEmptyUri(R.drawable.txhc)    // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.txhc)        // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
                 .imageScaleType(ImageScaleType.EXACTLY)
@@ -289,8 +290,8 @@ public class ChildApplication extends Application {
 
         adOptions = new DisplayImageOptions.Builder()//广告
                 .showImageOnLoading(R.drawable.hctp1)
-                .showImageForEmptyUri(R.drawable.hctp1)	// 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.hctp1)		// 设置图片加载或解码过程中发生错误显示的图片
+                .showImageForEmptyUri(R.drawable.hctp1)    // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.hctp1)        // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
                 .imageScaleType(ImageScaleType.EXACTLY)
@@ -299,16 +300,18 @@ public class ChildApplication extends Application {
 
         tpOptions = new DisplayImageOptions.Builder()//图片
                 .showImageOnLoading(R.drawable.hctp)
-                .showImageForEmptyUri(R.drawable.hctp)	// 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.hctp)		// 设置图片加载或解码过程中发生错误显示的图片
+                .showImageForEmptyUri(R.drawable.hctp)    // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.hctp)        // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                 .bitmapConfig(Bitmap.Config.RGB_565)          //图片的解码类型图片
                 .build();
     }
+
     /**
      * 初始化图片加载组件ImageLoader
+     *
      * @param context
      */
     public static void initImageLoader(Context context) {
@@ -320,6 +323,7 @@ public class ChildApplication extends Application {
                 .build();
         ImageLoader.getInstance().init(config);
     }
+
     public class MyLocationListener implements BDLocationListener {
 
         @Override

@@ -17,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/left_button_hdtd" />
+                android:background="@drawable/left_button_hdtd"/>
         <LinearLayout
                 android:id="@+id/home_top_layout"
                 android:layout_width="fill_parent"
@@ -27,7 +27,7 @@
                 android:background="@drawable/title_bar_center_button_bg"
                 android:clickable="true"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
             <TextView
                     android:id="@+id/home_top_text"
@@ -36,7 +36,7 @@
                     android:padding="8dip"
                     android:text="绑定邮箱"
                     android:textColor="#ffffff"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

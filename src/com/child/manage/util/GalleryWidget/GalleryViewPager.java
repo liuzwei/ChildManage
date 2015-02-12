@@ -28,7 +28,7 @@ import com.child.manage.util.TouchView.TouchImageView;
 
 
 /**
- This class implements method to help <b>TouchImageView</b> fling, draggin and scaling.
+ * This class implements method to help <b>TouchImageView</b> fling, draggin and scaling.
  */
 public class GalleryViewPager extends ViewPager {
 
@@ -43,6 +43,7 @@ public class GalleryViewPager extends ViewPager {
     public GalleryViewPager(Context context) {
         super(context);
     }
+
     public GalleryViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -61,6 +62,7 @@ public class GalleryViewPager extends ViewPager {
         }
         return null;
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -69,8 +71,8 @@ public class GalleryViewPager extends ViewPager {
 
             float endX = event.getX();
             float endY = event.getY();
-            if(isAClick(startX, endX, startY, endY)) {
-                if(mOnItemClickListener != null) {
+            if (isAClick(startX, endX, startY, endY)) {
+                if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClicked(mCurrentView, getCurrentItem());
                 }
                 //launchFullPhotoActivity(imageUrls);// WE HAVE A CLICK!!
@@ -89,12 +91,11 @@ public class GalleryViewPager extends ViewPager {
             super.onTouchEvent(event);
         }*/
 
-        float [] difference = handleMotionEvent(event);
+        float[] difference = handleMotionEvent(event);
 
         if (mCurrentView.pagerCanScroll()) {
             return super.onTouchEvent(event);
-        }
-        else {
+        } else {
             if (difference != null && mCurrentView.onRightSide && difference[0] < 0) //move right
             {
                 return super.onTouchEvent(event);
@@ -103,8 +104,7 @@ public class GalleryViewPager extends ViewPager {
             {
                 return super.onTouchEvent(event);
             }
-            if (difference == null && ( mCurrentView.onLeftSide || mCurrentView.onRightSide))
-            {
+            if (difference == null && (mCurrentView.onLeftSide || mCurrentView.onRightSide)) {
                 return super.onTouchEvent(event);
             }
         }
@@ -122,8 +122,8 @@ public class GalleryViewPager extends ViewPager {
 
             float endX = event.getX();
             float endY = event.getY();
-            if(isAClick(startX, endX, startY, endY)) {
-                if(mOnItemClickListener != null) {
+            if (isAClick(startX, endX, startY, endY)) {
+                if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClicked(mCurrentView, getCurrentItem());
                 }
             } else {
@@ -137,12 +137,11 @@ public class GalleryViewPager extends ViewPager {
         }
 
 
-        float [] difference = handleMotionEvent(event);
+        float[] difference = handleMotionEvent(event);
 
         if (mCurrentView.pagerCanScroll()) {
             return super.onInterceptTouchEvent(event);
-        }
-        else {
+        } else {
             if (difference != null && mCurrentView.onRightSide && difference[0] < 0) //move right
             {
                 return super.onInterceptTouchEvent(event);
@@ -151,8 +150,7 @@ public class GalleryViewPager extends ViewPager {
             {
                 return super.onInterceptTouchEvent(event);
             }
-            if (difference == null && ( mCurrentView.onLeftSide || mCurrentView.onRightSide))
-            {
+            if (difference == null && (mCurrentView.onLeftSide || mCurrentView.onRightSide)) {
                 return super.onInterceptTouchEvent(event);
             }
         }
@@ -173,5 +171,8 @@ public class GalleryViewPager extends ViewPager {
     }
 
     private final static int CLICK_ACTION_THRESHHOLD = 5;
-    public void setOnItemClickListener(OnItemClickListener listener) { mOnItemClickListener = listener; }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
 };

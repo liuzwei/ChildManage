@@ -41,52 +41,50 @@ import java.util.UUID;
 
 /**
  * 菜单首页类
- * 
+ *
  * @author rendongwei
- * 
  */
 public class Dianping {
     private Button mMenu;
     private View mUgcView;
-	private Context mContext;
-	private Activity mActivity;
-	private ChildApplication mKXApplication;
-	private View mHome;
+    private Context mContext;
+    private Activity mActivity;
+    private ChildApplication mKXApplication;
+    private View mHome;
     private View mPopView;
-	private RelativeLayout mUgcLayout;
-	private ImageView mUgc;
-	private ImageView mUgcBg;
-	private ImageView mUgcVoice;
-	private ImageView mUgcPhoto;
-	private ImageView mUgcRecord;
-	private ImageView mUgcLbs;
-	private FlipperLayout.OnOpenListener mOnOpenListener;
+    private RelativeLayout mUgcLayout;
+    private ImageView mUgc;
+    private ImageView mUgcBg;
+    private ImageView mUgcVoice;
+    private ImageView mUgcPhoto;
+    private ImageView mUgcRecord;
+    private ImageView mUgcLbs;
+    private FlipperLayout.OnOpenListener mOnOpenListener;
 
-	private ListView mPopDisplay;
+    private ListView mPopDisplay;
     private ContentListView listView;
     private GrowingAdapter adapter;
     private List<Growing> growingList = new ArrayList<Growing>();
 
-	/**
-	 * 判断当前的path菜单是否已经显示
-	 */
-	private boolean mUgcIsShowing = false;
+    /**
+     * 判断当前的path菜单是否已经显示
+     */
+    private boolean mUgcIsShowing = false;
 
-	public Dianping(Context context, Activity activity, ChildApplication application) {
-		mContext = context;
-		mActivity = activity;
-		mKXApplication = application;
-		mHome = LayoutInflater.from(context).inflate(R.layout.dianming, null);
-		mPopView = LayoutInflater.from(context).inflate(
-				R.layout.home_popupwindow, null);
-		findViewById();
-		setListener();
+    public Dianping(Context context, Activity activity, ChildApplication application) {
+        mContext = context;
+        mActivity = activity;
+        mKXApplication = application;
+        mHome = LayoutInflater.from(context).inflate(R.layout.dianming, null);
+        mPopView = LayoutInflater.from(context).inflate(
+                R.layout.home_popupwindow, null);
+        findViewById();
+        setListener();
         initData();
 
-	}
+    }
 
     /**
-     *
      * {"growing_id":"169",
      * "child_id":"1",
      * "id":"169","
@@ -111,18 +109,18 @@ public class Dianping {
      * "content":"\u5927\u6cd5\u5e08","time":"2014-12-03 00:03:56","
      * uid":"73","dateline":"1417536236","tid":"53","user_type":"2"}],"
      * favours":{"count":"1","list":[
-     *
+     * <p/>
      * {"name":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
      * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
      * "time":"","
      * uid":"73","
      * user_type":"2"}]}},
-     * */
+     */
 
     private void initData() {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             Favours favours = new Favours();
-            growingList.add(new Growing("100", "100", "2014-01-02","1", "小刚宝", "小刚宝的爸爸",
+            growingList.add(new Growing("100", "100", "2014-01-02", "1", "小刚宝", "小刚宝的爸爸",
                     "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/89_0.jpg",
                     "73", "1",
                     "1", "2", 1417536176, "2",
@@ -132,103 +130,103 @@ public class Dianping {
     }
 
     private void findViewById() {
-		mMenu = (Button) mHome.findViewById(R.id.dianping_menu);
-		mUgcView = (View) mHome.findViewById(R.id.home_ugc);
-		mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
-		mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
+        mMenu = (Button) mHome.findViewById(R.id.dianping_menu);
+        mUgcView = (View) mHome.findViewById(R.id.home_ugc);
+        mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
+        mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
 
-		mUgcBg = (ImageView) mUgcView.findViewById(R.id.ugc_bg);
-		mUgcVoice = (ImageView) mUgcView.findViewById(R.id.ugc_voice);
-		mUgcPhoto = (ImageView) mUgcView.findViewById(R.id.ugc_photo);
-		mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
-		mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
-		mPopDisplay = (ListView) mPopView
-				.findViewById(R.id.home_popupwindow_display);
+        mUgcBg = (ImageView) mUgcView.findViewById(R.id.ugc_bg);
+        mUgcVoice = (ImageView) mUgcView.findViewById(R.id.ugc_voice);
+        mUgcPhoto = (ImageView) mUgcView.findViewById(R.id.ugc_photo);
+        mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
+        mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
+        mPopDisplay = (ListView) mPopView
+                .findViewById(R.id.home_popupwindow_display);
 
         listView = (ContentListView) mHome.findViewById(R.id.dianping_display);
         adapter = new GrowingAdapter(growingList, mContext);
         listView.setAdapter(adapter);
-	}
+    }
 
-	private void setListener() {
-		mMenu.setOnClickListener(new OnClickListener() {
+    private void setListener() {
+        mMenu.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				if (mOnOpenListener != null) {
-					mOnOpenListener.open();
-				}
-			}
-		});
+            public void onClick(View v) {
+                if (mOnOpenListener != null) {
+                    mOnOpenListener.open();
+                }
+            }
+        });
 
-		// Path监听
-		mUgcView.setOnTouchListener(new OnTouchListener() {
+        // Path监听
+        mUgcView.setOnTouchListener(new OnTouchListener() {
 
-			public boolean onTouch(View v, MotionEvent event) {
-				// 判断是否已经显示,显示则关闭并隐藏
-				if (mUgcIsShowing) {
-					mUgcIsShowing = false;
-					UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
+            public boolean onTouch(View v, MotionEvent event) {
+                // 判断是否已经显示,显示则关闭并隐藏
+                if (mUgcIsShowing) {
+                    mUgcIsShowing = false;
+                    UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
                             500);
-					return true;
-				}
-				return false;
-			}
-		});
-		// Path监听
-		mUgc.setOnClickListener(new OnClickListener() {
+                    return true;
+                }
+                return false;
+            }
+        });
+        // Path监听
+        mUgc.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				// 判断是否显示,已经显示则隐藏,否则则显示
-				mUgcIsShowing = !mUgcIsShowing;
-				if (mUgcIsShowing) {
-					UgcAnimations.startOpenAnimation(mUgcLayout, mUgcBg, mUgc,
-							500);
-				} else {
-					UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
-							500);
-				}
-			}
-		});
-		// Path 语音按钮监听
-		mUgcVoice.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                // 判断是否显示,已经显示则隐藏,否则则显示
+                mUgcIsShowing = !mUgcIsShowing;
+                if (mUgcIsShowing) {
+                    UgcAnimations.startOpenAnimation(mUgcLayout, mUgcBg, mUgc,
+                            500);
+                } else {
+                    UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
+                            500);
+                }
+            }
+        });
+        // Path 语音按钮监听
+        mUgcVoice.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				Animation anim = UgcAnimations.clickAnimation(500);
-				anim.setAnimationListener(new AnimationListener() {
+            public void onClick(View v) {
+                Animation anim = UgcAnimations.clickAnimation(500);
+                anim.setAnimationListener(new AnimationListener() {
 
-					public void onAnimationStart(Animation animation) {
+                    public void onAnimationStart(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationRepeat(Animation animation) {
+                    public void onAnimationRepeat(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationEnd(Animation animation) {
-						mContext.startActivity(new Intent(mContext,
-								VoiceActivity.class));
-						closeUgc();
-					}
-				});
-				mUgcVoice.startAnimation(anim);
-			}
-		});
-		// Path 拍照按钮监听
-		mUgcPhoto.setOnClickListener(new OnClickListener() {
+                    public void onAnimationEnd(Animation animation) {
+                        mContext.startActivity(new Intent(mContext,
+                                VoiceActivity.class));
+                        closeUgc();
+                    }
+                });
+                mUgcVoice.startAnimation(anim);
+            }
+        });
+        // Path 拍照按钮监听
+        mUgcPhoto.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				Animation anim = UgcAnimations.clickAnimation(500);
-				anim.setAnimationListener(new AnimationListener() {
+            public void onClick(View v) {
+                Animation anim = UgcAnimations.clickAnimation(500);
+                anim.setAnimationListener(new AnimationListener() {
 
-					public void onAnimationStart(Animation animation) {
+                    public void onAnimationStart(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationRepeat(Animation animation) {
+                    public void onAnimationRepeat(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationEnd(Animation animation) {
+                    public void onAnimationEnd(Animation animation) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         File dir = new File("/sdcard/KaiXin/Camera/");
                         if (!dir.exists()) {
@@ -252,105 +250,105 @@ public class Dianping {
                                         intent,
                                         ActivityForResultUtil.REQUESTCODE_UPLOADPHOTO_CAMERA);
                         closeUgc();
-					}
-				});
-				mUgcPhoto.startAnimation(anim);
-			}
-		});
-		// Path 记录按钮监听
-		mUgcRecord.setOnClickListener(new OnClickListener() {
+                    }
+                });
+                mUgcPhoto.startAnimation(anim);
+            }
+        });
+        // Path 记录按钮监听
+        mUgcRecord.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				Animation anim = UgcAnimations.clickAnimation(500);
-				anim.setAnimationListener(new AnimationListener() {
+            public void onClick(View v) {
+                Animation anim = UgcAnimations.clickAnimation(500);
+                anim.setAnimationListener(new AnimationListener() {
 
-					public void onAnimationStart(Animation animation) {
+                    public void onAnimationStart(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationRepeat(Animation animation) {
+                    public void onAnimationRepeat(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationEnd(Animation animation) {
-						mContext.startActivity(new Intent(mContext,
-								WriteRecordActivity.class));
-						closeUgc();
-					}
-				});
-				mUgcRecord.startAnimation(anim);
-			}
-		});
-		// Path 签到按钮监听
-		mUgcLbs.setOnClickListener(new OnClickListener() {
+                    public void onAnimationEnd(Animation animation) {
+                        mContext.startActivity(new Intent(mContext,
+                                WriteRecordActivity.class));
+                        closeUgc();
+                    }
+                });
+                mUgcRecord.startAnimation(anim);
+            }
+        });
+        // Path 签到按钮监听
+        mUgcLbs.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				Animation anim = UgcAnimations.clickAnimation(500);
-				anim.setAnimationListener(new AnimationListener() {
+            public void onClick(View v) {
+                Animation anim = UgcAnimations.clickAnimation(500);
+                anim.setAnimationListener(new AnimationListener() {
 
-					public void onAnimationStart(Animation animation) {
+                    public void onAnimationStart(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationRepeat(Animation animation) {
+                    public void onAnimationRepeat(Animation animation) {
 
-					}
+                    }
 
-					public void onAnimationEnd(Animation animation) {
-						mContext.startActivity(new Intent(mContext,
-								CheckInActivity.class));
-						closeUgc();
-					}
-				});
-				mUgcLbs.startAnimation(anim);
-			}
-		});
-	}
+                    public void onAnimationEnd(Animation animation) {
+                        mContext.startActivity(new Intent(mContext,
+                                CheckInActivity.class));
+                        closeUgc();
+                    }
+                });
+                mUgcLbs.startAnimation(anim);
+            }
+        });
+    }
 
-	/**
-	 * 获取Path菜单显示状态
-	 * 
-	 * @return 显示状态
-	 */
-	public boolean getUgcIsShowing() {
-		return mUgcIsShowing;
-	}
+    /**
+     * 获取Path菜单显示状态
+     *
+     * @return 显示状态
+     */
+    public boolean getUgcIsShowing() {
+        return mUgcIsShowing;
+    }
 
-	/**
-	 * 关闭Path菜单
-	 */
-	public void closeUgc() {
-		mUgcIsShowing = false;
-		UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc, 500);
-	}
+    /**
+     * 关闭Path菜单
+     */
+    public void closeUgc() {
+        mUgcIsShowing = false;
+        UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc, 500);
+    }
 
-	/**
-	 * 显示Path菜单
-	 */
-	public void showUgc() {
-		if (mUgcView != null) {
-			mUgcView.setVisibility(View.VISIBLE);
-		}
-	}
+    /**
+     * 显示Path菜单
+     */
+    public void showUgc() {
+        if (mUgcView != null) {
+            mUgcView.setVisibility(View.VISIBLE);
+        }
+    }
 
-	/**
-	 * 关闭Path菜单
-	 */
-	public void dismissUgc() {
-		if (mUgcView != null) {
-			mUgcView.setVisibility(View.GONE);
-		}
-	}
+    /**
+     * 关闭Path菜单
+     */
+    public void dismissUgc() {
+        if (mUgcView != null) {
+            mUgcView.setVisibility(View.GONE);
+        }
+    }
 
-	public View getView() {
-		return mHome;
-	}
+    public View getView() {
+        return mHome;
+    }
 
-	public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-		mOnOpenListener = onOpenListener;
-	}
+    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
+        mOnOpenListener = onOpenListener;
+    }
 
-    private void getBaby(){
+    private void getBaby() {
 //        String uri = String.format(InternetURL.GET_BABY_URL +"?uid=%s", uid);
 //        StringRequest request = new StringRequest(
 //                Request.Method.GET,

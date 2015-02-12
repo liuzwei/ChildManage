@@ -36,8 +36,7 @@ public class SettingBabyActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.back:
                 finish();
                 break;

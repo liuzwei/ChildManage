@@ -23,8 +23,6 @@ public class WrapMotionEvent {
     protected MotionEvent event;
 
 
-
-
     protected WrapMotionEvent(MotionEvent event) {
         this.event = event;
     }
@@ -36,7 +34,6 @@ public class WrapMotionEvent {
             return new WrapMotionEvent(event);
         }
     }
-
 
 
     public int getAction() {

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/llCtrlInfo"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:visibility="visible">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <EditText
+                android:id="@+id/etDeviceID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="device id"
+                android:minEms="6"
+                android:text="162275"
+                android:textSize="12sp"/>
+
+        <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="username"
+                android:minEms="6"
+                android:text="admin"
+                android:textSize="12sp"/>
+
+        <EditText
+                android:id="@+id/etUserPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="userpassword"
+                android:minEms="6"
+                android:text="123456"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl01"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="0sp"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnInit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0sp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="初始"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnUninit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="销毁"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="登录设备"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnLogoff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="注销设备"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnShot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="抓拍"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="注册"
+                android:visibility="gone"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnAddDevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:visibility="gone"
+                android:text="添加设备"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl02"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnStartVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="启动视频"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStopVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="停止视频"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStartRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="启动录像"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStopRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="停止录像"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnModifyDevUserPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="修改密码"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl03"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnOpenVoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="开声音"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnCloseVoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="关声音"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnOpenTalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="开对讲"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnCloseTalk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="关对讲"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnMainStream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="主码"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnSubStream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="子码"
+                android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llCtrl04"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnPtzUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="云台上"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="云台下"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="云台左"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="云台右"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnPtzAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="自动巡航"
+                android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/llCtrl05"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnGetMediaCapability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="取编码能力"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnGetMediaParam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="取媒体参数"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnGetAlarmConfig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="告警配置"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnGetInputAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="IO告警"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnGetMotionDetectAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="移动侦测"
+                android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/llCtrl09"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnGetFrontEndRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="前端录像"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnReplayFrontEndRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="回播"
+                android:textSize="12sp"/>
+
+        <!--<Button
+                android:id="@+id/btnGetAlarmConfig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="告警配置"
+                android:textSize="12sp" />
+        <Button
+                android:id="@+id/btnGetInputAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="IO告警"
+                android:textSize="12sp" />
+        <Button
+                android:id="@+id/btnGetMotionDetectAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="移动侦测"
+                android:textSize="12sp" />-->
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/llCtrl06"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnStartAlertorBind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="开始对码"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnStopAlertorBind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="停止对码"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnGetAlertorList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="报警器列表"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnDelAlertorBind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="删除报警器"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnSetSecurity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="布防"
+                android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/llCtrl07"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnSetSecurity0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="撤防"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnGetSecurity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="防御状态"
+                android:textSize="12sp"/>
+
+        <Button
+                android:id="@+id/btnSetAlertorAlias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="设置别名"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnSetAlertorPreset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="设置预置点"
+                android:textSize="12sp"/>
+        <Button
+                android:id="@+id/btnGetAlmPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="获取抓拍图片"
+                android:textSize="12sp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/llCtrl08"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+        <Button
+                android:id="@+id/btnConfirmAlertorAlm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0sp"
+                android:paddingBottom="0sp"
+                android:text="确认告警"
+                android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

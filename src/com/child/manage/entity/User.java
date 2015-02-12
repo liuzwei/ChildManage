@@ -7,10 +7,11 @@ public class User {
     private String name;
     private String cover;
 
-    public User(){
+    public User() {
 
     }
-    public User(String name, String cover){
+
+    public User(String name, String cover) {
         this.name = name;
         this.cover = cover;
     }

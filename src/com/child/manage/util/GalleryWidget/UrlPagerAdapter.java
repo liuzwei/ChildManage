@@ -24,13 +24,11 @@ import com.child.manage.util.TouchView.UrlTouchImageView;
 import java.util.List;
 
 
-
 public class UrlPagerAdapter extends BasePagerAdapter {
     private int width;
     private int height;
 
-    public UrlPagerAdapter(Context context, List<String> resources, int width, int height)
-    {
+    public UrlPagerAdapter(Context context, List<String> resources, int width, int height) {
         super(context, resources);
         this.width = width;
         this.height = height;
@@ -39,11 +37,11 @@ public class UrlPagerAdapter extends BasePagerAdapter {
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         super.setPrimaryItem(container, position, object);
-        ((GalleryViewPager)container).mCurrentView = ((UrlTouchImageView)object).getImageView();
+        ((GalleryViewPager) container).mCurrentView = ((UrlTouchImageView) object).getImageView();
     }
 
     @Override
-    public Object instantiateItem(ViewGroup collection, final int position){
+    public Object instantiateItem(ViewGroup collection, final int position) {
         final UrlTouchImageView iv = new UrlTouchImageView(mContext);
         iv.setUrl(mResources.get(position), width, height);
         iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

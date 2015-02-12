@@ -37,27 +37,26 @@ import java.util.UUID;
 
 /**
  * 菜单首页类
- * 
+ *
  * @author rendongwei
- * 
  */
 public class Kecheng {
     private Button mMenu;
-	private Context mContext;
-	private Activity mActivity;
-	private ChildApplication mKXApplication;
-	private View mHome;
+    private Context mContext;
+    private Activity mActivity;
+    private ChildApplication mKXApplication;
+    private View mHome;
 
-	private FlipperLayout.OnOpenListener mOnOpenListener;
+    private FlipperLayout.OnOpenListener mOnOpenListener;
     private ListView kechenglstv;
     private KechengAdapter adapter;
     private List<kecheng> lists = new ArrayList<kecheng>();
 
-	public Kecheng(Context context, Activity activity, ChildApplication application) {
-		mContext = context;
-		mActivity = activity;
-		mKXApplication = application;
-		mHome = LayoutInflater.from(context).inflate(R.layout.kecheng, null);
+    public Kecheng(Context context, Activity activity, ChildApplication application) {
+        mContext = context;
+        mActivity = activity;
+        mKXApplication = application;
+        mHome = LayoutInflater.from(context).inflate(R.layout.kecheng, null);
         //构造虚拟数据
         lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
         lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
@@ -65,35 +64,35 @@ public class Kecheng {
         lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
         lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
         lists.add(new kecheng("2014-12-22", "", "六一儿童节要办活动", "请大家踊跃报名"));
-		findViewById();
-		setListener();
+        findViewById();
+        setListener();
 
-	}
+    }
 
-	private void findViewById() {
-		mMenu = (Button) mHome.findViewById(R.id.home_menu);
+    private void findViewById() {
+        mMenu = (Button) mHome.findViewById(R.id.home_menu);
         kechenglstv = (ListView) mHome.findViewById(R.id.kechenglstv);
         adapter = new KechengAdapter(lists, mContext);
         kechenglstv.setAdapter(adapter);
-	}
+    }
 
-	private void setListener() {
-		mMenu.setOnClickListener(new OnClickListener() {
+    private void setListener() {
+        mMenu.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
-				if (mOnOpenListener != null) {
-					mOnOpenListener.open();
-				}
-			}
-		});
+            public void onClick(View v) {
+                if (mOnOpenListener != null) {
+                    mOnOpenListener.open();
+                }
+            }
+        });
 
-	}
+    }
 
-	public View getView() {
-		return mHome;
-	}
+    public View getView() {
+        return mHome;
+    }
 
-	public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-		mOnOpenListener = onOpenListener;
-	}
+    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
+        mOnOpenListener = onOpenListener;
+    }
 }

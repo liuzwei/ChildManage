@@ -37,7 +37,7 @@ import java.util.Map;
 
 /**
  * Created by liuzwei on 2014/11/21.
- *
+ * <p/>
  * 双人聊天交互页面
  */
 public class ChatActivity extends BaseActivity implements View.OnClickListener {
@@ -65,7 +65,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     private String voiceName;
     private long startVoiceT, endVoiceT;
     private int flag = 1;
-//    private Account account;
+    //    private Account account;
     private ChatAdapter adapter;
     private Handler mHandler = new Handler();
     private List<Message> list = new ArrayList<Message>();
@@ -75,7 +75,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            messageService = ((MessageService.MessageBinder)service).getService();
+            messageService = ((MessageService.MessageBinder) service).getService();
         }
 
         @Override
@@ -103,7 +103,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 //        adapter = new ChatAdapter(list, mContext,sp, )
     }
 
-    private void bindMessageService(){
+    private void bindMessageService() {
         Intent intent = new Intent();
         intent.setClass(ChatActivity.this, MessageService.class);
         ArrayList<String> data = new ArrayList<String>();
@@ -118,7 +118,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Intent i  = new Intent();
+        Intent i = new Intent();
         i.setClass(ChatActivity.this, MessageService.class);
         ChatActivity.this.unbindService(serviceConnection);
         mContext.stopService(i);
@@ -128,7 +128,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.chat_sendbtn://发送按钮
                 if (!StringUtil.isNullOrEmpty(sendMessage.getText().toString())) {
                     Message message = new Message();
@@ -137,7 +137,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                     message.setType("0");//文字消息
                     message.setContent(sendMessage.getText().toString());
                     sendMsg(message);
-                }else {
+                } else {
                     sendMessage.setHint("请输入消息");
                 }
                 break;
@@ -147,7 +147,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void initView(){
+    private void initView() {
         layoutBottom = (LinearLayout) this.findViewById(R.id.rl_bottom);
 
         mBtnRcd = (TextView) layoutBottom.findViewById(R.id.btn_rcd);
@@ -243,8 +243,8 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 发送消息
      */
-    private void sendMsg(final Message message){
-        String uri = String.format(InternetURL.MESSAGE_SEND_URL + "?content=%s&uid=%s&type=0&to_uids=%s&file=%s&user_type=%s",message.getContent(), message.getUid(),message.getTo_uids(),message.getUrl(), identity);
+    private void sendMsg(final Message message) {
+        String uri = String.format(InternetURL.MESSAGE_SEND_URL + "?content=%s&uid=%s&type=0&to_uids=%s&file=%s&user_type=%s", message.getContent(), message.getUid(), message.getTo_uids(), message.getUrl(), identity);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 uri,
@@ -320,7 +320,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                     img1.setVisibility(View.VISIBLE);
                     del_re.setVisibility(View.GONE);
                     startVoiceT = System.currentTimeMillis();
-                    voiceName = PATH +"/"+startVoiceT + ".mp3";
+                    voiceName = PATH + "/" + startVoiceT + ".mp3";
                     start(voiceName);
                     flag = 2;
                 }
@@ -385,7 +385,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                                     if (CommonUtil.isJson(s)) {
                                         UploadDATA data = getGson().fromJson(s, UploadDATA.class);
                                         //上传文件成功后进行发送消息
-                                        if (data.getCode() == 200){
+                                        if (data.getCode() == 200) {
 //                                            message.setUrl(data.getUrl());
 //                                            sendMsg(message);
                                         }
@@ -400,7 +400,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                             },
                             null);
 //                    list.add(message);
-                    listView.setSelection(list.size()-1);
+                    listView.setSelection(list.size() - 1);
                     adapter.notifyDataSetChanged();
                     rcChat_popup.setVisibility(View.GONE);
 
@@ -495,7 +495,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    public class MessageReceiver extends BroadcastReceiver{
+    public class MessageReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {

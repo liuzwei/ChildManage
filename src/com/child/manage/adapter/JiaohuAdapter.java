@@ -27,10 +27,11 @@ public class JiaohuAdapter extends BaseAdapter {
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
-    public JiaohuAdapter(List<AccountMessage> list, Context context){
+    public JiaohuAdapter(List<AccountMessage> list, Context context) {
         this.list = list;
         this.context = context;
     }
+
     @Override
     public int getCount() {
         return list.size();
@@ -48,35 +49,35 @@ public class JiaohuAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-       if (convertView == null){
-           viewHolder = new ViewHolder();
-           convertView = LayoutInflater.from(context).inflate(R.layout.jiaohu_item, null);
-           viewHolder.photo = (ImageView) convertView.findViewById(R.id.jiaohu_item_photo);
-           viewHolder.dept = (TextView) convertView.findViewById(R.id.jiaohu_item_dept);
-           viewHolder.name = (TextView) convertView.findViewById(R.id.jiaohu_item_name);
-           viewHolder.num = (TextView) convertView.findViewById(R.id.jiaohu_item_num);
-           viewHolder.lastMessage = (TextView) convertView.findViewById(R.id.jiaohu_item_lastmessage);
-           convertView.setTag(viewHolder);
-       }else {
-           viewHolder = (ViewHolder) convertView.getTag();
-       }
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.jiaohu_item, null);
+            viewHolder.photo = (ImageView) convertView.findViewById(R.id.jiaohu_item_photo);
+            viewHolder.dept = (TextView) convertView.findViewById(R.id.jiaohu_item_dept);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.jiaohu_item_name);
+            viewHolder.num = (TextView) convertView.findViewById(R.id.jiaohu_item_num);
+            viewHolder.lastMessage = (TextView) convertView.findViewById(R.id.jiaohu_item_lastmessage);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         AccountMessage message = list.get(position);
-        imageLoader.displayImage(String.format(Constants.API_HEAD+"%s", message.getCover()),
-                viewHolder.photo, ChildApplication.options,animateFirstListener);
+        imageLoader.displayImage(String.format(Constants.API_HEAD + "%s", message.getCover()),
+                viewHolder.photo, ChildApplication.options, animateFirstListener);
         viewHolder.name.setText(message.getName());
         viewHolder.dept.setText(message.getDept());
         viewHolder.lastMessage.setText(message.getLastmessage());
-        if (message.getPmnum()>0){
+        if (message.getPmnum() > 0) {
             viewHolder.num.setVisibility(View.VISIBLE);
-            viewHolder.num.setText(" "+message.getPmnum());
-        }else {
+            viewHolder.num.setText(" " + message.getPmnum());
+        } else {
             viewHolder.num.setVisibility(View.GONE);
         }
         return convertView;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         ImageView photo;
         TextView name;
         TextView dept;

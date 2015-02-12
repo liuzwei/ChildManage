@@ -3,20 +3,20 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:background="@drawable/kaixin_background"
-              android:orientation="vertical" >
+              android:orientation="vertical">
 
     <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fadingEdge="none"
-            android:scrollbars="vertical" >
+            android:scrollbars="vertical">
 
         <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
             <ImageView
                     android:layout_width="100dip"
@@ -24,7 +24,7 @@
                     android:layout_gravity="center_horizontal"
                     android:scaleType="centerInside"
                     android:layout_marginTop="50dp"
-                    android:src="@drawable/tx" />
+                    android:src="@drawable/tx"/>
 
             <TextView
                     android:layout_width="220dip"
@@ -36,7 +36,7 @@
                     android:textSize="20dp"
                     android:gravity="center"
                     android:textColor="@color/maincolor"
-                    android:src="@drawable/login_slogan" />
+                    android:src="@drawable/login_slogan"/>
 
             <EditText
                     android:layout_width="fill_parent"
@@ -50,7 +50,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingLeft="25dip"
                     android:textColor="#ff98bede"
-                    android:textColorHint="#ffdddddd" />
+                    android:textColorHint="#ffdddddd"/>
 
             <EditText
                     android:layout_width="fill_parent"
@@ -65,7 +65,7 @@
                     android:paddingLeft="25dip"
                     android:password="true"
                     android:textColor="#ff98bede"
-                    android:textColorHint="#ffdddddd" />
+                    android:textColorHint="#ffdddddd"/>
 
             <Button
                     android:id="@+id/loginbutton"
@@ -88,12 +88,12 @@
                     android:layout_height="45dip"
                     android:layout_margin="8dip"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                 <View
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
                     android:layout_width="fill_parent"
@@ -101,7 +101,7 @@
                     android:layout_margin="8dip"
                     android:gravity="center"
 
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                         android:text="忘记账号密码？"
                         android:layout_gravity="center"
                         android:textColor="@color/maincolor"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
                 <View
                         android:layout_width="fill_parent"
                         android:layout_height="10dp"
@@ -124,9 +124,8 @@
                         android:layout_gravity="center"
                         android:text="申请一个账号？"
                         android:textColor="@color/maincolor"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
             </LinearLayout>
-
 
 
         </LinearLayout>

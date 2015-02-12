@@ -33,6 +33,7 @@ public class ChatAdapter extends BaseAdapter {
         int IMVT_COM_MSG = 0;
         int IMVT_TO_MSG = 1;
     }
+
     public int getItemViewType(int position) {
         // TODO Auto-generated method stub
         Message message = list.get(position);
@@ -44,6 +45,7 @@ public class ChatAdapter extends BaseAdapter {
         }
 
     }
+
     private List<Message> list;
     private Context context;
     private ViewHolder viewHolder;
@@ -56,7 +58,7 @@ public class ChatAdapter extends BaseAdapter {
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
-    public ChatAdapter(List<Message> list, Context context, SharedPreferences sp, UserData userData){
+    public ChatAdapter(List<Message> list, Context context, SharedPreferences sp, UserData userData) {
         this.list = list;
         this.context = context;
         this.sp = sp;
@@ -87,11 +89,11 @@ public class ChatAdapter extends BaseAdapter {
         final Message message = list.get(position);
         Account account = gson.fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
 
-        if (convertView == null){
-            if(message.getUid().equals(account.getUid())){
+        if (convertView == null) {
+            if (message.getUid().equals(account.getUid())) {
                 convertView = LayoutInflater.from(context).inflate(R.layout.chatting_item_msg_text_right, null);
                 isMe = true;
-            }else {
+            } else {
                 convertView = LayoutInflater.from(context).inflate(R.layout.chatting_item_msg_text_left, null);
                 isMe = false;
             }
@@ -102,22 +104,22 @@ public class ChatAdapter extends BaseAdapter {
             viewHolder.content = (TextView) convertView.findViewById(R.id.tv_chatcontent);
 
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if (!message.getUid().equals(account.getUid())){
+        if (!message.getUid().equals(account.getUid())) {
             viewHolder.name.setText(userData.getTo().getName());
             imageLoader.displayImage(String.format("%s%s", Constants.API_HEAD, userData.getTo().getCover()), viewHolder.photo, ChildApplication.txOptions, animateFirstListener);
-        }else {
+        } else {
             viewHolder.name.setText(userData.getFrom().getName());
             imageLoader.displayImage(String.format("%s%s", Constants.API_HEAD, userData.getFrom().getCover()), viewHolder.photo, ChildApplication.txOptions, animateFirstListener);
         }
         viewHolder.sendTime.setText(CommonUtil.longToString(message.getDateline()));
-        if (message.getUrl()!= null && message.getUrl().contains(".mp3")) {
+        if (message.getUrl() != null && message.getUrl().contains(".mp3")) {
             viewHolder.content.setText("");
             viewHolder.content.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.chatto_voice_playing, 0);
         } else {
-            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context,message.getContent());
+            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context, message.getContent());
             viewHolder.content.setText(spannableString);
             viewHolder.content.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
@@ -125,7 +127,7 @@ public class ChatAdapter extends BaseAdapter {
 
             public void onClick(View v) {
                 if (message.getUrl() != null && message.getUrl().contains(".mp3")) {
-                    playMusic(message.getContent()) ;
+                    playMusic(message.getContent());
                 }
             }
         });
@@ -134,8 +136,8 @@ public class ChatAdapter extends BaseAdapter {
     }
 
     /**
-     * @Description
      * @param name
+     * @Description
      */
     private void playMusic(String name) {
         try {
@@ -158,7 +160,7 @@ public class ChatAdapter extends BaseAdapter {
 
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView sendTime;
         ImageView photo;
         TextView name;

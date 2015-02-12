@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by liuzwei on 2014/11/17.
  */
-public class FavoursObj implements Serializable{
+public class FavoursObj implements Serializable {
     private int count;
     private List<Favours> list;
 
