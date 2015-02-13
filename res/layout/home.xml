@@ -29,7 +29,6 @@
                     android:layout_height="fill_parent"
                     android:layout_marginRight="35dip"
                     android:layout_weight="1"
-                    android:background="@drawable/title_bar_center_button_bg"
                     android:clickable="true"
                     android:gravity="center"
                     android:orientation="horizontal">

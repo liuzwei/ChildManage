@@ -11,4 +11,27 @@
     <string name="login_progress_dialog">登录中</string>
     <string name="error1">已加载全部</string>
 
+
+    <string name="text_jkliebiao">监控列表</string>
+    <string name="like_fuwudaoqi">服务到期 ,请充值</string>
+    <string name="sxtlixian">摄像头不在线</string>
+    <string name="dlg_tishi">提示</string>
+    <string name="btn_queding">确定</string>
+    <string name="login_liebiaohqsb">获取列表数据失败</string>
+    <string name="login_yonghumingbd">用户名不对</string>
+    <string name="login_mimabudui">密码不对</string>
+    <string name="login_denglushangxianrs">已达在线人数上限</string>
+    <string name="login_zhizhanghaogq">子账户已经过期</string>
+    <string name="login_zhanghaoguoqi">账户已经过期</string>
+    <string name="login_lianjiefuwuqisb">连接服务器失败</string>
+    <string name="login_liebiaohuoqusb">无法获取到节点列表</string>
+
+    <string name="shujujiazaizhong">数据加载中...</string>
+    <string name="gankanshangxian">超过同时观看人数%d</string>
+    <string name="sxtyanzhengshibai">摄像头认证码不对</string>
+    <string name="shujujieshousb">视频数据接收失败</string>
+    <string name="fuwuqilianjiesb">服务器连接失败</string>
+    <string name="sxtrenzhengbtg">摄像头认证不通过</string>
+    <string name="fuwuqijujuerz">服务器拒绝摄像头认证</string>
+
 </resources>

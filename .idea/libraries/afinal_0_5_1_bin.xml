@@ -3,10 +3,28 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/afinal_0.5.1_bin.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/BaiduLBS_Android.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/dom4jxml-0.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/gson-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpclient-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.3.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jaudiotagger-2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/mina-core-2.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/NetSDK_V2.1.3_20140926_001.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/pinyin4j-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ShenzyPlay_211.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/slf4j-android-1.5.8.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/xpp3_min-1.1.4c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/xstream-1.4.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/volley.jar!/tests/src" />
+    </SOURCES>
   </library>
 </component>

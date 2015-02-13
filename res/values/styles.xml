@@ -17,12 +17,7 @@
         -->
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="@android:Theme">
 
-        <item name="android:windowTitleSize">30dp</item>
-        <item name="android:windowTitleBackgroundStyle">@style/tile_background</item>
-    </style>
 
     <style name="customProgressBar" parent="@android:style/Widget.ProgressBar.Small">
         <item name="android:indeterminateDrawable">@drawable/custom_progress_bar</item>

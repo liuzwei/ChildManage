@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/res/drawable-hdpi/backgrounds.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/startbutton.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/stopbutton.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/drawable-hdpi/toast_bg.9.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/ctrl_view.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/res/layout/direct_connect_ui.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/direct_ctrl_view.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/res/layout/loading.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/res/layout/main_yuv_view_ui.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/child/manage/data/OpenCarDATA.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/child/manage/data/SuccessDATA.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/child/manage/data/TraceDATA.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/child/manage/entity/OpenCar.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/child/manage/entity/Trace.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/child/manage/video/BaseDataUI.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/child/manage/video/DirectConnectUI.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/child/manage/video/MainYuvShowUI.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/child/manage/video/MyProgressDialog.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/child/manage/video/SDKDemoUI.java" charset="UTF-8" />
   </component>
 </project>
-
