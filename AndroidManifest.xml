@@ -90,6 +90,9 @@
         <activity android:name=".ui.PlayActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
 
+        <activity android:name=".menu.Video" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+
         <!-- 视频 -->
         <activity android:name=".video.SDKDemoUI" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />

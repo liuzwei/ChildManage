@@ -127,12 +127,14 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         mRoot.close(about.getView());
                         break;
                     case ViewUtil.DIANPING:
-                        if (dianping == null) {
-                            dianping = new Video(MainActivity.this,
-                                    MainActivity.this, childApplication);
-                            dianping.setOnOpenListener(MainActivity.this);
-                        }
-                        mRoot.close(dianping.getView());
+//                        if (dianping == null) {
+//                            dianping = new Video(MainActivity.this,
+//                                    MainActivity.this, childApplication);
+//                            dianping.setOnOpenListener(MainActivity.this);
+//                        }
+//                        mRoot.close(dianping.getView());
+                        Intent video =  new Intent(getContext(), Video.class);
+                        startActivity(video);
                         break;
                     case ViewUtil.HOME:
                         if (mHome == null) {
@@ -142,11 +144,11 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         mRoot.close(mHome.getView());
                         break;
                     case ViewUtil.SHIPIN:
-                        if (video == null) {
-                            video = new Baybayset(MainActivity.this, MainActivity.this, childApplication);
-                            video.setOnOpenListener(MainActivity.this);
-                        }
-                        mRoot.close(video.getView());
+//                        if (video == null) {
+//                            video = new Baybayset(MainActivity.this, MainActivity.this, childApplication);
+//                            video.setOnOpenListener(MainActivity.this);
+//                        }
+//                        mRoot.close(video.getView());
                         break;
                     case ViewUtil.YUER:
                         if (yuer == null) {

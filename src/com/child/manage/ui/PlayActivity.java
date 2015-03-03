@@ -45,15 +45,6 @@ public class PlayActivity extends Activity {
 
 		setContentView(R.layout.play);
 		mNodeInfo = (MyNodeinfo) getIntent().getSerializableExtra("nodeinfo");
-//		strID = getIntent().getStringExtra("ID");
-//		String strName = getIntent().getStringExtra("NAME");
-//		mBoolPtz = getIntent().getBooleanExtra("PTZ", false);
-//		strIP = getIntent().getStringExtra("IP");
-//		nPort = getIntent().getIntExtra("PORT", 0);
-//		strUsername = getIntent().getStringExtra("USERNAME");
-//		strPassword = getIntent().getStringExtra("PASSWORD");
-
-		
 		TextView textView = (TextView) findViewById(R.id.text_title);
 		textView.setText(mNodeInfo.getsNodeName());
 		mLayoutPlay = (LinearLayout) findViewById(R.id.llayout_playview);

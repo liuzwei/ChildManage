@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.telephony.TelephonyManager;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,7 @@ import com.child.manage.base.FlipperLayout;
 import com.child.manage.entity.MyNodeinfo;
 import com.child.manage.ui.PlayActivity;
 
-import szy.utility.NodeInfo;
-import szy.utility.SdkHandle2;
-import szy.utility.SzyUtility;
+import szy.utility.*;
 
 import java.util.*;
 
@@ -31,13 +31,13 @@ import java.util.*;
  *
  * @author rendongwei
  */
-public class Video {
-    private Button mMenu;
-    private Context mContext;
-    private Activity mActivity;
-    private ChildApplication mKXApplication;
-    private View mHome;
-    private FlipperLayout.OnOpenListener mOnOpenListener;
+public class Video extends Activity{
+    private Button video_menu;
+//    private Context mContext;
+//    private Activity mActivity;
+//    private ChildApplication mKXApplication;
+//    private View mHome;
+//    private FlipperLayout.OnOpenListener mOnOpenListener;
 
     //视频接口
     private final String USERNAME = "15123036810";
@@ -64,21 +64,32 @@ public class Video {
     private String mStrClubName = "";
     private SzyUtility mSzyUtility;
 
-    public Video(Context context, Activity activity, ChildApplication application) {
-        mContext = context;
-        mActivity = activity;
-        mKXApplication = application;
-        mHome = LayoutInflater.from(context).inflate(R.layout.video, null);
+
+    //play
+    private PlayView mPlayView;
+
+    private boolean mBoolStop = false;
+
+    private LinearLayout mLayoutProgress;
+
+    private MyNodeinfo mNodeInfo;
+    private LinearLayout mLayoutPlay;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.video);
         findViewById();
-        setListener();
+//        setListener();
 
         //视频接口
-        mLayoutTree = (LinearLayout) mHome.findViewById(R.id.tree_layout_rect);
-        mProgressBar = (ProgressBar) mHome.findViewById(R.id.pbar_tree);
-        mTextView = (TextView) mHome.findViewById(R.id.text_tips);
-        mListView = (ListView) mHome.findViewById(R.id.list_node);
+        mLayoutTree = (LinearLayout) this.findViewById(R.id.tree_layout_rect);
+        mProgressBar = (ProgressBar) this.findViewById(R.id.pbar_tree);
+        mTextView = (TextView) this.findViewById(R.id.text_tips);
+        mListView = (ListView) this.findViewById(R.id.list_node);
 
-        mTreeViewAdapter = new TreeViewAdapter(mContext, R.layout.tree_node,
+        mTreeViewAdapter = new TreeViewAdapter(this, R.layout.tree_node,
                 mListShowingNodes);
         mListView.setAdapter(mTreeViewAdapter);
         mListView.setOnItemClickListener(mOnItemClickListener);
@@ -89,7 +100,122 @@ public class Video {
         mSzyUtility.login(USERNAME, PASSWORD, getDeviceKey());
 
 
+
+
+//        TextView textView = (TextView) findViewById(R.id.text_title);
+//        textView.setText(mNodeInfo.getsNodeName());
+        mLayoutPlay = (LinearLayout) findViewById(R.id.llayout_playview);
+
+        mLayoutProgress = (LinearLayout) findViewById(R.id.llayout_progress);
+        Display dis = getWindowManager().getDefaultDisplay();
+        LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(
+                dis.getWidth(),dis.getWidth()*3/4);
+        mPlayView = new PlayView(this);
+        mPlayView.setPlayWH(dis.getWidth(), dis.getWidth() * 3 / 4);
+        mPlayView.setPlayListener(playListener);
+        mLayoutPlay.addView(mPlayView, lParams);
+
+
     }
+
+    @Override
+    protected void onDestroy() {
+        mSzyUtility.release();
+        super.onDestroy();
+    }
+
+    private PlayListener playListener = new PlayListener() {
+
+        @Override
+        public void infoCallback(int type, String sInfo) {
+            Message msg = new Message();
+            msg.what = type;
+            msg.obj = sInfo;
+            mmHandler.sendMessage(msg);
+        }
+    };
+
+    private Handler mmHandler = new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case PlayView.PLAY_VIDEO_SUCCESS:
+                    hideProgress();
+                    break;
+                case PlayView.PLAY_VIDEO_ERROR_WATCH_TOOMUCH:
+                    //超过观看人数上限
+                    showTipsDlg((String)msg.obj);
+                    break;
+                case PlayView.PLAY_VIDEO_ERROR_RECV_TIMEOUT:
+                    //音视频数据接收失败
+                    showTipsDlg2(R.string.shujujieshousb);
+                    break;
+                case PlayView.PLAY_VIDEO_ERROR_CONNECT_TIMEOUT:
+                    //连接服务器失败
+                    showTipsDlg2(R.string.fuwuqilianjiesb);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void showTipsDlg2(int nMsg) {
+        if (!mBoolStop) {
+            hideProgress();
+            AlertDialog.Builder builder = new AlertDialog.Builder(Video.this);
+            builder.setMessage(nMsg);
+            builder.setTitle(R.string.dlg_tishi);
+            builder.setPositiveButton(R.string.btn_queding,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.create().show();
+        }
+    }
+
+    private void showTipsDlg(String sMsg) {
+        if (!mBoolStop) {
+            hideProgress();
+            AlertDialog.Builder builder = new AlertDialog.Builder(Video.this);
+            builder.setMessage(sMsg);
+            builder.setTitle(R.string.dlg_tishi);
+            builder.setPositiveButton(R.string.btn_queding,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.create().show();
+        }
+    }
+//    public Video(Context context, Activity activity, ChildApplication application) {
+//        mContext = context;
+//        mActivity = activity;
+//        mKXApplication = application;
+//        mHome = LayoutInflater.from(context).inflate(R.layout.video, null);
+//        findViewById();
+//        setListener();
+//
+//        //视频接口
+//        mLayoutTree = (LinearLayout) mHome.findViewById(R.id.tree_layout_rect);
+//        mProgressBar = (ProgressBar) mHome.findViewById(R.id.pbar_tree);
+//        mTextView = (TextView) mHome.findViewById(R.id.text_tips);
+//        mListView = (ListView) mHome.findViewById(R.id.list_node);
+//
+//        mTreeViewAdapter = new TreeViewAdapter(mContext, R.layout.tree_node,
+//                mListShowingNodes);
+//        mListView.setAdapter(mTreeViewAdapter);
+//        mListView.setOnItemClickListener(mOnItemClickListener);
+//        showProgress();
+//        mSzyUtility = new SzyUtility();
+//
+//        mSzyUtility.init(SERVER_IPADDRESS, SERVER_PORT, mSdkHandle2);
+//        mSzyUtility.login(USERNAME, PASSWORD, getDeviceKey());
+//
+//
+//    }
 
 //    @Override
 //    protected void onDestroy() {
@@ -98,31 +224,36 @@ public class Video {
 //    }
 
     private void findViewById() {
-        mMenu = (Button) mHome.findViewById(R.id.home_menu);
-
-
-    }
-
-    private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
-
+        video_menu = (Button) this.findViewById(R.id.video_menu);
+        video_menu.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
+                finish();
             }
         });
 
     }
 
+//    private void setListener() {
+//        mMenu.setOnClickListener(new OnClickListener() {
+//
+//            public void onClick(View v) {
+//                if (mOnOpenListener != null) {
+//                    mOnOpenListener.open();
+//                }
+//            }
+//        });
+//
+//    }
 
-    public View getView() {
-        return mHome;
-    }
-
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
-    }
+//
+//    public View getView() {
+//        return mHome;
+//    }
+//
+//    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
+//        mOnOpenListener = onOpenListener;
+//    }
 
     private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
@@ -131,14 +262,13 @@ public class Video {
             //没有子节点，处在树控件的最低级，即设备节点
             if (mListShowingNodes.get(position).isbSxtNode()) {
                 if(mListShowingNodes.get(position).isbAtTerm()){
-                    Toast.makeText(mContext, R.string.like_fuwudaoqi, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, R.string.like_fuwudaoqi, Toast.LENGTH_LONG).show();
                 } else if (!mListShowingNodes.get(position).isbAlive()) {
-                    Toast.makeText(mContext, R.string.sxtlixian, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(mContext, R.string.sxtlixian, Toast.LENGTH_LONG).show();
                 }else {
                     gotoPlayActivity(mListShowingNodes.get(position));
                 }
-            }
-            else {
+            } else {
                 if (mListShowingNodes.get(position).isbExpanded()) {
                     //收起树节点
                     unExpandedTreeNode(position);
@@ -163,7 +293,7 @@ public class Video {
 
     private void gotoPlayActivity(MyNodeinfo nodeInfo) {
         Intent intent = new Intent();
-        intent.setClass(mContext, PlayActivity.class);
+        intent.setClass(this, PlayActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //		intent.putExtra("ID", nodeInfo.getsNodeId());
 //		intent.putExtra("IP", mStrServerIP);
@@ -178,7 +308,8 @@ public class Video {
 //		intent.putExtra("PORT", 9023);
 //		intent.putExtra("USERNAME", mStrUsername);
 //		intent.putExtra("PASSWORD", mStrPassword);
-        mActivity.startActivity(intent);
+        startActivity(intent);
+        this.finish();
     }
 
     // 判断是否需要发送获取设备节点的信息
@@ -197,7 +328,7 @@ public class Video {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case ADD_FIRSTLEVEL_NODE:
-                    hideProgress();
+
                     mListJiedianInfos.clear();
                     @SuppressWarnings("unchecked")
                     LinkedList<NodeInfo> lNodeInfos = (LinkedList<NodeInfo>) msg.obj;
@@ -212,6 +343,7 @@ public class Video {
                     if (mTreeViewAdapter != null) {
                         mTreeViewAdapter.notifyDataSetChanged();
                     }
+//                    gotoPlayActivity(mListShowingNodes.get(2));
                     break;
                 case ADD_CHILD_NODE:
                     addTreeNode(msg);
@@ -339,6 +471,39 @@ public class Video {
             }
         }
         mMapNode.put(treeNode.getsNodeId(), linkedListTempNodes);
+
+
+        int position = 1;
+        //没有子节点，处在树控件的最低级，即设备节点
+        if (mListShowingNodes.get(position).isbSxtNode()) {
+            if(mListShowingNodes.get(position).isbAtTerm()){
+//                Toast.makeText(mContext, R.string.like_fuwudaoqi, Toast.LENGTH_LONG).show();
+            } else if (!mListShowingNodes.get(position).isbAlive()) {
+//                Toast.makeText(mContext, R.string.sxtlixian, Toast.LENGTH_LONG).show();
+            }else {
+                gotoPlayActivity(mListShowingNodes.get(position));
+            }
+        } else {
+            if (mListShowingNodes.get(position).isbExpanded()) {
+                //收起树节点
+                unExpandedTreeNode(position);
+            }
+            else {
+                NodeInfo tNode = mListShowingNodes.get(position);
+                if (isNeedGetDeviceNode(mListShowingNodes.get(position))) {
+                    mSzyUtility.getNodeList("1", tNode.getsNodeId(), tNode.getnSxtCount(), tNode.getnJieDianCount());
+                }else {
+                    if (mMapFrush.get(tNode.getsNodeId())==null
+                            && (tNode.getnJieDianCount()!=0 || tNode.getnSxtCount()!=0)) {
+                        mSzyUtility.getNodeList("1", tNode.getsNodeId(), tNode.getnSxtCount(), tNode.getnJieDianCount());
+                    }
+                    //展开节点
+                    expandedTreeNode(position);
+                }
+            }
+        }
+
+
     }
 
     private void addTreeNode(Message msg) {
@@ -446,6 +611,17 @@ public class Video {
                 //如果此节点还有子节点而且处于展开状态
                 if (treeNode.isbExpanded() && !treeNode.isbSxtNode()) {
                     j = AddNode2TreeList(nPos, treeNode.getsNodeId(), j);
+                }else{
+//                    gotoPlayActivity(mListShowingNodes.get(2));
+                    mNodeInfo = mListShowingNodes.get(2);
+                    int nRet = mPlayView.startPlay(mNodeInfo.getsParentId(), mNodeInfo.getsNodeId());
+                    if (nRet == PlayView.SXT_AT_TREM) {
+                        showTipsDlg("摄像头到期");
+                    }else if (nRet == PlayView.SXT_NOT_ONLINE) {
+                        showTipsDlg("摄像头不在线");
+                    }
+//                    showProgress();
+                    mBoolStop = false;
                 }
             }
         }
@@ -458,6 +634,9 @@ public class Video {
             mProgressBar.setVisibility(View.VISIBLE);
             mTextView.setVisibility(View.VISIBLE);
             mListView.setVisibility(View.GONE);
+
+            mLayoutProgress.setVisibility(View.VISIBLE);
+            mPlayView.setVisibility(View.GONE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -468,14 +647,18 @@ public class Video {
             mLayoutTree.setGravity(Gravity.TOP);
             mProgressBar.setVisibility(View.GONE);
             mTextView.setVisibility(View.GONE);
-            mListView.setVisibility(View.VISIBLE);
+            mListView.setVisibility(View.GONE);
+            mLayoutTree.setVisibility(View.GONE);
+
+            mLayoutProgress.setVisibility(View.GONE);
+            mPlayView.setVisibility(View.VISIBLE);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private String getDeviceKey(){
-        TelephonyManager tm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(this.TELEPHONY_SERVICE);
         String strKey = tm.getDeviceId();
         if (strKey==null) {
             strKey = String.valueOf(System.currentTimeMillis());
@@ -484,7 +667,7 @@ public class Video {
     }
 
     private void showErrorDlg(int nMsg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(nMsg);
         builder.setTitle(R.string.dlg_tishi);
         builder.setPositiveButton(R.string.btn_queding,
@@ -498,7 +681,7 @@ public class Video {
     }
 
     private void showTipsDlg(String sMsg,final boolean bFlag) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(sMsg);
         builder.setTitle(R.string.dlg_tishi);
         builder.setPositiveButton(R.string.btn_queding,
