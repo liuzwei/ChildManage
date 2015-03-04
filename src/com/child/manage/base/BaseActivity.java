@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -16,8 +17,10 @@ import android.widget.*;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.upload.MultiPartStack;
 import com.child.manage.upload.MultiPartStringRequest;
 import com.child.manage.util.ToastUtil;
 import com.google.gson.Gson;
@@ -38,8 +41,8 @@ public class BaseActivity extends Activity {
     public static FinalHttp finalHttp = new FinalHttp();
 
     private ActivityTack tack = ActivityTack.getInstanse();
-
-    //    private Gson gson = new Gson();
+    private ExecutorService appThread = Executors.newSingleThreadExecutor();
+    private Gson gson = new Gson();
     protected ChildApplication childApplication;
     /**
      * 屏幕的宽度和高度
@@ -55,11 +58,11 @@ public class BaseActivity extends Activity {
     protected GridView mFaceGridView;
 
 
-    private RequestQueue mRequestQueue;
-    private static RequestQueue mSingleQueue;
-    private ExecutorService appThread = Executors.newSingleThreadExecutor();
+    public RequestQueue mRequestQueue;
+    public static RequestQueue mSingleQueue;
 
-    private Gson gson = new Gson();
+    ConnectivityManager connectMgr ;
+    public final  String mPageName = "BaseActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,22 +81,24 @@ public class BaseActivity extends Activity {
         mContext = getApplicationContext();
         sp = getSharedPreferences("environ_manage", Context.MODE_PRIVATE);
         inflater = LayoutInflater.from(mContext);
+        connectMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        mRequestQueue = Volley.newRequestQueue(this);
+        mSingleQueue = Volley.newRequestQueue(this, new MultiPartStack());
         tack.addActivity(this);
     }
 
-//    public Gson getGson(){
-//        return gson;
-//    }
 
     protected Context getContext() {
         return mContext;
     }
 
+
     //存储sharepreference
-    public void save(String key, Object value) {
+    public void save(String key, Object value){
         SharedPreferences.Editor editor = sp.edit();
-//        editor.putString(key, gson.toJson(value)).commit();
+        editor.putString(key, gson.toJson(value)).commit();
     }
+
 
     public ActivityTack getTack() {
         return tack;
@@ -120,76 +125,6 @@ public class BaseActivity extends Activity {
         mFacePop.setBackgroundDrawable(new BitmapDrawable());
     }
 
-    /**
-     * 显示表情控件
-     *
-     * @param parent 显示位置的根布局
-     */
-    protected void showFace(View parent) {
-        if (!mFacePop.isShowing()) {
-            ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
-                    .hideSoftInputFromWindow(BaseActivity.this
-                                    .getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-            mFacePop.showAtLocation(parent, Gravity.CENTER, 0, 0);
-        }
-    }
-
-//    /**
-//     * 隐藏表情控件
-//     */
-//    protected void dismissFace() {
-//        if (mFacePop != null && mFacePop.isShowing()) {
-//            mFacePop.dismiss();
-//        }
-//    }
-//
-//    /**
-//     * 表情适配器
-//     *
-//     * @author rendongwei
-//     *
-//     */
-//    private class FaceAdapter extends BaseAdapter {
-//
-//        private Context mContext;
-//
-//        public FaceAdapter(Context context) {
-//            mContext = context;
-//        }
-//
-//        public int getCount() {
-//            return childApplication.mFaces.length;
-//        }
-//
-//        public Object getItem(int position) {
-//            return childApplication.getFaceBitmap(position);
-//        }
-//
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            ImageView face = null;
-//            if (convertView == null) {
-//                face = new ImageView(mContext);
-//                AbsListView.LayoutParams params = new AbsListView.LayoutParams(
-//                        AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
-//                int widthAndHeight = (int) TypedValue.applyDimension(
-//                        TypedValue.COMPLEX_UNIT_DIP, 30, mContext
-//                                .getResources().getDisplayMetrics());
-//                params.width = widthAndHeight;
-//                params.height = widthAndHeight;
-//                face.setLayoutParams(params);
-//                face.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-//            } else {
-//                face = (ImageView) convertView;
-//            }
-//            face.setImageBitmap(childApplication.getFaceBitmap(position));
-//            return face;
-//        }
-//    }
 
     /**
      * 获得线程池
@@ -245,4 +180,13 @@ public class BaseActivity extends Activity {
         mSingleQueue.add(multiPartRequest);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }

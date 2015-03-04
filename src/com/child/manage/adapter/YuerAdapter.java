@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.child.manage.ChildApplication;
 import com.child.manage.R;
-import com.child.manage.entity.shipu;
-import com.child.manage.entity.yuer;
+import com.child.manage.entity.YouerYuan;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -24,7 +22,7 @@ import java.util.List;
  */
 public class YuerAdapter extends BaseAdapter {
     private ViewHolder holder;
-    private List<yuer> list;
+    private List<YouerYuan> list;
     private Context context;
 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
@@ -32,7 +30,7 @@ public class YuerAdapter extends BaseAdapter {
     private OnClickContentItemListener onClickContentItemListener;
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
 
-    public YuerAdapter(List<yuer> list, Context context) {
+    public YuerAdapter(List<YouerYuan> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -69,10 +67,10 @@ public class YuerAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final yuer cell = list.get(position);
-        holder.datetime.setText(cell.getDatetime());
-        holder.title.setText(cell.getTitle());
-//        imageLoader.displayImage(cell.getPic(), holder.pic, ChildApplication.options, animateFirstListener);
+        final YouerYuan cell = list.get(position);
+        holder.datetime.setText(cell.getDateline());
+        holder.title.setText(cell.getName());
+//        imageLoader.displayImage(cell.getInfo(), holder.pic, ChildApplication.options, animateFirstListener);
         return convertView;
     }
 
@@ -82,7 +80,6 @@ public class YuerAdapter extends BaseAdapter {
         TextView title;
         TextView datetime;
         ImageView rightbutton;
-
     }
 
 }

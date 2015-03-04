@@ -46,7 +46,7 @@
                     android:drawableLeft="@drawable/login_icon_account"
                     android:drawablePadding="25dip"
                     android:hint="请输入账号"
-                    android:id="@+id/name"
+                    android:id="@+id/login_username"
                     android:text="15123036810"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="25dip"
@@ -64,13 +64,14 @@
                     android:drawablePadding="25dip"
                     android:hint="请输入密码"
                     android:text="654321"
+                    android:id="@+id/login_password"
                     android:paddingLeft="25dip"
                     android:password="true"
                     android:textColor="#ff98bede"
                     android:textColorHint="#ffdddddd"/>
 
             <Button
-                    android:id="@+id/loginbutton"
+                    android:id="@+id/login_btn"
                     android:layout_width="fill_parent"
                     android:layout_height="45dip"
                     android:layout_marginLeft="8dip"
@@ -108,7 +109,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:id="@+id/login_forgetpass"
                         android:text="忘记账号密码？"
                         android:layout_gravity="center"
                         android:textColor="@color/maincolor"

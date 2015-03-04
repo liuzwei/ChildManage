@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.entity.Account;
 import com.child.manage.menu.*;
+import com.child.manage.ui.Constants;
 import com.child.manage.util.ActivityForResultUtil;
 import com.child.manage.util.PhotoUtil;
 import com.child.manage.util.ViewUtil;
@@ -50,11 +52,11 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     /**
      * 育儿知识
      */
-    private Yuer yuer;
+    private YuanWai yuer;
     /**
      * 每周课程
      */
-    private Kecheng kecheng;
+    private Notice notice;
     /**
      * 宝宝食谱
      */
@@ -80,10 +82,12 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      *
      */
     public static Activity mInstance;
+    private Account account;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String name = getIntent().getExtras().getString("name");
+        account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
+        String name = getGson().fromJson(sp.getString(Constants.USERNAME_KEY, ""), String.class);
         /**
          * 创建容器,并设置全屏大小
          */
@@ -152,17 +156,17 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
                     case ViewUtil.YUER:
                         if (yuer == null) {
-                            yuer = new Yuer(MainActivity.this, MainActivity.this, childApplication);
+                            yuer = new YuanWai(mRequestQueue ,MainActivity.this, MainActivity.this, childApplication);
                             yuer.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(yuer.getView());
                         break;
                     case ViewUtil.KECHENG:
-                        if (kecheng == null) {
-                            kecheng = new Kecheng(MainActivity.this, MainActivity.this, childApplication);
-                            kecheng.setOnOpenListener(MainActivity.this);
+                        if (notice == null) {
+                            notice = new Notice(account,mRequestQueue,MainActivity.this, MainActivity.this, childApplication);
+                            notice.setOnOpenListener(MainActivity.this);
                         }
-                        mRoot.close(kecheng.getView());
+                        mRoot.close(notice.getView());
                         break;
 //                    case ViewUtil.SHIPU:
 //                        if(shipu == null){

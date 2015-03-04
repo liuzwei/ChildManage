@@ -89,8 +89,25 @@
                                                                    android:screenOrientation="portrait" />
         <activity android:name=".ui.PlayActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
+        <activity android:name=".ui.SelectIdentityActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.ForgetPassOneActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.ForgetPassTwoActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.ForgetPassThreeActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.ForgetPassFourActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+
 
         <activity android:name=".menu.Video" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.DetailYouerYuanActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.LocationAboutActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.DetailNoticeActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
 
         <!-- 视频 -->

@@ -60,15 +60,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
-            <ListView android:layout_width="match_parent"
-                      android:id="@+id/kechenglstv"
-                      android:scrollingCache="false"
-                      android:fadingEdge="none"
-                      android:divider="@drawable/shipu_line"
-                      android:layout_height="wrap_content">
-
-            </ListView>
-
+            <com.child.manage.library.PullToRefreshListView
+                    android:id="@+id/kechenglstv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/line"
+                    android:scrollingCache="false"
+                    android:fadingEdge="none"/>
 
         </LinearLayout>
 

@@ -8,8 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.child.manage.R;
-import com.child.manage.entity.kecheng;
-import com.child.manage.entity.shipu;
+import com.child.manage.entity.NoticeNews;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -23,7 +22,7 @@ import java.util.List;
  */
 public class KechengAdapter extends BaseAdapter {
     private ViewHolder holder;
-    private List<kecheng> list;
+    private List<NoticeNews> list;
     private Context context;
 
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
@@ -31,7 +30,7 @@ public class KechengAdapter extends BaseAdapter {
     private OnClickContentItemListener onClickContentItemListener;
     ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
 
-    public KechengAdapter(List<kecheng> list, Context context) {
+    public KechengAdapter(List<NoticeNews> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -68,10 +67,10 @@ public class KechengAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final kecheng cell = list.get(position);
-        holder.datetime.setText(cell.getDatetime());
+        final NoticeNews cell = list.get(position);
+        holder.datetime.setText(cell.getTime());
         holder.title.setText(cell.getTitle());
-        holder.cont.setText(cell.getCont());
+        holder.cont.setText(cell.getSummary());
         return convertView;
     }
 

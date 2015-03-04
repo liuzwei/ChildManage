@@ -44,7 +44,7 @@ import java.util.UUID;
  *
  * @author rendongwei
  */
-public class Dianping {
+public class JSDongtai {
     private Button mMenu;
     private View mUgcView;
     private Context mContext;
@@ -71,7 +71,7 @@ public class Dianping {
      */
     private boolean mUgcIsShowing = false;
 
-    public Dianping(Context context, Activity activity, ChildApplication application) {
+    public JSDongtai(Context context, Activity activity, ChildApplication application) {
         mContext = context;
         mActivity = activity;
         mKXApplication = application;
@@ -84,38 +84,7 @@ public class Dianping {
 
     }
 
-    /**
-     * {"growing_id":"169",
-     * "child_id":"1",
-     * "id":"169","
-     * uid":"73","
-     * dept":"\u5927\u5b9d\u5f88\u4e56",
-     * "url":"http:\/\/yey.xqb668.com\/Uploads\/2014-12-03\/547de2abd9689.jpg",
-     * "type":"1",
-     * "publisher":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
-     * "publisher_cover":"http:\/\/yey.xqb668.com\/Uploads\/14169822369527.file",
-     * "publish_uid":"73","
-     * is_share":"1","
-     * school_id":"1","
-     * class_id":"1",
-     * "pt":"2",
-     * "dateline":"1417536176",
-     * "user_type":"2",
-     * "testtest":" ",
-     * "time":"2014-12-03 00:02:56",
-     * "is_favoured":"",
-     * "comments":[{"name":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
-     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
-     * "content":"\u5927\u6cd5\u5e08","time":"2014-12-03 00:03:56","
-     * uid":"73","dateline":"1417536236","tid":"53","user_type":"2"}],"
-     * favours":{"count":"1","list":[
-     * <p/>
-     * {"name":"\u5927\u5b9d\u5b9d\u7684\u5988\u5988",
-     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
-     * "time":"","
-     * uid":"73","
-     * user_type":"2"}]}},
-     */
+
 
     private void initData() {
         for (int i = 0; i < 10; i++) {

@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 /**
  * Created by liuzwei on 2014/11/21.
- * <p/>
+ *
  * 交互信息首页返回的消息对象
  */
-public class AccountMessage implements Serializable {
+public class AccountMessage implements Serializable{
     private String uid;
     private String cover;
     private String name;
@@ -69,16 +69,6 @@ public class AccountMessage implements Serializable {
     }
 
     public void setTime(String time) {
-        this.time = time;
-    }
-
-    public AccountMessage(String uid, String cover, String name, String dept, int pmnum, String lastmessage, String time) {
-        this.uid = uid;
-        this.cover = cover;
-        this.name = name;
-        this.dept = dept;
-        this.pmnum = pmnum;
-        this.lastmessage = lastmessage;
         this.time = time;
     }
 }

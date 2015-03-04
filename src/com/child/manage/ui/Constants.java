@@ -29,6 +29,13 @@ public class Constants {
 
     public static final String ACCOUNT_MESSAGE = "account_message";
 
-    public static final String API_HEAD = "http://yey.xqb668.com";
+    public static final String API_HEAD = "http://yey2.xqb668.com";
+
+    public static final String DETAIL_YUANWAI = "yuanwai_detail";
+
+    public static final String LAT = "lat";
+    public static final String LON = "lon";
+
+    public static final String NOTICE_INFO = "noticenews";
 
 }

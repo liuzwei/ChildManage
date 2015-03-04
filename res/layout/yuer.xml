@@ -62,16 +62,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
-            <ListView
+            <com.child.manage.library.PullToRefreshListView
                     android:id="@+id/yuerlstv"
-                    android:divider="@drawable/shipu_line"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@drawable/line"
                     android:scrollingCache="false"
-                    android:fadingEdge="none"
-                    android:layout_height="wrap_content">
-
-            </ListView>
-
+                    android:fadingEdge="none"/>
 
         </LinearLayout>
 

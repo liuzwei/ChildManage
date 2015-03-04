@@ -95,10 +95,6 @@ public class Home {
      */
 
     public Home(Context context, Activity activity, ChildApplication application) {
-        list.add(new AccountMessage("100", "http://yey.xqb668.com//Uploads//cover//89_0.jpg", "Tom", "老师", 0, "Hello welcome to xinbada app", "2014-10-20"));
-        list.add(new AccountMessage("89", "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/90_0.jpg", "Teacher", "老师", 0, "你好", "2014-10-20"));
-        list.add(new AccountMessage("90", "http://yey.xqb668.com//Uploads//cover//89_0.jpg", "Jim", "老师", 0, "haha haha", "2014-10-20"));
-        list.add(new AccountMessage("101", "http:\\/\\/yey.xqb668.com\\/Uploads\\/cover\\/101_0.jpg", "Lucy", "老师", 0, "你好", "2014-10-20"));
         mContext = context;
         mActivity = activity;
         mKXApplication = application;
