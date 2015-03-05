@@ -95,7 +95,7 @@ public class Set implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.setzh:
-                Intent zhanghao = new Intent(mContext, SettingZhActivity.class);
+                Intent zhanghao = new Intent(mContext, SettingMobileActivity.class);
                 mContext.startActivity(zhanghao);
                 break;
             case R.id.setpass:

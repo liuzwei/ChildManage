@@ -19,14 +19,24 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.adapter.JiaohuAdapter;
 import com.child.manage.anim.UgcAnimations;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.data.AccountMessageDATA;
+import com.child.manage.entity.Account;
 import com.child.manage.entity.AccountMessage;
 import com.child.manage.ui.*;
 import com.child.manage.util.ActivityForResultUtil;
+import com.child.manage.util.CommonUtil;
+import com.child.manage.util.InternetURL;
+import com.google.gson.Gson;
 import org.json.JSONArray;
 
 import java.io.File;
@@ -42,65 +52,30 @@ import java.util.UUID;
  * @author rendongwei
  */
 public class Home {
-    private Button mMenu;
-    private View mUgcView;
     private Context mContext;
     private Activity mActivity;
     private ChildApplication mKXApplication;
     private View mHome;
-    private View mPopView;
-    private RelativeLayout mUgcLayout;
-    private ImageView mUgc;
-    private ImageView mUgcBg;
-    private ImageView mUgcVoice;
-    private ImageView mUgcPhoto;
-    private ImageView mUgcRecord;
-    private ImageView mUgcLbs;
+    private RequestQueue mrq;
+    private Gson gson = new Gson();
     private FlipperLayout.OnOpenListener mOnOpenListener;
 
-
-    /**
-     * 判断当前的path菜单是否已经显示
-     */
-    private boolean mUgcIsShowing = false;
-
-
+    private ImageView jiaohuback;
     private ListView listView;
     private List<AccountMessage> list = new ArrayList<AccountMessage>();
     private JiaohuAdapter adapter;
-//    private TextView publishAll;//群发消息
-
-    /**
-     * {"uid":"101",
-     * "name":"\u4e07\u8001\u5e08",
-     * "group_id":"3","
-     * user_type":" ","
-     * cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/101_0.jpg","
-     * dept":"\u73ed\u4e3b\u4efb"},{
-     * <p/>
-     * "uid":"90",
-     * "name":"\u8a79\u8001\u5e08"
-     * ,"group_id":"3","
-     * user_type":" ",
-     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/90_0.jpg"
-     * ,"dept":"\u8001\u5e2b"},{
-     * <p/>
-     * "uid":"89","
-     * name":"teacher"
-     * ,"group_id":"3",
-     * "user_type":" ",
-     * "cover":"http:\/\/yey.xqb668.com\/Uploads\/cover\/89_0.jpg",
-     * "dept":"\u8001\u5e2b"}
-     * *
-     */
-
-    public Home(Context context, Activity activity, ChildApplication application) {
+    private TextView publishAll;//群发消息
+    private Account mAccount;
+    private String mIdentity;
+    public Home(String identity,Account account,RequestQueue rq,Context context, Activity activity, ChildApplication application) {
         mContext = context;
+        mrq = rq;
+        mIdentity = identity;
+        mAccount = account;
         mActivity = activity;
         mKXApplication = application;
         mHome = LayoutInflater.from(context).inflate(R.layout.home, null);
-        mPopView = LayoutInflater.from(context).inflate(
-                R.layout.home_popupwindow, null);
+
         findViewById();
         adapter = new JiaohuAdapter(list, mContext);
         listView.setAdapter(adapter);
@@ -114,213 +89,32 @@ public class Home {
         });
 
         setListener();
-
+        getData();
     }
 
     private void findViewById() {
-        mMenu = (Button) mHome.findViewById(R.id.home_menu);
-        mUgcView = (View) mHome.findViewById(R.id.home_ugc1);
-        mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
-        mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
-        mUgcBg = (ImageView) mUgcView.findViewById(R.id.ugc_bg);
-        mUgcVoice = (ImageView) mUgcView.findViewById(R.id.ugc_voice);
-        mUgcPhoto = (ImageView) mUgcView.findViewById(R.id.ugc_photo);
-        mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
-        mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
+        jiaohuback = (ImageView) mHome.findViewById(R.id.jiaohuback);
+
         listView = (ListView) mHome.findViewById(R.id.jiaohu_lstv);
+        publishAll = (TextView) mHome.findViewById(R.id.publish_all);
     }
 
     private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
-
+        jiaohuback.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 if (mOnOpenListener != null) {
                     mOnOpenListener.open();
                 }
             }
         });
-
-        // Path监听
-        mUgcView.setOnTouchListener(new OnTouchListener() {
-
-            public boolean onTouch(View v, MotionEvent event) {
-                // 判断是否已经显示,显示则关闭并隐藏
-                if (mUgcIsShowing) {
-                    mUgcIsShowing = false;
-                    UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
-                            500);
-                    return true;
-                }
-                return false;
-            }
-        });
-        // Path监听
-        mUgc.setOnClickListener(new OnClickListener() {
-
+        publishAll.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                // 判断是否显示,已经显示则隐藏,否则则显示
-                mUgcIsShowing = !mUgcIsShowing;
-                if (mUgcIsShowing) {
-                    UgcAnimations.startOpenAnimation(mUgcLayout, mUgcBg, mUgc,
-                            500);
-                } else {
-                    UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
-                            500);
-                }
-            }
-        });
-        // Path 语音按钮监听
-        mUgcVoice.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                Animation anim = UgcAnimations.clickAnimation(500);
-                anim.setAnimationListener(new AnimationListener() {
-
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    public void onAnimationEnd(Animation animation) {
-                        mContext.startActivity(new Intent(mContext,
-                                VoiceActivity.class));
-                        closeUgc();
-                    }
-                });
-                mUgcVoice.startAnimation(anim);
-            }
-        });
-        // Path 拍照按钮监听
-        mUgcPhoto.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                Animation anim = UgcAnimations.clickAnimation(500);
-                anim.setAnimationListener(new AnimationListener() {
-
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    public void onAnimationEnd(Animation animation) {
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File dir = new File("/sdcard/KaiXin/Camera/");
-                        if (!dir.exists()) {
-                            dir.mkdirs();
-                        }
-                        mKXApplication.mUploadPhotoPath = "/sdcard/KaiXin/Camera/"
-                                + UUID.randomUUID().toString();
-                        File file = new File(
-                                mKXApplication.mUploadPhotoPath);
-                        if (!file.exists()) {
-                            try {
-                                file.createNewFile();
-                            } catch (IOException e) {
-
-                            }
-                        }
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                Uri.fromFile(file));
-                        mActivity
-                                .startActivityForResult(
-                                        intent,
-                                        ActivityForResultUtil.REQUESTCODE_UPLOADPHOTO_CAMERA);
-                        closeUgc();
-                    }
-                });
-                mUgcPhoto.startAnimation(anim);
-            }
-        });
-        // Path 记录按钮监听
-        mUgcRecord.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                Animation anim = UgcAnimations.clickAnimation(500);
-                anim.setAnimationListener(new AnimationListener() {
-
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    public void onAnimationEnd(Animation animation) {
-                        mContext.startActivity(new Intent(mContext,
-                                WriteRecordActivity.class));
-                        closeUgc();
-                    }
-                });
-                mUgcRecord.startAnimation(anim);
-            }
-        });
-        // Path 签到按钮监听
-        mUgcLbs.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                Animation anim = UgcAnimations.clickAnimation(500);
-                anim.setAnimationListener(new AnimationListener() {
-
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    public void onAnimationEnd(Animation animation) {
-                        mContext.startActivity(new Intent(mContext,
-                                CheckInActivity.class));
-                        closeUgc();
-                    }
-                });
-                mUgcLbs.startAnimation(anim);
+                mActivity.startActivity(new Intent(mContext, SendGroupMessageActivity.class));
             }
         });
     }
 
-    /**
-     * 获取Path菜单显示状态
-     *
-     * @return 显示状态
-     */
-    public boolean getUgcIsShowing() {
-        return mUgcIsShowing;
-    }
-
-    /**
-     * 关闭Path菜单
-     */
-    public void closeUgc() {
-        mUgcIsShowing = false;
-        UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc, 500);
-    }
-
-    /**
-     * 显示Path菜单
-     */
-    public void showUgc() {
-        if (mUgcView != null) {
-            mUgcView.setVisibility(View.VISIBLE);
-        }
-    }
-
-    /**
-     * 关闭Path菜单
-     */
-    public void dismissUgc() {
-        if (mUgcView != null) {
-            mUgcView.setVisibility(View.GONE);
-        }
-    }
 
     public View getView() {
         return mHome;
@@ -328,5 +122,36 @@ public class Home {
 
     public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
         mOnOpenListener = onOpenListener;
+    }
+
+    private void getData(){
+        String uri = String.format(InternetURL.JIAOHU_MESSAGE_LIST+"?uid=%s&user_type=%s", mAccount.getUid(), mIdentity);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                uri,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (CommonUtil.isJson(s)){
+                            AccountMessageDATA data = getGson().fromJson(s, AccountMessageDATA.class);
+                            list.addAll(data.getData());
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        mrq.add(request);
+    }
+
+    public Gson getGson() {
+        return gson;
     }
 }

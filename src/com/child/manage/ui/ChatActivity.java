@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,19 +28,17 @@ import com.child.manage.entity.AccountMessage;
 import com.child.manage.entity.Message;
 import com.child.manage.service.MessageService;
 import com.child.manage.util.CommonUtil;
+import com.child.manage.util.DownloadUtil;
 import com.child.manage.util.InternetURL;
 import com.child.manage.util.StringUtil;
 import com.child.manage.widget.SoundMeter;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by liuzwei on 2014/11/21.
- * <p/>
+ *
  * 双人聊天交互页面
  */
 public class ChatActivity extends BaseActivity implements View.OnClickListener {
@@ -59,23 +60,25 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     private ImageView chatting_mode_btn, volume;
     private LinearLayout layoutBottom;//底部引入的框
     private View faceView;//表情框
+    private TextView searchMore;//查看更多
 
     private boolean btn_vocie = false;
     private boolean isShosrt = false;
     private String voiceName;
     private long startVoiceT, endVoiceT;
     private int flag = 1;
-    //    private Account account;
+    private Account account;
     private ChatAdapter adapter;
     private Handler mHandler = new Handler();
     private List<Message> list = new ArrayList<Message>();
     private static String PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     private MessageReceiver messageReceiver;
+    private int pageIndex = 0;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            messageService = ((MessageService.MessageBinder) service).getService();
+            messageService = ((MessageService.MessageBinder)service).getService();
         }
 
         @Override
@@ -89,12 +92,12 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
         accountMessage = (AccountMessage) getIntent().getSerializableExtra(Constants.ACCOUNT_MESSAGE);
-//        account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
+        account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
         identity = getGson().fromJson(sp.getString(Constants.IDENTITY, ""), String.class);
         initView();
         chatTitle.setText(String.format("与 %s 聊天中", accountMessage.getName()));
 
-//        getData();
+        getData("1", "1", "20", true);
         bindMessageService();
         messageReceiver = new MessageReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -103,11 +106,11 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 //        adapter = new ChatAdapter(list, mContext,sp, )
     }
 
-    private void bindMessageService() {
+    private void bindMessageService(){
         Intent intent = new Intent();
         intent.setClass(ChatActivity.this, MessageService.class);
         ArrayList<String> data = new ArrayList<String>();
-//        data.add(account.getUid());
+        data.add(account.getUid());
         data.add(accountMessage.getUid());
         data.add(identity);
         intent.putStringArrayListExtra("getData", data);
@@ -118,7 +121,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Intent i = new Intent();
+        Intent i  = new Intent();
         i.setClass(ChatActivity.this, MessageService.class);
         ChatActivity.this.unbindService(serviceConnection);
         mContext.stopService(i);
@@ -128,16 +131,16 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
             case R.id.chat_sendbtn://发送按钮
                 if (!StringUtil.isNullOrEmpty(sendMessage.getText().toString())) {
                     Message message = new Message();
-//                    message.setUid(account.getUid());
+                    message.setUid(account.getUid());
                     message.setTo_uids(accountMessage.getUid());
                     message.setType("0");//文字消息
                     message.setContent(sendMessage.getText().toString());
                     sendMsg(message);
-                } else {
+                }else {
                     sendMessage.setHint("请输入消息");
                 }
                 break;
@@ -147,7 +150,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void initView() {
+    private void initView(){
         layoutBottom = (LinearLayout) this.findViewById(R.id.rl_bottom);
 
         mBtnRcd = (TextView) layoutBottom.findViewById(R.id.btn_rcd);
@@ -181,22 +184,22 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 
             public void onClick(View v) {
 
-//                if (btn_vocie) {
-//                    mBtnRcd.setVisibility(View.GONE);
-//                    mBottom.setVisibility(View.VISIBLE);
-//
-//                    btn_vocie = false;
-//                    chatting_mode_btn.setImageResource(R.drawable.chatting_setmode_msg_btn);
-//
-//                } else {
-//                    mBtnRcd.setVisibility(View.VISIBLE);
-//                    mBottom.setVisibility(View.GONE);
-//                    chatting_mode_btn.setImageResource(R.drawable.chatting_setmode_voice_btn);
-//                    btn_vocie = true;
-//                    if (faceView.getVisibility() == View.VISIBLE) {
-//                        faceView.setVisibility(View.GONE);
-//                    }
-//                }
+                if (btn_vocie) {
+                    mBtnRcd.setVisibility(View.GONE);
+                    mBottom.setVisibility(View.VISIBLE);
+
+                    btn_vocie = false;
+                    chatting_mode_btn.setImageResource(R.drawable.chatting_setmode_msg_btn);
+
+                } else {
+                    mBtnRcd.setVisibility(View.VISIBLE);
+                    mBottom.setVisibility(View.GONE);
+                    chatting_mode_btn.setImageResource(R.drawable.chatting_setmode_voice_btn);
+                    btn_vocie = true;
+                    if (faceView.getVisibility() == View.VISIBLE) {
+                        faceView.setVisibility(View.GONE);
+                    }
+                }
             }
         });
         mBtnRcd.setOnTouchListener(new View.OnTouchListener() {
@@ -206,48 +209,68 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                 return false;
             }
         });
+
+        LayoutInflater lif = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View headerView = lif.inflate(R.layout.listview_header, listView ,false);
+        listView.addHeaderView(headerView);
+        searchMore = (TextView) headerView.findViewById(R.id.listview_header_search);
+        searchMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(mContext, "查看更多", Toast.LENGTH_SHORT).show();
+                getData("0",++pageIndex + "", "20", false );
+            }
+        });
     }
 
-//    private void getData(){
-//        String uri = String.format(InternetURL.MESSAGE_DETAIL_LIST+"?uid=%s&friend_id=%s&user_type=%s&new=0", account.getUid(), accountMessage.getUid(),identity);
-////        String uri = String.format(InternetURL.MESSAGE_DETAIL_LIST+"?uid=%s&friend_id=%s&user_type=%s&new=0&pageSize=2", 91, 75,identity);
-//
-//        StringRequest request = new StringRequest(
-//                Request.Method.GET,
-//                uri,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String s) {
-//                        if (CommonUtil.isJson(s)){
-//                            MessageDATA data = getGson().fromJson(s, MessageDATA.class);
-//                            list.addAll(data.getData().getList());
-//                            adapter = new ChatAdapter(list, mContext,sp, data.getData().getUser());
-//                            listView.setAdapter(adapter);
-//                            adapter.notifyDataSetChanged();
-//                            //todo
-//                        }else {
-//                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError volleyError) {
-//                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//        );
-//        getRequestQueue().add(request);
-//    }
+    private void getData(String newType, String pageIndex, String pageSize, final boolean blow){
+        String uri = String.format(InternetURL.MESSAGE_DETAIL_LIST+"?uid=%s&friend_id=%s&user_type=%s&new=%s&pageIndex=%s&pageSize=%s", account.getUid(), accountMessage.getUid(),identity, newType, pageIndex, pageSize);
+//        String uri = String.format(InternetURL.MESSAGE_DETAIL_LIST+"?uid=%s&friend_id=%s&user_type=%s&new=0&pageSize=2", 91, 75,identity);
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                uri,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        if (CommonUtil.isJson(s)){
+                            MessageDATA data = getGson().fromJson(s, MessageDATA.class);
+                            list.addAll(data.getData().getList());
+                            Collections.sort(list);
+                            adapter = new ChatAdapter(list, mContext,sp, data.getData().getUser());
+                            listView.setAdapter(adapter);
+                            if (!blow) {
+                                if (data.getData().getList().size()==0){
+                                    searchMore.setText("没有更多消息");
+                                    searchMore.setEnabled(false);
+                                }
+                                listView.setSelection(data.getData().getList().size());
+                            }
+                            adapter.notifyDataSetChanged();
+                            //todo
+                        }else {
+                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        getRequestQueue().add(request);
+    }
 
     /**
      * 发送消息
      */
-    private void sendMsg(final Message message) {
-        String uri = String.format(InternetURL.MESSAGE_SEND_URL + "?content=%s&uid=%s&type=0&to_uids=%s&file=%s&user_type=%s", message.getContent(), message.getUid(), message.getTo_uids(), message.getUrl(), identity);
+    private void sendMsg(final Message message){
+//        String uri = String.format(InternetURL.MESSAGE_SEND_URL + "?content=%s&uid=%s&type=0&to_uids=%s&url=%s&user_type=%s",message.getContent(), message.getUid(),message.getTo_uids(),message.getUrl(), identity);
         StringRequest request = new StringRequest(
-                Request.Method.GET,
-                uri,
+                Request.Method.POST,
+                InternetURL.MESSAGE_SEND_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
@@ -256,7 +279,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                             if (data.getCode() == 200) {
                                 if ("0".equals(message.getType())) {
 //                                    Message message = new Message(account.getUid(), accountMessage.getUid(), System.currentTimeMillis(), "0", sendMessage.getText().toString());
-                                    message.setDateline(System.currentTimeMillis());
+                                    message.setDateline(System.currentTimeMillis()/1000+"");
                                     list.add(message);
                                     listView.setSelection(list.size() - 1);
                                     adapter.notifyDataSetChanged();
@@ -269,10 +292,33 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-
+                        Log.e("ChatActivity", volleyError.toString());
                     }
                 }
-        );
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("uid", message.getUid());
+                if (!StringUtil.isNullOrEmpty(message.getContent())) {
+                    params.put("content", message.getContent());
+                }
+                params.put("type",message.getType());
+                params.put("to_uids",message.getTo_uids());
+                if (!StringUtil.isNullOrEmpty(message.getUrl())) {
+                    params.put("url", message.getUrl());
+                }
+                params.put("user_type",identity);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
         getRequestQueue().add(request);
     }
 
@@ -320,7 +366,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                     img1.setVisibility(View.VISIBLE);
                     del_re.setVisibility(View.GONE);
                     startVoiceT = System.currentTimeMillis();
-                    voiceName = PATH + "/" + startVoiceT + ".mp3";
+                    voiceName = PATH +"/ebaebo/"+startVoiceT + ".mp3";
                     start(voiceName);
                     flag = 2;
                 }
@@ -363,12 +409,12 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                         return false;
                     }
 
-//                    final Message message = new Message(account.getUid(),
-//                            accountMessage.getUid(),
-//                            System.currentTimeMillis(),
-//                            "3",
-//                            voiceName);
-//                    message.setUrl(voiceName);
+                    final Message message = new Message(account.getUid(),
+                            accountMessage.getUid(),
+                            System.currentTimeMillis()/1000+"",
+                            "3",
+                            voiceName);
+                    message.setUrl(voiceName);
 
                     //上传文件
                     File file = new File(voiceName);
@@ -385,9 +431,9 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                                     if (CommonUtil.isJson(s)) {
                                         UploadDATA data = getGson().fromJson(s, UploadDATA.class);
                                         //上传文件成功后进行发送消息
-                                        if (data.getCode() == 200) {
-//                                            message.setUrl(data.getUrl());
-//                                            sendMsg(message);
+                                        if (data.getCode() == 200){
+                                            message.setUrl(data.getUrl());
+                                            sendMsg(message);
                                         }
                                     }
                                 }
@@ -399,8 +445,8 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                                 }
                             },
                             null);
-//                    list.add(message);
-                    listView.setSelection(list.size() - 1);
+                    list.add(message);
+                    listView.setSelection(list.size()-1);
                     adapter.notifyDataSetChanged();
                     rcChat_popup.setVisibility(View.GONE);
 
@@ -495,14 +541,27 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    public class MessageReceiver extends BroadcastReceiver {
+    public class MessageReceiver extends BroadcastReceiver{
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String messages = intent.getStringExtra("messages");
             MessageDATA messageDATA = getGson().fromJson(messages, MessageDATA.class);
-            list.addAll(messageDATA.getData().getList());
-            adapter.notifyDataSetChanged();
+
+            List<Message> listMessage = messageDATA.getData().getList();
+            if (listMessage.size()> 0) {
+                for (Message message : listMessage) {
+                    if (!StringUtil.isNullOrEmpty(message.getUrl())) {
+                        new Thread(new DownloadUtil(message.getUrl())).start();
+                        message.setUrl(DownloadUtil.getFilePath(message.getUrl()));
+                        list.add(message);
+                    } else {
+                        list.add(message);
+                    }
+                }
+//            list.addAll(messageDATA.getData().getList());
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 }

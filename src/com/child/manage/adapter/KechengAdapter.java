@@ -1,14 +1,18 @@
 package com.child.manage.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.entity.NoticeNews;
+import com.child.manage.ui.Constants;
+import com.child.manage.util.InternetURL;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -71,6 +75,8 @@ public class KechengAdapter extends BaseAdapter {
         holder.datetime.setText(cell.getTime());
         holder.title.setText(cell.getTitle());
         holder.cont.setText(cell.getSummary());
+        imageLoader.displayImage(String.format(Constants.API_HEAD + "%s",cell.getPic()),
+                holder.pic, ChildApplication.tpOptions, animateFirstListener);
         return convertView;
     }
 

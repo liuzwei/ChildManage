@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
     /**
      * 校车位置
      */
-    private Baybayset video;
+    private Baybayset baybayset;
     /**
      * 育儿知识
      */
@@ -83,10 +83,12 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
      */
     public static Activity mInstance;
     private Account account;
+    String identity ="";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
+        identity = getGson().fromJson(sp.getString(Constants.IDENTITY, ""), String.class);
         String name = getGson().fromJson(sp.getString(Constants.USERNAME_KEY, ""), String.class);
         /**
          * 创建容器,并设置全屏大小
@@ -98,10 +100,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
         /**
          * 创建菜单界面和内容首页界面,并添加到容器中,用于初始显示
          */
-        mDesktop = new Desktop(this, this, childApplication, name);
-//        mHome = new Home(this, this, childApplication);
-//        mRoot.addView(mDesktop.getView(), params);
-//        mRoot.addView(mHome.getView(), params);
+        mDesktop = new Desktop(identity,account,this, this, childApplication);
 
         about = new About(this, this, childApplication);
         mRoot.addView(mDesktop.getView(), params);
@@ -142,17 +141,17 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
                     case ViewUtil.HOME:
                         if (mHome == null) {
-                            mHome = new Home(MainActivity.this, MainActivity.this, childApplication);
+                            mHome = new Home(identity,account,mRequestQueue,MainActivity.this, MainActivity.this, childApplication);
                             mHome.setOnOpenListener(MainActivity.this);
                         }
                         mRoot.close(mHome.getView());
                         break;
                     case ViewUtil.SHIPIN:
-//                        if (video == null) {
-//                            video = new Baybayset(MainActivity.this, MainActivity.this, childApplication);
-//                            video.setOnOpenListener(MainActivity.this);
-//                        }
-//                        mRoot.close(video.getView());
+                        if (baybayset == null) {
+                            baybayset = new Baybayset(account,mRequestQueue,MainActivity.this, MainActivity.this, childApplication);
+                            baybayset.setOnOpenListener(MainActivity.this);
+                        }
+                        mRoot.close(baybayset.getView());
                         break;
                     case ViewUtil.YUER:
                         if (yuer == null) {
@@ -200,7 +199,6 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
 
                     case ViewUtil.HOME:
-                        mHome.dismissUgc();
                         break;
                 }
             }
@@ -217,7 +215,6 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
                         break;
 
                     case ViewUtil.HOME:
-                        mHome.showUgc();
                         break;
                 }
             }
@@ -369,11 +366,7 @@ public class MainActivity extends BaseActivity implements FlipperLayout.OnOpenLi
 //                    }
                     break;
                 case ViewUtil.HOME:
-                    if (mHome.getUgcIsShowing()) {
-                        mHome.closeUgc();
-                    } else {
-                        exit();
-                    }
+
                     break;
                 default:
                     exit();

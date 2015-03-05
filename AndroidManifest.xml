@@ -109,6 +109,18 @@
                   android:screenOrientation="portrait" />
         <activity android:name=".ui.DetailNoticeActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
+        <activity android:name=".ui.SendGroupMessageActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.SettingPassword" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.SettingEmaillTwoActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.SettingMobileActivityTwo" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.SettingMobileActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+
+
 
         <!-- 视频 -->
         <activity android:name=".video.SDKDemoUI" android:configChanges="orientation|keyboardHidden|navigation"

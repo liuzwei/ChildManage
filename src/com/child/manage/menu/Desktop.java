@@ -22,11 +22,15 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.adapter.AnimateFirstDisplayListener;
 import com.child.manage.anim.UgcAnimations;
+import com.child.manage.entity.Account;
 import com.child.manage.ui.*;
 import com.child.manage.util.ActivityForResultUtil;
 import com.child.manage.util.PhotoUtil;
 import com.child.manage.util.ViewUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,14 +58,6 @@ public class Desktop {
     private ImageView mAvatar;
     private TextView mName;
     private ListView mDisplay;
-//	private View mUgcView;
-//	private RelativeLayout mUgcLayout;
-//	private ImageView mUgc;
-//	private ImageView mUgcBg;
-//	private ImageView mUgcVoice;
-//	private ImageView mUgcPhoto;
-//	private ImageView mUgcRecord;
-//	private ImageView mUgcLbs;
 
     /**
      * 桌面适配器
@@ -77,18 +73,35 @@ public class Desktop {
     private onChangeViewListener mOnChangeViewListener;
 
     private TextView desktop_name;//账号
+    private Account mAccount;
+    private String midentity;
+    ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
+    private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
-    public Desktop(Context context, Activity activity, ChildApplication application, String name) {
+    public Desktop(String identity,Account account,Context context, Activity activity, ChildApplication application) {
         mContext = context;
         mActivity = activity;
+        midentity = identity;
+        mAccount= account;
         mKXApplication = application;
         // 绑定布局到当前View
         mDesktop = LayoutInflater.from(context).inflate(R.layout.desktop, null);
-        mZname = name;
         findViewById();
         setListener();
         init();
-        desktop_name.setText(mZname);
+        if(midentity.equals("0")){
+            desktop_name.setText(account.getF_name());
+            imageLoader.displayImage(mAccount.getF_cover(), mAvatar, ChildApplication.txOptions, animateFirstListener);
+        }
+        if(midentity.equals("1")){
+            desktop_name.setText(account.getM_name());
+            imageLoader.displayImage(mAccount.getM_cover(), mAvatar, ChildApplication.txOptions, animateFirstListener);
+        }
+        if(account.getIs_teacher().equals("1")){
+            desktop_name.setText(account.getNick_name());
+            imageLoader.displayImage(mAccount.getCover(), mAvatar, ChildApplication.txOptions, animateFirstListener);
+        }
+
     }
 
     /**
@@ -102,16 +115,6 @@ public class Desktop {
         mAvatar = (ImageView) mDesktop.findViewById(R.id.desktop_avatar);
         mName = (TextView) mDesktop.findViewById(R.id.desktop_name);
         mDisplay = (ListView) mDesktop.findViewById(R.id.desktop_display);
-
-//		mUgcView = (View) mDesktop.findViewById(R.id.desktop_ugc);
-//		mUgcLayout = (RelativeLayout) mUgcView.findViewById(R.id.ugc_layout);
-//		mUgc = (ImageView) mUgcView.findViewById(R.id.ugc);
-//		mUgcBg = (ImageView) mUgcView.findViewById(R.id.ugc_bg);
-//
-//		mUgcVoice = (ImageView) mUgcView.findViewById(R.id.ugc_voice);
-//		mUgcPhoto = (ImageView) mUgcView.findViewById(R.id.ugc_photo);
-//		mUgcRecord = (ImageView) mUgcView.findViewById(R.id.ugc_record);
-//		mUgcLbs = (ImageView) mUgcView.findViewById(R.id.ugc_lbs);
 
         desktop_name = (TextView) mDesktop.findViewById(R.id.desktop_name);
 
@@ -134,151 +137,6 @@ public class Desktop {
                 }
             }
         });
-//		// Path监听
-//		mUgcView.setOnTouchListener(new OnTouchListener() {
-//
-//			public boolean onTouch(View v, MotionEvent event) {
-//				// 判断是否已经显示,显示则关闭并隐藏
-//				if (mUgcIsShowing) {
-//					mUgcIsShowing = false;
-//					UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
-//                            500);
-//					return true;
-//				}
-//				return false;
-//			}
-//		});
-//		// Path监听
-//		mUgc.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				// 判断是否显示,已经显示则隐藏,否则则显示
-//				mUgcIsShowing = !mUgcIsShowing;
-//				if (mUgcIsShowing) {
-//					UgcAnimations.startOpenAnimation(mUgcLayout, mUgcBg, mUgc,
-//							500);
-//				} else {
-//					UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc,
-//							500);
-//				}
-//			}
-//		});
-//
-//		//语音按钮监听
-//		mUgcVoice.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				Animation anim = UgcAnimations.clickAnimation(500);
-//				anim.setAnimationListener(new AnimationListener() {
-//
-//					public void onAnimationStart(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationRepeat(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationEnd(Animation animation) {
-//						mContext.startActivity(new Intent(mContext,
-//								VoiceActivity.class));
-//						closeUgc();
-//					}
-//				});
-//				mUgcVoice.startAnimation(anim);
-//			}
-//		});
-//		// 拍照按钮监听
-//		mUgcPhoto.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				Animation anim = UgcAnimations.clickAnimation(500);
-//				anim.setAnimationListener(new AnimationListener() {
-//
-//					public void onAnimationStart(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationRepeat(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationEnd(Animation animation) {
-//                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                        File dir = new File("/sdcard/KaiXin/Camera/");
-//                        if (!dir.exists()) {
-//                            dir.mkdirs();
-//                        }
-//                        mKXApplication.mUploadPhotoPath = "/sdcard/KaiXin/Camera/"
-//                                + UUID.randomUUID().toString();
-//                        File file = new File(
-//                                mKXApplication.mUploadPhotoPath);
-//                        if (!file.exists()) {
-//                            try {
-//                                file.createNewFile();
-//                            } catch (IOException e) {
-//
-//                            }
-//                        }
-//                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-//                                Uri.fromFile(file));
-//                        mActivity
-//                                .startActivityForResult(
-//                                        intent,
-//                                        ActivityForResultUtil.REQUESTCODE_UPLOADPHOTO_CAMERA);
-//						closeUgc();
-//					}
-//				});
-//				mUgcPhoto.startAnimation(anim);
-//			}
-//		});
-//		// 记录按钮监听
-//		mUgcRecord.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				Animation anim = UgcAnimations.clickAnimation(500);
-//				anim.setAnimationListener(new AnimationListener() {
-//
-//					public void onAnimationStart(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationRepeat(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationEnd(Animation animation) {
-//						mContext.startActivity(new Intent(mContext,
-//								WriteRecordActivity.class));
-//						closeUgc();
-//					}
-//				});
-//				mUgcRecord.startAnimation(anim);
-//			}
-//		});
-//		// 相册按钮监听
-//		mUgcLbs.setOnClickListener(new OnClickListener() {
-//
-//			public void onClick(View v) {
-//				Animation anim = UgcAnimations.clickAnimation(500);
-//				anim.setAnimationListener(new AnimationListener() {
-//					public void onAnimationStart(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationRepeat(Animation animation) {
-//
-//					}
-//
-//					public void onAnimationEnd(Animation animation) {
-//						mContext.startActivity(new Intent(mContext,
-//                                PhoneAlbumActivity.class));
-//						closeUgc();
-//					}
-//				});
-//				mUgcLbs.startAnimation(anim);
-//			}
-//		});
 
     }
 
@@ -288,10 +146,7 @@ public class Desktop {
     private void init() {
         /**
          * 设置墙纸、姓名、签名、头像以及菜单界面
-         */
-        mName.setText("15165833525");
-        mAvatar.setImageBitmap(PhotoUtil.toRoundCorner(BitmapFactory
-                .decodeResource(mContext.getResources(), R.drawable.tx), 15));
+         ;        */
         mAdapter = new DesktopAdapter(mContext);
         mDisplay.setAdapter(mAdapter);
     }
@@ -316,22 +171,6 @@ public class Desktop {
         mOnChangeViewListener = onChangeViewListener;
     }
 
-//	/**
-//	 * 获取Path菜单显示状态
-//	 *
-//	 * @return 显示状态
-//	 */
-//	public boolean getUgcIsShowing() {
-//		return mUgcIsShowing;
-//	}
-//
-//	/**
-//	 * 关闭Path菜单
-//	 */
-//	public void closeUgc() {
-//		mUgcIsShowing = false;
-//		UgcAnimations.startCloseAnimation(mUgcLayout, mUgcBg, mUgc, 500);
-//	}
 
     /**
      * 获取菜单界面
@@ -444,10 +283,6 @@ public class Desktop {
                             case ViewUtil.KECHENG:
                                 mOnChangeViewListener.onChangeView(ViewUtil.KECHENG);
                                 break;
-//						case ViewUtil.SHIPU:
-//							mOnChangeViewListener
-//									.onChangeView(ViewUtil.SHIPU);
-//							break;
                             case ViewUtil.SET:
                                 mOnChangeViewListener.onChangeView(ViewUtil.SET);
                                 break;

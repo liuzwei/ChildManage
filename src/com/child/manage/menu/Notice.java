@@ -14,6 +14,7 @@ import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.adapter.KechengAdapter;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.data.AccountMessageDATA;
 import com.child.manage.data.NoticesDATA;
 import com.child.manage.entity.Account;
 import com.child.manage.ui.DetailNoticeActivity;
@@ -21,6 +22,7 @@ import com.child.manage.entity.NoticeNews;
 import com.child.manage.library.PullToRefreshBase;
 import com.child.manage.library.PullToRefreshListView;
 import com.child.manage.ui.*;
+import com.child.manage.util.CommonUtil;
 import com.child.manage.util.InternetURL;
 import com.child.manage.util.StringUtil;
 import com.google.gson.Gson;
@@ -57,6 +59,7 @@ public class Notice {
         mHome = LayoutInflater.from(context).inflate(R.layout.kecheng, null);
         findViewById();
         setListener();
+        initData();
     }
 
     private void findViewById() {
@@ -115,22 +118,23 @@ public class Notice {
     public View getView() {
         return mHome;
     }
-
     public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
         mOnOpenListener = onOpenListener;
     }
-
     private void initData(){
+        String uri = String.format(InternetURL.GET_NOTICE_URL+"?school_id=%s&pageIndex=%s&pageSize=%s", mAccount.getSchool_id(), String.valueOf(pageIndex),"20");
         StringRequest request = new StringRequest(
-                Request.Method.POST,
-                InternetURL.GET_NOTICE_URL,
+                Request.Method.GET,
+                uri,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        if (StringUtil.isJson(s)) {
+                        if (CommonUtil.isJson(s)){
                             NoticesDATA data = getGson().fromJson(s, NoticesDATA.class);
                             if (data.getCode() == 200){
-                                lists.clear();
+                                if(IS_REFRESH){
+                                    lists.clear();
+                                }
                                 lists.addAll(data.getData());
                                 kechenglstv.onRefreshComplete();
                                 adapter.notifyDataSetChanged();
@@ -138,33 +142,17 @@ public class Notice {
                                 Toast.makeText(mActivity, R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mActivity, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("school_id", mAccount.getSchool_id());
-                params.put("pageIndex", String.valueOf(pageIndex));
-                params.put("pageSize", String.valueOf(20));
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                return params;
-            }
-        };
+        );
         mrq.add(request);
     }
 

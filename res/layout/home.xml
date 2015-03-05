@@ -11,54 +11,42 @@
             android:clickable="true"
             android:orientation="vertical">
 
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="48dip"
+        <RelativeLayout
+                android:id="@+id/lp_01"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:background="@drawable/beijing"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="5dp"
                 >
-
-            <Button
-                    android:id="@+id/home_menu"
+            <ImageView
+                    android:id="@+id/jiaohuback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/left_button_hdtd"
+                    />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="交互信息"
+                    android:gravity="center_vertical"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    />
+            <TextView
+                    android:id="@+id/publish_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/left_button_hdtd"/>
-            <LinearLayout
-                    android:id="@+id/home_top_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="35dip"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:layout_marginRight="10dp"
+                    android:text="群发"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"/>
+        </RelativeLayout>
 
-                <TextView
-                        android:id="@+id/home_top_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dip"
-                        android:text="互动天地"
-                        android:textColor="#ffffff"
-                        android:textSize="18sp"/>
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:duplicateParentState="true"
-                        />
-            </LinearLayout>
 
-            <!--<TextView-->
-            <!--android:id="@+id/publish_all"-->
-            <!--android:text="群发"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginRight="15dip"-->
-            <!--/>-->
-
-        </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,11 +65,11 @@
                         android:scrollingCache="false"
                         android:fadingEdge="none"/>
 
-                <include
-                        android:id="@+id/home_ugc1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        layout="@layout/ugc_menu_layout"/>
+                <!--<include-->
+                        <!--android:id="@+id/home_ugc1"-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--layout="@layout/ugc_menu_layout"/>-->
 
             </FrameLayout>
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -50,7 +51,7 @@ import java.util.List;
  *
  * @author rendongwei
  */
-public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCallback, View.OnClickListener {
+public class Baybayset implements BaiduMap.OnMapDrawFrameCallback, View.OnClickListener {
     private Button mMenu;
     private Context mContext;
     private Activity mActivity;
@@ -76,10 +77,15 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
     private String line_id;//定义一个路线的ID
     private List<Trace> listDw = new ArrayList<Trace>();
     private Toast mToast;
+    private RequestQueue mrq;
+    private Gson gson = new Gson();
+    private Account mAccount;
 
-    public Baybayset(Context context, Activity activity, ChildApplication application) {
+    public Baybayset(Account account,RequestQueue rq,Context context, Activity activity, ChildApplication application) {
         mContext = context;
         mActivity = activity;
+        mrq = rq;
+        mAccount = account;
         mKXApplication = application;
         mHome = LayoutInflater.from(context).inflate(R.layout.baybayset, null);
         findViewById();
@@ -108,26 +114,30 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
                 LatLng ll = new LatLng(lat, lon);
                 MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
                 mBaiduMap.setMapStatus(u);
-                MydrawPointCurrentLocation(lat, lon);
+//                MydrawPointCurrentLocation(lat, lon);
             }
         });
         locationClient.start();
         locationClient.requestLocation();
 
     }
+    public Gson getGson() {
+        return gson;
+    }
 
     private void findViewById() {
         mMenu = (Button) mHome.findViewById(R.id.baybay_menu);
-        // 初始化地图
-        mMapView = (MapView) mHome.findViewById(R.id.bmapView);
-        mBaiduMap = mMapView.getMap();
-//        mBaiduMap.setOnMapDrawFrameCallback(this);
-        bitmap = BitmapFactory.decodeResource(mContext.getResources(),
-                R.drawable.ground_overlay);
         carstart = (TextView) mHome.findViewById(R.id.carstart);
         carstart.setOnClickListener(this);
         carstop = (TextView) mHome.findViewById(R.id.carstop);
         carstop.setOnClickListener(this);
+
+        // 初始化地图
+        mMapView = (MapView) mHome.findViewById(R.id.bmapView);
+        mBaiduMap = mMapView.getMap();
+        mBaiduMap.setOnMapDrawFrameCallback(this);
+        bitmap = BitmapFactory.decodeResource(mContext.getResources(),
+                R.drawable.ground_overlay);
     }
 
     private void setListener() {
@@ -164,7 +174,29 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
         mBaiduMap.addOverlay(option);
 
     }
-
+//    @Override
+//    public void onPause() {
+//        mMapView.onPause();
+//        super.onPause();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        mMapView.onResume();
+//        // onResume 纹理失效
+//        textureId = -1;
+//        super.onResume();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        mMapView.onDestroy();
+//        super.onDestroy();
+//        if (locationClient != null && locationClient.isStarted()) {
+//            locationClient.stop();
+//            locationClient = null;
+//        }
+//    }
     public void onMapDrawFrame(GL10 gl, MapStatus drawingMapStatus) {
         if (mBaiduMap.getProjection() != null && vertexBuffer != null) {
             calPolylinePoint(drawingMapStatus);
@@ -244,59 +276,21 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
     }
 
     private void startCar(String typeid) {
-        MydrawPointStart(lat, lon);
-        Toast.makeText(mContext, "校车位置更新成功", Toast.LENGTH_SHORT).show();
-//        Account account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
-//        if (account != null) {
-//            String uri = String.format(InternetURL.CAR_OPEN_URL + "?uid=%s&class_id=%s&open=%s", "90", "1", typeid);
-//            StringRequest request = new StringRequest(
-//                    Request.Method.GET,
-//                    uri,
-//                    new Response.Listener<String>() {
-//                        @Override
-//                        public void onResponse(String s) {
-//                            if (CommonUtil.isJson(s)){
-//                                OpenCarDATA data = getGson().fromJson(s, OpenCarDATA.class);
-//                                OpenCar openCar = data.getData();
-//                                line_id = openCar.getLine_id()==null?"":openCar.getLine_id();//获得路线的ID
-//                                //更新车辆位置数据
-//                                updateCar(line_id);
-//                            }else {
-//                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    },
-//                    new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError volleyError) {
-//
-//                        }
-//                    }
-//            );
-//            getRequestQueue().add(request);
-//        }
-    }
-
-    private void updateCar(String line_id) {
-        Account account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
-        if (account != null) {
-            String uri = String.format(InternetURL.UPDATE_CAR_URL + "?uid=%s&line_id=%s&lng=%s&lat=%s", account.getUid(), line_id, lon, lat);
+        if (mAccount != null) {
+            String uri = String.format(InternetURL.CAR_OPEN_URL + "?uid=%s&class_id=%s&open=%s", mAccount.getUid(), mAccount.getClass_id(), typeid);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
                     uri,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
-                            if (CommonUtil.isJson(s)) {
-                                SuccessDATA data = getGson().fromJson(s, SuccessDATA.class);
-                                if (data.getCode() == 200) {//成功
-                                    Toast.makeText(mContext, "校车位置更新成功", Toast.LENGTH_SHORT).show();
-                                    //开始获得校车路径，画路线
-                                    getData();
-                                } else {
-                                    Toast.makeText(mContext, "校车位置更新失败", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
+                            if (CommonUtil.isJson(s)){
+                                OpenCarDATA data = getGson().fromJson(s, OpenCarDATA.class);
+                                OpenCar openCar = data.getData();
+                                line_id = openCar.getLine_id()==null?"":openCar.getLine_id();//获得路线的ID
+                                //更新车辆位置数据
+                                updateCar(line_id);
+                            }else {
                                 Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -308,40 +302,71 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
                         }
                     }
             );
-            getRequestQueue().add(request);
+            mrq.add(request);
         }
     }
-
-    private void getData() {
-        Account account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
-        if (account != null) {
-            String uri = String.format(InternetURL.GET_LOCATION_URL + "?uid=%s&class_id=%s", account.getUid(), account.getClass_id());
+    private void updateCar(String line_id) {
+        if (mAccount != null) {
+            String uri = String.format(InternetURL.UPDATE_CAR_URL + "?uid=%s&line_id=%s&lng=%s&lat=%s", mAccount.getUid(), line_id, lon, lat);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
                     uri,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
-                            if (CommonUtil.isJson(s)) {
+                            if (CommonUtil.isJson(s)){
+                                SuccessDATA data = getGson().fromJson(s, SuccessDATA.class);
+                                if(data.getCode() == 200){//成功
+                                    Toast.makeText(mContext, "校车位置更新成功", Toast.LENGTH_SHORT).show();
+                                    //开始获得校车路径，画路线
+                                    getData();
+                                }else{
+                                    Toast.makeText(mContext, "校车位置更新失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+
+                        }
+                    }
+            );
+            mrq.add(request);
+        }
+    }
+    private void getData(){
+        if (mAccount != null) {
+            String uri = String.format(InternetURL.GET_LOCATION_URL + "?uid=%s&class_id=%s", mAccount.getUid(), mAccount.getClass_id());
+            StringRequest request = new StringRequest(
+                    Request.Method.GET,
+                    uri,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String s) {
+                            if (CommonUtil.isJson(s)){
                                 TraceDATA data = getGson().fromJson(s, TraceDATA.class);
                                 listDw = data.getData();
-                                if (listDw != null) {
-                                    for (int i = 0; i < listDw.size(); i++) {
-                                        Trace trace = listDw.get(i);
-                                        LatLng latlng = new LatLng(Double.parseDouble(trace.getLat()), Double.parseDouble(trace.getLng()));
+                                if(listDw!=null){
+                                    for(int i =0;i<listDw.size();i++){
+                                        Trace trace=listDw.get(i);
+                                        LatLng latlng = new LatLng(Double.parseDouble(trace.getLat()) , Double.parseDouble(trace.getLng()));
                                         latLngPolygon.add(latlng);
                                     }
                                 }
                                 //开始处理数据
-                                if (latLngPolygon != null && latLngPolygon.size() > 0) {
+                                if(latLngPolygon!=null && latLngPolygon.size()>0){
                                     //绘制起点
                                     MydrawPointEnd(latLngPolygon.get(0).latitude, latLngPolygon.get(0).longitude);
-                                    if (latLngPolygon.size() > 1) {
+                                    if(latLngPolygon.size() > 1){
                                         //绘制终点
                                         MydrawPointStart(latLngPolygon.get(latLngPolygon.size() - 1).latitude, latLngPolygon.get(latLngPolygon.size() - 1).longitude);
                                     }
                                 }
-                            } else {
+                            }else {
                                 Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -353,10 +378,9 @@ public class Baybayset extends BaseActivity implements BaiduMap.OnMapDrawFrameCa
                         }
                     }
             );
-            getRequestQueue().add(request);
+            mrq.add(request);
         }
     }
-
     public void MydrawPointStart(Double lat, Double lng) {
         //定义Maker坐标点
         LatLng point = new LatLng(lat, lng);

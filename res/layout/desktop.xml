@@ -22,7 +22,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
 
-                <ImageView
+                <com.child.manage.widget.CircleImageView
                         android:id="@+id/desktop_avatar"
                         android:layout_width="80dip"
                         android:layout_height="80dip"

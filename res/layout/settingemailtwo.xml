@@ -5,6 +5,8 @@
               android:orientation="vertical"
               android:background="#f7f7f7"
         >
+
+    <!-- head开始 -->
     <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="48dip"
@@ -32,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dip"
-                    android:text="修改密码"
+                    android:text="绑定邮箱"
                     android:textColor="#ffffff"
                     android:textSize="18sp"/>
             <ImageView
@@ -43,7 +45,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
     <!-- head结束 -->
     <!-- 主体 -->
 
@@ -57,23 +58,9 @@
                   android:layout_height="50dp"
                   android:textColor="#333333"
                   android:textSize="20sp"
-                  android:hint="原始密码"
-                  android:password="true"
-                  android:id="@+id/password"/>
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:textColor="#333333"
-                  android:textSize="20sp"
-                  android:hint="新密码"
-                  android:password="true"
-                  android:id="@+id/newpass"/>
-        <EditText android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:textColor="#333333"
-                  android:textSize="20sp"
-                  android:hint="再输入一次"
-                  android:password="true"
-                  android:id="@+id/surepass"/>
+                  android:hint="验证码"
+                  android:id="@+id/yzm"/>
+
         <TextView android:layout_width="wrap_content"
                   android:text="确  定"
                   android:id="@+id/set"
@@ -86,6 +73,7 @@
                   android:gravity="center_vertical|center_horizontal"
                   android:background="@drawable/beijing"
                   android:layout_height="50dp"/>
+
     </LinearLayout>
 
 
