@@ -124,7 +124,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         Intent i  = new Intent();
         i.setClass(ChatActivity.this, MessageService.class);
         ChatActivity.this.unbindService(serviceConnection);
-        mContext.stopService(i);
+        getContext().stopService(i);
 
         unregisterReceiver(messageReceiver);
     }
@@ -237,7 +237,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                             MessageDATA data = getGson().fromJson(s, MessageDATA.class);
                             list.addAll(data.getData().getList());
                             Collections.sort(list);
-                            adapter = new ChatAdapter(list, mContext,sp, data.getData().getUser());
+                            adapter = new ChatAdapter(list, getContext(),sp, data.getData().getUser());
                             listView.setAdapter(adapter);
                             if (!blow) {
                                 if (data.getData().getList().size()==0){
@@ -249,7 +249,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
                             adapter.notifyDataSetChanged();
                             //todo
                         }else {
-                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },

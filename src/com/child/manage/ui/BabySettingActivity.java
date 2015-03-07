@@ -93,13 +93,13 @@ public class BabySettingActivity extends BaseActivity implements View.OnClickLis
                                 }
                             }
                            else{
-                                Toast.makeText(mContext, "查询宝宝失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "查询宝宝失败", Toast.LENGTH_SHORT).show();
                             }
 
                         }catch (Exception e){
                             ErrorDATA errorDATA = gson.fromJson(s, ErrorDATA.class);
                             if (errorDATA.getMsg().equals("failed")){
-                                Toast.makeText(mContext, "网络错误", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "网络错误", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -157,7 +157,7 @@ public class BabySettingActivity extends BaseActivity implements View.OnClickLis
                         pics = babySet.getCover().replaceAll(Constants.API_HEAD, "");;
                     }
                     if (StringUtil.isNullOrEmpty(pics)){
-                        Toast.makeText(mContext, "请设置头像", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "请设置头像", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     setting(pics);
@@ -323,19 +323,19 @@ public class BabySettingActivity extends BaseActivity implements View.OnClickLis
                         if (CommonUtil.isJson(s)) {
                             BabySetNCDATA errorDATA = getGson().fromJson(s, BabySetNCDATA.class);
                             if (errorDATA.getCode() == 200){
-                                Toast.makeText(mContext, "设置成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "设置成功", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(mContext, "设置失败，请稍后重试1", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "设置失败，请稍后重试1", Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mContext, "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

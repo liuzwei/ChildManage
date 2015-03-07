@@ -67,14 +67,14 @@ public class Home extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         findViewById();
-        adapter = new JiaohuAdapter(list, mContext);
+        adapter = new JiaohuAdapter(list, getContext());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent chat = new Intent(mContext, ChatActivity.class);
+                Intent chat = new Intent(getContext(), ChatActivity.class);
                 chat.putExtra(Constants.ACCOUNT_MESSAGE, list.get(position));
-                mContext.startActivity(chat);
+                startActivity(chat);
             }
         });
         mAccount = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
@@ -104,14 +104,14 @@ public class Home extends BaseActivity implements View.OnClickListener{
                             list.addAll(data.getData());
                             adapter.notifyDataSetChanged();
                         }else {
-                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -123,7 +123,7 @@ public class Home extends BaseActivity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.publish_all:
-                startActivity(new Intent(mContext, SendGroupMessageActivity.class));
+                startActivity(new Intent(getContext(), SendGroupMessageActivity.class));
                 break;
             case R.id.jiaohuback:
                 finish();

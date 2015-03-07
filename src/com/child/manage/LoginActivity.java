@@ -84,8 +84,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn:
-                if (!PhoneEnvUtil.isNetworkConnected(mContext)){
-                    Toast.makeText(mContext, R.string.check_network_isuse, Toast.LENGTH_SHORT).show();
+                if (!PhoneEnvUtil.isNetworkConnected(getContext())){
+                    Toast.makeText(getContext(), R.string.check_network_isuse, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 loginBtn.setClickable(false);

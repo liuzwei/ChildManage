@@ -64,7 +64,7 @@ public class YuanWai extends BaseActivity implements View.OnClickListener{
         mMenu.setOnClickListener(this);
         yuerlstv = (PullToRefreshListView) this.findViewById(R.id.yuerlstv);
 
-        adapter = new YuerAdapter(lists, mContext);
+        adapter = new YuerAdapter(lists, getContext());
         yuerlstv.setAdapter(adapter);
         yuerlstv.setMode(PullToRefreshBase.Mode.BOTH);
         yuerlstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -94,10 +94,10 @@ public class YuanWai extends BaseActivity implements View.OnClickListener{
         yuerlstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detail = new Intent(mContext, DetailYouerYuanActivity.class);
+                Intent detail = new Intent(getContext(), DetailYouerYuanActivity.class);
                 YouerYuan record = lists.get(position-1);
                 detail.putExtra(Constants.DETAIL_YUANWAI, record);
-                mContext.startActivity(detail);
+                startActivity(detail);
             }
         });
     }
@@ -126,7 +126,7 @@ public class YuanWai extends BaseActivity implements View.OnClickListener{
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

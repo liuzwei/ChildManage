@@ -73,10 +73,10 @@ public class SchoolBusActivityFather extends BaseActivity implements OnMapDrawFr
             Log.d(LTAG, "action: " + s);
 
             if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
-                Toast.makeText(mContext, "key 验证出错! 请在 AndroidManifest.xml 文件中检查 key 设置", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "key 验证出错! 请在 AndroidManifest.xml 文件中检查 key 设置", Toast.LENGTH_SHORT).show();
             } else if (s
                     .equals(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR)) {
-                Toast.makeText(mContext, "网络出错", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "网络出错", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -229,7 +229,7 @@ public class SchoolBusActivityFather extends BaseActivity implements OnMapDrawFr
                                     shoolbusinstance.setText("距离0.0公里");
                                 }
                             }else {
-                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
                     },

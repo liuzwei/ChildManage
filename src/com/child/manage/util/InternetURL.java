@@ -75,8 +75,8 @@ public class InternetURL {
     public static String CHANEL_ID =  INTENT +"/index/ServiceJson/get_user_channelid";
     //园外天地列表
     public static String GET_YUANWAITIANDI_URL =  INTENT +"/json.php/school.api-schools";
-    //查询公告列表
+
     public static String GET_NOTICE_URL =  INTENT+"/index/ServiceJson/infos";
     //查询公告详情
-    public static String GET_NOTICE_DETAIL_URL =  INTENT +"json.php/user.api-regist";
+    public static String GET_NOTICE_DETAIl =  INTENT +"/index/ServiceJson/infosDetail";
 }

@@ -148,7 +148,7 @@ public class CenterActivity extends BaseActivity implements
                 startActivity(about);
                 break;
             case R.id.leftmenu_message://交互信息
-                Intent jiaohu = new Intent(CenterActivity.this, Home.class);
+                Intent jiaohu = new Intent(CenterActivity.this, JiaohuActivity.class);
                 startActivity(jiaohu);
                 break;
             case R.id.leftmenu_video://即时动态
@@ -183,12 +183,18 @@ public class CenterActivity extends BaseActivity implements
                 startActivity(about1);
                 break;
             case R.id.center_chat:
-                Intent jiaohu1 = new Intent(CenterActivity.this, Home.class);
+                Intent jiaohu1 = new Intent(CenterActivity.this, JiaohuActivity.class);
                 startActivity(jiaohu1);
                 break;
             case R.id.center_location:
-                Intent schoolbus1 = new Intent(CenterActivity.this, Baybayset.class);
-                startActivity(schoolbus1);
+                if(account.getIs_teacher().equals("1")){//是教师登陆的话
+                    Intent schoolbus = new Intent(CenterActivity.this, OpenglDemo.class);
+                    startActivity(schoolbus);
+                }else{
+                    //家长登陆的话
+                    Intent schoolbus = new Intent(CenterActivity.this, SchoolBusActivityFather.class);
+                    startActivity(schoolbus);
+                }
                 break;
             case R.id.center_yuanwai:
                 Intent txl1 = new Intent(CenterActivity.this, YuanWai.class);
@@ -218,10 +224,10 @@ public class CenterActivity extends BaseActivity implements
         if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode){
             long currentTime = System.currentTimeMillis();
             if ((currentTime - touchTime) >= waitTime){
-                Toast.makeText(mContext, "再摁退出登录", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "再摁退出登录", Toast.LENGTH_SHORT).show();
                 touchTime = currentTime;
             }else {
-                ActivityTack.getInstanse().exit(mContext);
+                ActivityTack.getInstanse().exit(getContext());
             }
             return true;
         }

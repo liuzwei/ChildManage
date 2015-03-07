@@ -112,9 +112,9 @@ public class ChildApplication extends Application {
                 .build();
 
         tpOptions = new DisplayImageOptions.Builder()//图片
-                .showImageOnLoading(R.drawable.hctp)
-                .showImageForEmptyUri(R.drawable.hctp)    // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.hctp)        // 设置图片加载或解码过程中发生错误显示的图片
+                .showImageOnLoading(R.drawable.tx)
+                .showImageForEmptyUri(R.drawable.tx)    // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.drawable.tx)        // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true)                           // 设置下载的图片是否缓存在内存中
                 .cacheOnDisc(true)                             // 设置下载的图片是否缓存在内存卡中
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)

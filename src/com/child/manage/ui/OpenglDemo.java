@@ -236,7 +236,7 @@ public class OpenglDemo extends BaseActivity implements OnMapDrawFrameCallback, 
                                 //更新车辆位置数据
                                 updateCar(line_id);
                             }else {
-                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
@@ -263,14 +263,14 @@ public class OpenglDemo extends BaseActivity implements OnMapDrawFrameCallback, 
                             if (CommonUtil.isJson(s)){
                                 SuccessDATA data = getGson().fromJson(s, SuccessDATA.class);
                                 if(data.getCode() == 200){//成功
-                                    Toast.makeText(mContext, "校车位置更新成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "校车位置更新成功", Toast.LENGTH_SHORT).show();
                                     //开始获得校车路径，画路线
                                     getData();
                                 }else{
-                                    Toast.makeText(mContext, "校车位置更新失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "校车位置更新失败", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
@@ -314,7 +314,7 @@ public class OpenglDemo extends BaseActivity implements OnMapDrawFrameCallback, 
                                     }
                                 }
                             }else {
-                                Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                             }
                         }
                     },

@@ -113,16 +113,16 @@ public class RegisterAcitivity extends BaseActivity implements View.OnClickListe
                         try {
                             RegDATA data = gson.fromJson(s, RegDATA.class);
                             if(data.getData().getUid() >0){
-                                Toast.makeText(mContext, "注册成功，请登录", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "注册成功，请登录", Toast.LENGTH_SHORT).show();
                                 finish();
                             }else {
-                                Toast.makeText(mContext, "注册失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
                             }
 
                         }catch (Exception e){
                             ErrorDATA errorDATA = gson.fromJson(s, ErrorDATA.class);
                             if (errorDATA.getMsg().equals("failed")){
-                                Toast.makeText(mContext, "注册失败", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "注册失败", Toast.LENGTH_SHORT).show();
                             }
                         }
                         progressDialog.dismiss();
@@ -131,7 +131,7 @@ public class RegisterAcitivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
-                Toast.makeText(mContext, "请求超时，稍后重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "请求超时，稍后重试", Toast.LENGTH_SHORT).show();
             }
         });
         request.setRetryPolicy(new DefaultRetryPolicy(

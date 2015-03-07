@@ -70,27 +70,27 @@ public class SettingPassword extends BaseActivity implements View.OnClickListene
                 surepassword = surepass.getText().toString();
                 String str = getGson().fromJson(sp.getString("password", ""), String.class);
                 if(StringUtil.isNullOrEmpty(pass)){
-                    Toast.makeText(mContext, "请输入原始密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请输入原始密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!str.equals(pass)){
-                    Toast.makeText(mContext, "原始密码输入错误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "原始密码输入错误", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(StringUtil.isNullOrEmpty(newpassword)){
-                    Toast.makeText(mContext, "请输入新密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请输入新密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(newpassword.length()<6 || newpassword.length()>18){
-                    Toast.makeText(mContext, "请输入正确的密码，6到18位之间", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请输入正确的密码，6到18位之间", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(StringUtil.isNullOrEmpty(surepassword)){
-                    Toast.makeText(mContext, "请输入确认密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请输入确认密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!newpassword.equals(surepassword)){
-                    Toast.makeText(mContext, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "两次输入密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 updatepass(getGson().fromJson(sp.getString("username", ""), String.class) ,newpassword);

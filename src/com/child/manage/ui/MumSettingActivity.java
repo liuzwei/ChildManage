@@ -108,7 +108,7 @@ public class MumSettingActivity extends BaseActivity implements View.OnClickList
                 //设置妈妈  上传头像并保存信息
                 nickName = name.getText().toString();
                 if (StringUtil.isNullOrEmpty(nickName)){
-                    Toast.makeText(mContext, "姓名不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "姓名不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!StringUtil.isNullOrEmpty(pics)) {
@@ -129,7 +129,7 @@ public class MumSettingActivity extends BaseActivity implements View.OnClickList
                         pics = account.getM_cover();
                     }
                     if (StringUtil.isNullOrEmpty(pics)){
-                        Toast.makeText(mContext, "请设置头像", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "请设置头像", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     setting(pics);
@@ -175,19 +175,19 @@ public class MumSettingActivity extends BaseActivity implements View.OnClickList
                             ErrorDATA errorDATA = getGson().fromJson(s, ErrorDATA.class);
                             if (errorDATA.getCode() == 200){
                                 resetAccount(name.getText().toString(), cover);
-                                Toast.makeText(mContext, "设置成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "设置成功", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(mContext, "设置失败，请稍后重试1", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "设置失败，请稍后重试1", Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mContext, "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "设置失败，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

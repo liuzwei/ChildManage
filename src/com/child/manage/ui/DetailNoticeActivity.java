@@ -71,7 +71,7 @@ public class DetailNoticeActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initData(){
-        String uri = String.format(InternetURL.GET_NOTICE_DETAIL_URL+"?id=%s", id);
+        String uri = String.format(InternetURL.GET_NOTICE_DETAIl+"?id=%s", id);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 uri,
@@ -90,21 +90,21 @@ public class DetailNoticeActivity extends BaseActivity implements View.OnClickLi
                                     notice_detail_cover.setVisibility(View.GONE);
                                 }else{
                                     notice_detail_cover.setVisibility(View.VISIBLE);
-                                    imageLoader.displayImage(String.format(Constants.API_HEAD + "%s",noticeNews.getPic()),
+                                    imageLoader.displayImage((String.format(Constants.API_HEAD + "%s",noticeNews.getPic())),
                                             notice_detail_cover, ChildApplication.options, animateFirstListener);
                                 }
                             }else {
                                 Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

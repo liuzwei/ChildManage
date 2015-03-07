@@ -58,7 +58,7 @@ public class Notice extends BaseActivity implements View.OnClickListener{
         mMenu = (Button) this.findViewById(R.id.home_menu);
         mMenu.setOnClickListener(this);
         kechenglstv = (PullToRefreshListView) this.findViewById(R.id.kechenglstv);
-        adapter = new KechengAdapter(lists, mContext);
+        adapter = new KechengAdapter(lists, getContext());
         kechenglstv.setAdapter(adapter);
         kechenglstv.setMode(PullToRefreshBase.Mode.BOTH);
         kechenglstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -88,10 +88,10 @@ public class Notice extends BaseActivity implements View.OnClickListener{
         kechenglstv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detail = new Intent(mContext, DetailNoticeActivity.class);
+                Intent detail = new Intent(getContext(), DetailNoticeActivity.class);
                 NoticeNews record = lists.get(position-1);
                 detail.putExtra(Constants.NOTICE_INFO,record.getId());
-                mContext.startActivity(detail);
+                startActivity(detail);
             }
         });
     }
@@ -116,14 +116,14 @@ public class Notice extends BaseActivity implements View.OnClickListener{
                                 Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(mContext, "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "服务器异常，请稍后重试", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

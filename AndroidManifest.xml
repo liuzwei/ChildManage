@@ -121,8 +121,6 @@
         <activity android:name=".menu.About" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
 
-        <activity android:name=".menu.Baybayset" android:configChanges="orientation|keyboardHidden|navigation"
-                  android:screenOrientation="portrait" />
         <activity android:name=".menu.Home" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
         <activity android:name=".menu.Notice" android:configChanges="orientation|keyboardHidden|navigation"
@@ -143,6 +141,9 @@
                   android:screenOrientation="portrait" />
         <activity android:name=".ui.RegisterAcitivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
+        <activity android:name=".ui.JiaohuActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+
 
         <!-- 视频 -->
         <activity android:name=".video.SDKDemoUI" android:configChanges="orientation|keyboardHidden|navigation"
