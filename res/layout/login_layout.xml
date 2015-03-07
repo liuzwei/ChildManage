@@ -126,6 +126,7 @@
                         android:drawablePadding="8dip"
                         android:layout_gravity="center"
                         android:text="申请一个账号？"
+                        android:id="@+id/register"
                         android:textColor="@color/maincolor"
                         android:textSize="20sp"/>
             </LinearLayout>

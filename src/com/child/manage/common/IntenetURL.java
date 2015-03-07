@@ -73,4 +73,6 @@ public class IntenetURL {
 
     //更新Chinal_id
     public static String CHANEL_ID =  INTENT +"/index/ServiceJson/get_user_channelid";
+    //zhuce
+    public static String REGISTER_URL =  INTENT +"/json.php/user.api-regist";
 }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,6 +29,7 @@ import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.adapter.JiaohuAdapter;
 import com.child.manage.anim.UgcAnimations;
+import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
 import com.child.manage.data.AccountMessageDATA;
 import com.child.manage.entity.Account;
@@ -51,15 +53,7 @@ import java.util.UUID;
  *
  * @author rendongwei
  */
-public class Home {
-    private Context mContext;
-    private Activity mActivity;
-    private ChildApplication mKXApplication;
-    private View mHome;
-    private RequestQueue mrq;
-    private Gson gson = new Gson();
-    private FlipperLayout.OnOpenListener mOnOpenListener;
-
+public class Home extends BaseActivity implements View.OnClickListener{
     private ImageView jiaohuback;
     private ListView listView;
     private List<AccountMessage> list = new ArrayList<AccountMessage>();
@@ -67,15 +61,11 @@ public class Home {
     private TextView publishAll;//群发消息
     private Account mAccount;
     private String mIdentity;
-    public Home(String identity,Account account,RequestQueue rq,Context context, Activity activity, ChildApplication application) {
-        mContext = context;
-        mrq = rq;
-        mIdentity = identity;
-        mAccount = account;
-        mActivity = activity;
-        mKXApplication = application;
-        mHome = LayoutInflater.from(context).inflate(R.layout.home, null);
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.home);
         findViewById();
         adapter = new JiaohuAdapter(list, mContext);
         listView.setAdapter(adapter);
@@ -87,41 +77,18 @@ public class Home {
                 mContext.startActivity(chat);
             }
         });
-
-        setListener();
+        mAccount = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
+        mIdentity = getGson().fromJson(sp.getString(Constants.IDENTITY, ""), String.class);
         getData();
     }
 
     private void findViewById() {
-        jiaohuback = (ImageView) mHome.findViewById(R.id.jiaohuback);
+        jiaohuback = (ImageView) this.findViewById(R.id.jiaohuback);
+        listView = (ListView) this.findViewById(R.id.jiaohu_lstv);
+        publishAll = (TextView) this.findViewById(R.id.publish_all);
 
-        listView = (ListView) mHome.findViewById(R.id.jiaohu_lstv);
-        publishAll = (TextView) mHome.findViewById(R.id.publish_all);
-    }
-
-    private void setListener() {
-        jiaohuback.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
-            }
-        });
-        publishAll.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mActivity.startActivity(new Intent(mContext, SendGroupMessageActivity.class));
-            }
-        });
-    }
-
-
-    public View getView() {
-        return mHome;
-    }
-
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
+        jiaohuback.setOnClickListener(this);
+        publishAll.setOnClickListener(this);
     }
 
     private void getData(){
@@ -148,10 +115,19 @@ public class Home {
                     }
                 }
         );
-        mrq.add(request);
+        mRequestQueue.add(request);
     }
 
-    public Gson getGson() {
-        return gson;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.publish_all:
+                startActivity(new Intent(mContext, SendGroupMessageActivity.class));
+                break;
+            case R.id.jiaohuback:
+                finish();
+                break;
+        }
     }
 }

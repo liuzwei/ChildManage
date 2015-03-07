@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,10 +16,15 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.adapter.AnimateFirstDisplayListener;
 import com.child.manage.anim.UgcAnimations;
+import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
+import com.child.manage.entity.Account;
 import com.child.manage.ui.*;
 import com.child.manage.util.ActivityForResultUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,90 +35,93 @@ import java.util.UUID;
  *
  * @author rendongwei
  */
-public class Set implements OnClickListener {
+public class Set extends BaseActivity implements OnClickListener {
     private Button mMenu;
-    private Context mContext;
-    private Activity mActivity;
-    private ChildApplication mKXApplication;
-    private View mSet;
-
-
-    private FlipperLayout.OnOpenListener mOnOpenListener;
-
     private LinearLayout setzh;
     private LinearLayout setpass;
     private LinearLayout setbaby;
     private LinearLayout setemail;
     private LinearLayout aboutus;
+    private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
+    ImageLoader imageLoader = ImageLoader.getInstance();//图片加载类
+    private  ImageView tx;
+    private  TextView set_name;
+    private Account account;
+    String identity ="";
 
-    public Set(Context context, Activity activity, ChildApplication application) {
-        mContext = context;
-        mActivity = activity;
-        mKXApplication = application;
-        mSet = LayoutInflater.from(context).inflate(R.layout.set, null);
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.set);
         findViewById();
-        setListener();
+        account = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
+        identity = getGson().fromJson(sp.getString(Constants.IDENTITY, ""), String.class);
+        if(identity.equals("0")){
+            set_name.setText( account.getF_name());
+            imageLoader.displayImage(account.getF_cover(), tx, ChildApplication.options, animateFirstListener);
+        }
+        if(identity.equals("1")){
+            set_name.setText( account.getM_name());
+            imageLoader.displayImage(account.getM_cover(), tx, ChildApplication.options, animateFirstListener);
+        }
+        if(account.getIs_teacher().equals("1")){
+            setbaby.setVisibility(View.GONE);
+            set_name.setText(account.getNick_name());
+            imageLoader.displayImage(account.getCover(), tx, ChildApplication.options, animateFirstListener);
+        }
 
     }
 
     private void findViewById() {
-        mMenu = (Button) mSet.findViewById(R.id.set_menu);
-        setzh = (LinearLayout) mSet.findViewById(R.id.setzh);
+
+        mMenu = (Button) this.findViewById(R.id.set_menu);
+        mMenu.setOnClickListener(this);
+        setzh = (LinearLayout) this.findViewById(R.id.setzh);
         setzh.setOnClickListener(this);
-        setpass = (LinearLayout) mSet.findViewById(R.id.setpass);
+        setpass = (LinearLayout) this.findViewById(R.id.setpass);
         setpass.setOnClickListener(this);
-        setbaby = (LinearLayout) mSet.findViewById(R.id.setbaby);
+        setbaby = (LinearLayout) this.findViewById(R.id.setbaby);
         setbaby.setOnClickListener(this);
-        setemail = (LinearLayout) mSet.findViewById(R.id.setemail);
+        setemail = (LinearLayout) this.findViewById(R.id.setemail);
         setemail.setOnClickListener(this);
-        aboutus = (LinearLayout) mSet.findViewById(R.id.aboutus);
+        aboutus = (LinearLayout) this.findViewById(R.id.aboutus);
         aboutus.setOnClickListener(this);
-    }
 
-    private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
+        tx = (ImageView) this.findViewById(R.id.tx);
+        tx.setOnClickListener(this);
+        set_name = (TextView) this.findViewById(R.id.set_name);
 
-            public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
-            }
-        });
-
-
-    }
-
-    public View getView() {
-        return mSet;
-    }
-
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.set_menu:
+                finish();
+                break;
             case R.id.setzh:
-                Intent zhanghao = new Intent(mContext, SettingMobileActivity.class);
-                mContext.startActivity(zhanghao);
+                Intent zhanghao = new Intent(getContext(), SettingMobileActivity.class);
+                startActivity(zhanghao);
                 break;
             case R.id.setpass:
-                Intent pass = new Intent(mContext, SettingPassActivity.class);
-                mContext.startActivity(pass);
+                Intent pass = new Intent(getContext(), SettingPassActivity.class);
+                startActivity(pass);
                 break;
             case R.id.setbaby:
-                Intent baby = new Intent(mContext, SettingBabyActivity.class);
-                mContext.startActivity(baby);
+                Intent babySet = new Intent(getContext(), BabySettingActivity.class);
+                startActivity(babySet);
                 break;
             case R.id.setemail:
-                Intent email = new Intent(mContext, SettingEmailActivity.class);
-                mContext.startActivity(email);
+                Intent email = new Intent(getContext(), SettingEmailActivity.class);
+                startActivity(email);
                 break;
             case R.id.aboutus:
-                Intent about = new Intent(mContext, SettingAboutActivity.class);
-                mContext.startActivity(about);
+                Intent about = new Intent(getContext(), SettingAboutActivity.class);
+                startActivity(about);
+                break;
+            case R.id.tx:
+                Intent mumSet = new Intent(getContext(), MumSettingActivity.class);
+                startActivity(mumSet);
                 break;
         }
     }

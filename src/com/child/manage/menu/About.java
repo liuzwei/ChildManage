@@ -2,12 +2,14 @@ package com.child.manage.menu;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
+import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
 
 /**
@@ -15,49 +17,29 @@ import com.child.manage.base.FlipperLayout;
  *
  * @author rendongwei
  */
-public class About {
+public class About extends BaseActivity implements View.OnClickListener {
 
     private Button mMenu;
-    private Context mContext;
-    private Activity mActivity;
-    private ChildApplication mKXApplication;
-    private View mAbout;
-    private FlipperLayout.OnOpenListener mOnOpenListener;
 
-
-    public About(Context context, Activity activity, ChildApplication application) {
-        mContext = context;
-        mActivity = activity;
-        mKXApplication = application;
-        mAbout = LayoutInflater.from(context).inflate(R.layout.about, null);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.about);
         findViewById();
-        setListener();
-
     }
 
     private void findViewById() {
-        mMenu = (Button) mAbout.findViewById(R.id.about_menu);
+        mMenu = (Button) this.findViewById(R.id.about_menu);
+        mMenu.setOnClickListener(this);
     }
 
-    private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
-            }
-        });
-
-
-    }
-
-
-    public View getView() {
-        return mAbout;
-    }
-
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.about_menu:
+                finish();
+                break;
+        }
     }
 }

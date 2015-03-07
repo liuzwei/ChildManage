@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@drawable/kaixin_background"
+        >
+
+    <!-- head开始 -->
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@drawable/beijing" >
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dip"
+                    android:textColor="#ffffff"
+                    android:text="注册账号"
+                    android:textSize="18sp" />
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/regist_back"
+                android:paddingLeft="10dp"
+                android:src="@drawable/left_button_hdtd"
+                android:paddingRight="10dp"/>
+
+
+    </RelativeLayout>
+    <!-- head结束 -->
+    <!-- 主体 -->
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:id="@+id/linearname">
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="#333333"
+                  android:textSize="20sp"
+                  android:hint="用户名"
+                  android:id="@+id/regist_nickname"/>
+
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="#333333"
+                  android:textSize="20sp"
+                  android:hint="密码"
+                  android:password="true"
+                  android:id="@+id/regist_pwr"/>
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:textColor="#333333"
+                  android:textSize="20sp"
+                  android:hint="确认密码"
+                  android:password="true"
+                  android:id="@+id/regist_sure"/>
+
+
+        <TextView
+                android:id="@+id/regist_sub"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                android:background="@drawable/beijing"
+                android:shadowColor="#7f000000"
+                android:shadowDx="0.0"
+                android:shadowDy="1.0"
+                android:gravity="center"
+                android:shadowRadius="1.0"
+                android:text="确定"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:enabled="true"/>
+
+    </LinearLayout>
+
+
+    <!-- 主体结束 -->
+
+</LinearLayout>

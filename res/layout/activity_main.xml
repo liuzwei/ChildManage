@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+    <com.child.manage.ui.SlideMenu
+            android:id="@+id/slide_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+        <include layout="@layout/leftmenu"/>
+
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/color_2"
+                android:orientation="vertical" >
+            <include layout="@layout/center_menu"/>
+        </RelativeLayout>
+
+    </com.child.manage.ui.SlideMenu>
+
+</RelativeLayout>

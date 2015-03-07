@@ -78,5 +78,5 @@ public class InternetURL {
     //查询公告列表
     public static String GET_NOTICE_URL =  INTENT+"/index/ServiceJson/infos";
     //查询公告详情
-    public static String GET_NOTICE_DETAIL_URL =  INTENT +"/index/ServiceJson/infosDetail";
+    public static String GET_NOTICE_DETAIL_URL =  INTENT +"json.php/user.api-regist";
 }

@@ -57,8 +57,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" android:configChanges="orientation|keyboardHidden|navigation"
-                  android:screenOrientation="portrait" />
         <activity android:name=".base.BaseActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
         <activity android:name=".LoginActivity" android:configChanges="orientation|keyboardHidden|navigation"
@@ -120,7 +118,31 @@
         <activity android:name=".ui.SettingMobileActivity" android:configChanges="orientation|keyboardHidden|navigation"
                   android:screenOrientation="portrait" />
 
+        <activity android:name=".menu.About" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
 
+        <activity android:name=".menu.Baybayset" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".menu.Home" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".menu.Notice" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".menu.Set" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".menu.YuanWai" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.CenterActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.OpenglDemo" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.SchoolBusActivityFather" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.MumSettingActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.BabySettingActivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".ui.RegisterAcitivity" android:configChanges="orientation|keyboardHidden|navigation"
+                  android:screenOrientation="portrait" />
 
         <!-- 视频 -->
         <activity android:name=".video.SDKDemoUI" android:configChanges="orientation|keyboardHidden|navigation"

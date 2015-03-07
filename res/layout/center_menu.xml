@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:background="@drawable/kaixin_background"
+              android:layout_height="match_parent" >
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_weight="1"
+                  android:layout_height="wrap_content">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/center_top_pic"
+                android:layout_height="wrap_content">
+            <Button
+                    android:id="@+id/center_back_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/left_button_hdtd"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_weight="1"
+                       android:layout_marginLeft="10dp"
+                       android:id="@+id/center_about"
+                       android:src="@drawable/center_about"
+                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:src="@drawable/center_chat"
+                       android:id="@+id/center_chat"
+                       android:layout_weight="1"
+                       android:layout_marginLeft="10dp"
+                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_weight="1"
+                       android:id="@+id/center_location"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:src="@drawable/center_location"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="园区介绍"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="互动天地"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="宝宝位置"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:padding="5dp"
+                  android:layout_marginBottom="20dp"
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content"
+                       android:src="@drawable/center_yuanwai"
+                       android:layout_weight="1"
+                       android:id="@+id/center_yuanwai"
+                       android:layout_marginLeft="10dp"
+                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:src="@drawable/center_video"
+                       android:layout_weight="1"
+                       android:id="@+id/center_video"
+                       android:layout_marginLeft="10dp"
+                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_weight="1"
+                       android:layout_marginLeft="10dp"
+                       android:id="@+id/center_notice"
+                       android:layout_marginRight="10dp"
+                       android:src="@drawable/center_notice"
+                       android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="园外天地"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="即时动态"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="公告栏"
+                      android:layout_weight="1"
+                      android:textColor="@color/zhuce_ok3color"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

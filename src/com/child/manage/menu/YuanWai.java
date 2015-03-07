@@ -3,6 +3,7 @@ package com.child.manage.menu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,38 +42,27 @@ import java.util.Map;
  *
  * @author rendongwei
  */
-public class YuanWai{
+public class YuanWai extends BaseActivity implements View.OnClickListener{
     private Button mMenu;
-    private Context mContext;
-    private Activity mActivity;
-    private RequestQueue mrq;
-    private ChildApplication mKXApplication;
-    private View mYule;
-
-    private FlipperLayout.OnOpenListener mOnOpenListener;
-
     private PullToRefreshListView yuerlstv;
     private YuerAdapter adapter;
     private List<YouerYuan> lists = new ArrayList<YouerYuan>();
 
     private int pageIndex = 1;
     private static boolean IS_REFRESH = true;
-    private Gson gson = new Gson();
 
-    public YuanWai(RequestQueue rq, Context context, Activity activity, ChildApplication application) {
-        mrq = rq;
-        mContext = context;
-        mActivity = activity;
-        mKXApplication = application;
-        mYule = LayoutInflater.from(context).inflate(R.layout.yuer, null);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.yuer);
         findViewById();
-        setListener();
         initData();
     }
 
     private void findViewById() {
-        mMenu = (Button) mYule.findViewById(R.id.yuer_menu);
-        yuerlstv = (PullToRefreshListView) mYule.findViewById(R.id.yuerlstv);
+        mMenu = (Button) this.findViewById(R.id.yuer_menu);
+        mMenu.setOnClickListener(this);
+        yuerlstv = (PullToRefreshListView) this.findViewById(R.id.yuerlstv);
 
         adapter = new YuerAdapter(lists, mContext);
         yuerlstv.setAdapter(adapter);
@@ -80,7 +70,7 @@ public class YuanWai{
         yuerlstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(mActivity.getApplicationContext(), System.currentTimeMillis(),
+                String label = DateUtils.formatDateTime(getContext().getApplicationContext(), System.currentTimeMillis(),
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
@@ -91,7 +81,7 @@ public class YuanWai{
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(mActivity.getApplicationContext(), System.currentTimeMillis(),
+                String label = DateUtils.formatDateTime(getContext().getApplicationContext(), System.currentTimeMillis(),
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
@@ -111,28 +101,6 @@ public class YuanWai{
             }
         });
     }
-
-    private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
-            }
-        });
-
-
-    }
-
-
-    public View getView() {
-        return mYule;
-    }
-
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
-    }
     private void initData(){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -148,10 +116,10 @@ public class YuanWai{
                                 yuerlstv.onRefreshComplete();
                                 adapter.notifyDataSetChanged();
                             }else {
-                                Toast.makeText(mActivity, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            Toast.makeText(mActivity, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -176,10 +144,16 @@ public class YuanWai{
                 return params;
             }
         };
-        mrq.add(request);
+        mRequestQueue.add(request);
     }
 
-    public Gson getGson() {
-        return gson;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.yuer_menu:
+                finish();
+                break;
+        }
     }
 }

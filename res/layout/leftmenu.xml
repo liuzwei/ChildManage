@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="240dip"
+              android:layout_height="wrap_content"
+              android:background="@drawable/backcolor"
+              android:orientation="vertical" >
+    <com.child.manage.util.ReboundScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+    <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                  android:layout_height="wrap_content">
+
+
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="horizontal"
+                  android:id="@+id/leftmenu_user"
+                  android:layout_height="wrap_content">
+        <com.child.manage.widget.CircleImageView
+                android:id="@+id/desktop_avatar"
+                android:layout_width="80dip"
+                android:layout_height="80dip"
+                android:src="@drawable/tx"
+                android:layout_margin="8dip"
+                />
+        <LinearLayout android:layout_width="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/left_name"
+                    android:layout_width="240dip"
+                    android:layout_height="50.0dip"
+                    android:clickable="true"
+                    android:drawablePadding="1.0dip"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15.0dip"
+                    android:paddingRight="10.0dip"
+                    android:text="陈大妈"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="11"
+                    android:textSize="16.0sp" />
+            <TextView
+                    android:id="@+id/left_guanxi"
+                    android:layout_width="240dip"
+                    android:layout_height="50.0dip"
+                    android:clickable="true"
+                    android:drawablePadding="1.0dip"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15.0dip"
+                    android:paddingRight="10.0dip"
+                    android:text="母女"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="11"
+                    android:textSize="16.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+
+    <TextView
+            android:id="@+id/leftmenu_jieshao"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        园区介绍"
+            android:drawableLeft="@drawable/left_hudong"
+            android:textColor="#FFFFFF"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_message"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        互动天地"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/left_baobaochegnzhangdianping"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_video"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text= "        即时动态"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/left_geilaoshily"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_school_car"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        宝宝位置"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/left_yuancheng"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_yuanwai"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        园外天地"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/left_yuerzhishi"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_notice"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        公告栏"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/baobaoshipu"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    <TextView
+            android:id="@+id/leftmenu_set"
+            android:layout_width="240dip"
+            android:layout_height="50.0dip"
+            android:clickable="true"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="        设置"
+            android:textColor="#FFFFFF"
+            android:drawableLeft="@drawable/left_set"
+            android:layout_weight="11"
+            android:textSize="16.0sp" />
+    <View
+            android:layout_width="240dip"
+            android:layout_height="2.0dip"
+            android:background="#FFFFFF" />
+    </LinearLayout>
+    </com.child.manage.util.ReboundScrollView>
+</LinearLayout>

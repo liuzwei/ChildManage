@@ -76,8 +76,6 @@ public class BaseActivity extends Activity {
         mScreenWidth = metric.widthPixels;
         mScreenHeight = metric.heightPixels;
 
-        initFace();
-
         mContext = getApplicationContext();
         sp = getSharedPreferences("environ_manage", Context.MODE_PRIVATE);
         inflater = LayoutInflater.from(mContext);
@@ -109,20 +107,6 @@ public class BaseActivity extends Activity {
             finalHttp = new FinalHttp();
         }
         return finalHttp;
-    }
-
-    /**
-     * 初始化表情控件
-     */
-    private void initFace() {
-        mFaceView = LayoutInflater.from(this).inflate(R.layout.face, null);
-        mFaceClose = (ImageView) mFaceView.findViewById(R.id.face_close);
-        mFaceGridView = (GridView) mFaceView.findViewById(R.id.face_gridview);
-//        FaceAdapter mAdapter = new FaceAdapter(this);
-//        mFaceGridView.setAdapter(mAdapter);
-        mFacePop = new PopupWindow(mFaceView, mScreenWidth - 60, mScreenWidth,
-                true);
-        mFacePop.setBackgroundDrawable(new BitmapDrawable());
     }
 
 

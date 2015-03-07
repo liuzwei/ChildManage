@@ -18,9 +18,7 @@ import com.child.manage.base.BaseActivity;
 import com.child.manage.data.AccountDATA;
 import com.child.manage.data.ErrorDATA;
 import com.child.manage.entity.Account;
-import com.child.manage.ui.Constants;
-import com.child.manage.ui.ForgetPassOneActivity;
-import com.child.manage.ui.SelectIdentityActivity;
+import com.child.manage.ui.*;
 import com.child.manage.util.InternetURL;
 import com.child.manage.util.PhoneEnvUtil;
 import com.google.gson.Gson;
@@ -39,6 +37,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView loginBtn;//登陆按钮
     private TextView forgetPass;//忘记密码
     private ProgressDialog progressDialog;
+    private TextView register;
 
     private RequestQueue mRequestQueue;
 
@@ -71,6 +70,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (password!= null) {
             password.setText(getGson().fromJson(sp.getString("password", ""), String.class));
         }
+        register = (TextView) findViewById(R.id.register);
+        register.setOnClickListener(this);
     }
 
     public void onBackPressed() {
@@ -131,7 +132,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                         setIdentity.putExtra(Constants.ACCOUNT_KEY, account);
                                         startActivity(setIdentity);
                                     }else {//老师登陆直接跳转到主页面
-                                        Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent main = new Intent(LoginActivity.this, CenterActivity.class);
                                         startActivity(main);
                                         save(Constants.IDENTITY, "2");
                                     }
@@ -161,6 +162,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.login_forgetpass://忘记密码
                 Intent forgetPass = new Intent(this, ForgetPassOneActivity.class);
                 startActivity(forgetPass);
+                break;
+            case R.id.register:
+                Intent regist = new Intent(this, RegisterAcitivity.class);
+                startActivity(regist);
                 break;
         }
     }

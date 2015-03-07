@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.child.manage.MainActivity;
 import com.child.manage.R;
 import com.child.manage.adapter.AnimateFirstDisplayListener;
 import com.child.manage.base.BaseActivity;
@@ -70,7 +69,7 @@ public class SelectIdentityActivity extends BaseActivity implements View.OnClick
                 save(Constants.IDENTITY, "1");
                 break;
         }
-        Intent intent = new Intent(SelectIdentityActivity.this, MainActivity.class);
+        Intent intent = new Intent(SelectIdentityActivity.this, CenterActivity.class);
         startActivity(intent);
     }
 }

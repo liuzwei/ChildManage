@@ -3,6 +3,7 @@ package com.child.manage.menu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.adapter.KechengAdapter;
+import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
 import com.child.manage.data.AccountMessageDATA;
 import com.child.manage.data.NoticesDATA;
@@ -34,44 +36,35 @@ import java.util.*;
  *
  * @author rendongwei
  */
-public class Notice {
+public class Notice extends BaseActivity implements View.OnClickListener{
     private Button mMenu;
-    private Context mContext;
-    private Activity mActivity;
-    private ChildApplication mKXApplication;
-    private View mHome;
-    private RequestQueue mrq;
-    private FlipperLayout.OnOpenListener mOnOpenListener;
     private PullToRefreshListView kechenglstv;
     private KechengAdapter adapter;
     private List<NoticeNews> lists = new ArrayList<NoticeNews>();
     private int pageIndex = 1;
     private static boolean IS_REFRESH = true;
-    private Gson gson = new Gson();
-     Account mAccount;
-    String schoolId;
-    public Notice(Account account,RequestQueue rq,Context context, Activity activity, ChildApplication application) {
-        mContext = context;
-        mAccount = account;
-        mrq = rq;
-        mActivity = activity;
-        mKXApplication = application;
-        mHome = LayoutInflater.from(context).inflate(R.layout.kecheng, null);
+    private Account mAccount;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.kecheng);
+        mAccount = getGson().fromJson(sp.getString(Constants.ACCOUNT_KEY, ""), Account.class);
         findViewById();
-        setListener();
         initData();
     }
 
     private void findViewById() {
-        mMenu = (Button) mHome.findViewById(R.id.home_menu);
-        kechenglstv = (PullToRefreshListView) mHome.findViewById(R.id.kechenglstv);
+        mMenu = (Button) this.findViewById(R.id.home_menu);
+        mMenu.setOnClickListener(this);
+        kechenglstv = (PullToRefreshListView) this.findViewById(R.id.kechenglstv);
         adapter = new KechengAdapter(lists, mContext);
         kechenglstv.setAdapter(adapter);
         kechenglstv.setMode(PullToRefreshBase.Mode.BOTH);
         kechenglstv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(mActivity.getApplicationContext(), System.currentTimeMillis(),
+                String label = DateUtils.formatDateTime(getContext().getApplicationContext(), System.currentTimeMillis(),
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
@@ -82,7 +75,7 @@ public class Notice {
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = DateUtils.formatDateTime(mActivity.getApplicationContext(), System.currentTimeMillis(),
+                String label = DateUtils.formatDateTime(getContext().getApplicationContext(), System.currentTimeMillis(),
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
@@ -102,25 +95,6 @@ public class Notice {
             }
         });
     }
-
-    private void setListener() {
-        mMenu.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-                if (mOnOpenListener != null) {
-                    mOnOpenListener.open();
-                }
-            }
-        });
-
-    }
-
-    public View getView() {
-        return mHome;
-    }
-    public void setOnOpenListener(FlipperLayout.OnOpenListener onOpenListener) {
-        mOnOpenListener = onOpenListener;
-    }
     private void initData(){
         String uri = String.format(InternetURL.GET_NOTICE_URL+"?school_id=%s&pageIndex=%s&pageSize=%s", mAccount.getSchool_id(), String.valueOf(pageIndex),"20");
         StringRequest request = new StringRequest(
@@ -139,7 +113,7 @@ public class Notice {
                                 kechenglstv.onRefreshComplete();
                                 adapter.notifyDataSetChanged();
                             }else {
-                                Toast.makeText(mActivity, R.string.get_data_error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.get_data_error, Toast.LENGTH_SHORT).show();
                             }
                         }else {
                             Toast.makeText(mContext, "数据错误，请稍后重试", Toast.LENGTH_SHORT).show();
@@ -153,10 +127,16 @@ public class Notice {
                     }
                 }
         );
-        mrq.add(request);
+        mRequestQueue.add(request);
     }
 
-    public Gson getGson() {
-        return gson;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.home_menu:
+                finish();
+                break;
+        }
     }
 }

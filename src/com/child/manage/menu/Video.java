@@ -18,6 +18,7 @@ import android.widget.*;
 import com.child.manage.ChildApplication;
 import com.child.manage.R;
 import com.child.manage.adapter.TreeViewAdapter;
+import com.child.manage.base.BaseActivity;
 import com.child.manage.base.FlipperLayout;
 import com.child.manage.entity.MyNodeinfo;
 import com.child.manage.ui.PlayActivity;
@@ -31,14 +32,8 @@ import java.util.*;
  *
  * @author rendongwei
  */
-public class Video extends Activity{
+public class Video extends BaseActivity {
     private Button video_menu;
-//    private Context mContext;
-//    private Activity mActivity;
-//    private ChildApplication mKXApplication;
-//    private View mHome;
-//    private FlipperLayout.OnOpenListener mOnOpenListener;
-
     //视频接口
     private final String USERNAME = "15123036810";
     private final String PASSWORD = "654321";
